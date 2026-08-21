@@ -851,8 +851,9 @@
       <form id="signInForm" class="sign-in-form" style="display:none;">
         <input type="email" id="signInEmail" placeholder="Email" autocomplete="username" required>
         <input type="password" id="signInPassword" placeholder="Password" autocomplete="current-password" required>
-        <button type="submit" class="btn primary">Sign in</button>
+        <button type="submit" class="btn primary" id="signInSubmit">Sign in</button>
         <button type="button" class="btn" id="signInCancel">Cancel</button>
+        <button type="button" class="auth-link" id="authModeToggle">Need an account? Sign up</button>
       </form>
       <div class="auth-msg mono" id="authMsg"></div>
     </div>
@@ -936,6 +937,7 @@
       </select>
       <button type="button" class="btn" id="randomBtn" title="Jump to a random frame">&#127922; Random</button>
       <button type="button" class="btn" id="colorModeBtn" title="Browse frames by color">&#127912; Colors</button>
+      <button type="button" class="btn" id="favoritesBtn" style="display:none;" title="Your favorite frames">&#9825; Favorites</button>
       <button type="button" class="btn" id="statsBtn" style="display:none;" title="Site visit stats">&#128202; Stats</button>
       <button type="button" class="btn" id="exportBtn">Export</button>
       <button type="button" class="btn" id="importBtn">Import</button>
@@ -961,6 +963,7 @@
     </div>
     <div class="grid" id="grid"></div>
     <div class="color-grid" id="colorGrid" style="display:none;"></div>
+    <div class="color-grid" id="favoritesGrid" style="display:none;"></div>
   </main>
 
   <div class="sprockets" id="sprocketsBottom"></div>
@@ -1067,6 +1070,7 @@
   <div class="lightbox" id="lightbox">
     <div class="lb-controls">
       <span class="lb-counter mono" id="lbCounter"></span>
+      <button class="lb-btn" id="lbFavorite" style="display:none;" aria-label="Like this still" title="Like this still">&#9825;</button>
       <button class="lb-btn" id="lbSetCover" aria-label="Set as cover photo" title="Set as cover photo">&#9733;</button>
       <button class="lb-btn" id="lbRemoveStill" aria-label="Remove this still" title="Remove this still">&#128465;</button>
       <button class="lb-btn" id="lbClose" aria-label="Close">&times;</button>
@@ -1102,6 +1106,11 @@
   const SUPABASE_URL = 'https://aygykkkqepqaqebprcuj.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5Z3lra2txZXBxYXFlYnByY3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcyNjcwNjcsImV4cCI6MjEwMjg0MzA2N30.mKTH7khP01utMTPjxAHGmohydhTryANxP2r3mipep0I';
   const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // The one account allowed to edit frames/movies/soundtracks — any other
+  // signed-in visitor is just a regular logged-in guest (can like frames,
+  // can't edit anything). Matches the RLS policies on the backend.
+  const OWNER_USER_ID = 'a7c08668-b55b-4071-89b7-c732c5422829';
 
   const TMDB_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MmI3YTA3MjRhNWNkNWVlOGNiMWRmZjhjZWFhMWU3MiIsIm5iZiI6MTc4NzMwMDg1Ny40OTIsInN1YiI6IjZhODgwYmY5NmMyOWRiMWQ2Zjg4M2UwMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dARDOHna4s_R9_E3z7qVyAvzcTTXwX70MqN0-pm5pJg';
 
@@ -1346,18 +1355,40 @@
 
   function updateAuthUI(){
     document.body.classList.toggle('is-owner', isOwner);
-    signInToggle.style.display = isOwner ? 'none' : 'inline-block';
-    signOutBtn.style.display = isOwner ? 'inline-block' : 'none';
+    signInToggle.style.display = session ? 'none' : 'inline-block';
+    signOutBtn.style.display = session ? 'inline-block' : 'none';
     countBadge.style.display = isOwner ? 'inline-block' : 'none';
     document.getElementById('statsBtn').style.display = isOwner ? 'inline-block' : 'none';
-    modeBadge.textContent = isOwner ? 'Signed in — you can log and remove frames.' : '';
-    modeBadge.className = 'mode-badge mono' + (isOwner ? ' local' : '');
+    document.getElementById('favoritesBtn').style.display = session ? 'inline-block' : 'none';
+    if(isOwner){
+      modeBadge.textContent = 'Signed in — you can log and remove frames.';
+    } else if(session){
+      modeBadge.textContent = 'Signed in — you can like frames.';
+    } else {
+      modeBadge.textContent = '';
+    }
+    modeBadge.className = 'mode-badge mono' + (session ? ' local' : '');
+  }
+
+  let authMode = 'signin'; // 'signin' | 'signup'
+  const authModeToggle = document.getElementById('authModeToggle');
+  const signInSubmit = document.getElementById('signInSubmit');
+
+  function applyAuthMode(){
+    signInSubmit.textContent = authMode === 'signup' ? 'Sign up' : 'Sign in';
+    authModeToggle.textContent = authMode === 'signup' ? 'Have an account? Sign in' : 'Need an account? Sign up';
   }
 
   signInToggle.addEventListener('click', () => {
     signInForm.style.display = signInForm.style.display === 'flex' ? 'none' : 'flex';
     authMsg.textContent = '';
     if(signInForm.style.display === 'flex') document.getElementById('signInEmail').focus();
+  });
+  authModeToggle.addEventListener('click', () => {
+    authMode = authMode === 'signup' ? 'signin' : 'signup';
+    applyAuthMode();
+    authMsg.textContent = '';
+    authMsg.classList.remove('error');
   });
   signInCancel.addEventListener('click', () => {
     signInForm.style.display = 'none';
@@ -1368,6 +1399,27 @@
     const email = document.getElementById('signInEmail').value.trim();
     const password = document.getElementById('signInPassword').value;
     authMsg.classList.remove('error');
+
+    if(authMode === 'signup'){
+      authMsg.textContent = 'Creating account…';
+      const { data, error } = await sb.auth.signUp({ email, password });
+      if(error){
+        authMsg.classList.add('error');
+        authMsg.textContent = error.message;
+        return;
+      }
+      if(data.session){
+        signInForm.reset();
+        signInForm.style.display = 'none';
+        authMsg.textContent = '';
+      } else {
+        authMsg.textContent = 'Check your email to confirm your account, then sign in.';
+        authMode = 'signin';
+        applyAuthMode();
+      }
+      return;
+    }
+
     authMsg.textContent = 'Signing in…';
     const { error } = await sb.auth.signInWithPassword({ email, password });
     if(error){
@@ -1385,13 +1437,33 @@
 
   sb.auth.onAuthStateChange((_event, newSession) => {
     session = newSession;
-    isOwner = !!session;
+    isOwner = !!(session && session.user.id === OWNER_USER_ID);
     updateAuthUI();
+    loadFavorites();
     render();
   });
 
   let covers = {}; // movieKey -> chosen cover frame id
   let soundtracks = {}; // movieKey -> { trackUrl, trackPath, title }
+  let favorites = new Set(); // frame ids the current signed-in visitor has liked
+
+  async function loadFavorites(){
+    favorites = new Set();
+    if(!session) return;
+    const { data, error } = await sb.from('favorites').select('frame_id').eq('user_id', session.user.id);
+    if(!error){ (data || []).forEach(r => favorites.add(r.frame_id)); }
+  }
+
+  async function toggleFavorite(frameId){
+    if(!session) return;
+    if(favorites.has(frameId)){
+      favorites.delete(frameId);
+      await sb.from('favorites').delete().eq('user_id', session.user.id).eq('frame_id', frameId);
+    } else {
+      favorites.add(frameId);
+      await sb.from('favorites').insert({ user_id: session.user.id, frame_id: frameId });
+    }
+  }
 
   function rowToFrame(row){
     return {
@@ -1447,7 +1519,7 @@
 
   async function setCover(key, frameId){
     covers[key] = frameId;
-    if(!session) return;
+    if(!isOwner) return;
     await sb.from('covers').upsert({ movie_key: key, frame_id: frameId, owner_id: session.user.id });
   }
 
@@ -1494,7 +1566,7 @@
   }
 
   async function removeMovie(key, title, count){
-    if(!session){ alert('Sign in to remove frames.'); return; }
+    if(!isOwner){ alert('Sign in to remove frames.'); return; }
     if(!confirm(`Remove all ${count} frame${count===1?'':'s'} from "${title}"?`)) return;
     const ids = frames.filter(f => movieKey(f.movieTitle) === key).map(f => f.id);
     for(const id of ids){ await deleteFrameCore(id); }
@@ -1504,7 +1576,7 @@
   }
 
   async function removeStill(id){
-    if(!session){ alert('Sign in to remove frames.'); return; }
+    if(!isOwner){ alert('Sign in to remove frames.'); return; }
     if(!confirm('Remove this still from the collection?')) return;
     await deleteFrameCore(id);
     render();
@@ -1737,7 +1809,7 @@
   // Lets you screenshot a frame and just Ctrl+V it in, instead of saving to
   // disk and picking the file — matches how people actually grab movie stills.
   document.addEventListener('paste', (e) => {
-    if(!session) return;
+    if(!isOwner) return;
     const items = Array.from(e.clipboardData ? e.clipboardData.items : []);
     const imageFiles = items.filter(it => it.kind === 'file' && it.type.startsWith('image/')).map(it => it.getAsFile());
     if(!imageFiles.length) return;
@@ -1770,7 +1842,7 @@
 
   addForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if(!session){
+    if(!isOwner){
       formMsg.textContent = 'Sign in first to log frames.';
       formMsg.classList.add('error');
       return;
@@ -2204,6 +2276,7 @@
   }
 
   function enterColorMode(){
+    if(favoritesModeActive){ favoritesModeActive = false; favoritesGridEl.style.display = 'none'; }
     colorBarEl.style.display = 'flex';
     colorGridEl.style.display = 'block';
     grid.style.display = 'none';
@@ -2221,6 +2294,53 @@
   }
   document.getElementById('colorModeBtn').addEventListener('click', enterColorMode);
   document.getElementById('colorModeClose').addEventListener('click', exitColorMode);
+
+  // ---------- favorites (any signed-in visitor's personal liked-frames view) ----------
+  const favoritesGridEl = document.getElementById('favoritesGrid');
+  let favoritesModeActive = false;
+
+  function renderFavoritesGrid(){
+    favoritesGridEl.innerHTML = '';
+    const liked = frames.filter(f => favorites.has(f.id));
+    if(!liked.length){
+      favoritesGridEl.innerHTML = `<div class="empty" style="padding:40px 0;"><div class="display">No favorites yet</div><div>Tap the heart on a still to save it here.</div></div>`;
+      return;
+    }
+    liked.forEach(f => {
+      const thumb = document.createElement('div');
+      thumb.className = 'color-thumb';
+      thumb.innerHTML = `
+        <img src="${escapeHtml(frameImgSrc(f))}" alt="${escapeHtml(f.movieTitle)}" loading="lazy">
+        <div class="color-thumb-title mono">${escapeHtml(f.movieTitle)}</div>
+      `;
+      thumb.addEventListener('click', () => {
+        const key = movieKey(f.movieTitle);
+        openMovieView(key);
+        openLightbox(key, f.id);
+      });
+      favoritesGridEl.appendChild(thumb);
+    });
+  }
+
+  function enterFavoritesMode(){
+    if(colorBarEl.style.display === 'flex') exitColorMode();
+    favoritesModeActive = true;
+    favoritesGridEl.style.display = 'block';
+    grid.style.display = 'none';
+    emptyState.style.display = 'none';
+    noMatch.style.display = 'none';
+    filterBar.style.display = 'none';
+    renderFavoritesGrid();
+  }
+  function exitFavoritesMode(){
+    favoritesModeActive = false;
+    favoritesGridEl.style.display = 'none';
+    render();
+  }
+  document.getElementById('favoritesBtn').addEventListener('click', () => {
+    if(!session) return;
+    if(favoritesModeActive) exitFavoritesMode(); else enterFavoritesMode();
+  });
 
   function applyMoodTint(rgb){
     if(!rgb){
@@ -2326,7 +2446,7 @@
   }
 
   async function removeStillFromMovieView(id){
-    if(!session){ alert('Sign in to remove frames.'); return; }
+    if(!isOwner){ alert('Sign in to remove frames.'); return; }
     if(!confirm('Remove this still from the collection?')) return;
     await deleteFrameCore(id);
     render();
@@ -2351,7 +2471,7 @@
   });
 
   mvSelectToggle.addEventListener('click', () => {
-    if(!session) return;
+    if(!isOwner) return;
     const groups = getMovieGroups();
     const g = groups.find(x => x.key === currentMovieViewKey);
     if(!g) return;
@@ -2369,7 +2489,7 @@
     if(g) renderMovieView(g);
   });
   mvBulkDelete.addEventListener('click', async () => {
-    if(!session || selectedIds.size === 0) return;
+    if(!isOwner || selectedIds.size === 0) return;
     const count = selectedIds.size;
     if(!confirm(`Remove ${count} selected still${count===1?'':'s'}?`)) return;
     for(const id of selectedIds){ await deleteFrameCore(id); }
@@ -2383,7 +2503,7 @@
   });
 
   mvAddFrames.addEventListener('click', () => {
-    if(!session){ alert('Sign in to add frames.'); return; }
+    if(!isOwner){ alert('Sign in to add frames.'); return; }
     const groups = getMovieGroups();
     const g = groups.find(x => x.key === currentMovieViewKey);
     if(!g) return;
@@ -2401,7 +2521,7 @@
   });
 
   mvEditInfo.addEventListener('click', () => {
-    if(!session){ alert('Sign in to edit.'); return; }
+    if(!isOwner){ alert('Sign in to edit.'); return; }
     const groups = getMovieGroups();
     const g = groups.find(x => x.key === currentMovieViewKey);
     if(!g) return;
@@ -2430,7 +2550,7 @@
 
   mvEditForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if(!session) return;
+    if(!isOwner) return;
     const g = getMovieGroups().find(x => x.key === currentMovieViewKey);
     if(!g) return;
 
@@ -2543,7 +2663,7 @@
   document.getElementById('musicTabUpload').addEventListener('click', () => setMusicSrcTab('upload'));
 
   mvMusicEdit.addEventListener('click', () => {
-    if(!session) return;
+    if(!isOwner) return;
     const track = soundtracks[currentMovieViewKey];
     document.getElementById('musicUrl').value = (track && track.trackUrl) || '';
     document.getElementById('musicTitleInput').value = (track && track.title) || '';
@@ -2558,7 +2678,7 @@
   });
 
   mvMusicRemove.addEventListener('click', async () => {
-    if(!session || !currentMovieViewKey) return;
+    if(!isOwner || !currentMovieViewKey) return;
     if(!confirm('Remove this soundtrack?')) return;
     await removeSoundtrack(currentMovieViewKey);
     const g = getMovieGroups().find(x => x.key === currentMovieViewKey);
@@ -2569,7 +2689,7 @@
 
   mvMusicForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if(!session || !currentMovieViewKey) return;
+    if(!isOwner || !currentMovieViewKey) return;
     const key = currentMovieViewKey;
     const titleInput = document.getElementById('musicTitleInput').value.trim();
     musicFormMsg.classList.remove('error');
@@ -2629,6 +2749,7 @@
   const lbNote = document.getElementById('lbNote');
   const lbPalette = document.getElementById('lbPalette');
   const lbCounter = document.getElementById('lbCounter');
+  const lbFavorite = document.getElementById('lbFavorite');
   const lbSetCover = document.getElementById('lbSetCover');
   const lbRemoveStill = document.getElementById('lbRemoveStill');
 
@@ -2679,6 +2800,13 @@
     const isCover = covers[currentGroupKey] ? covers[currentGroupKey] === f.id : lightboxIndex === 0;
     lbSetCover.classList.toggle('active', isCover);
     lbSetCover.title = isCover ? 'This is the cover photo' : 'Set as cover photo';
+
+    lbFavorite.style.display = session ? 'flex' : 'none';
+    const isFav = favorites.has(f.id);
+    lbFavorite.classList.toggle('active', isFav);
+    lbFavorite.innerHTML = isFav ? '&#9829;' : '&#9825;';
+    lbFavorite.title = isFav ? 'Remove from favorites' : 'Add to favorites';
+
     lightbox.classList.add('open');
     fillLightboxPalette(f);
     updateUrlForState();
@@ -2698,8 +2826,14 @@
     lightboxIndex = (lightboxIndex + 1) % currentGroupFrames.length;
     showLightbox();
   });
+  lbFavorite.addEventListener('click', async () => {
+    if(!session || !currentGroupFrames.length) return;
+    const f = currentGroupFrames[lightboxIndex];
+    await toggleFavorite(f.id);
+    showLightbox();
+  });
   lbSetCover.addEventListener('click', async () => {
-    if(!session) { alert('Sign in to change the cover photo.'); return; }
+    if(!isOwner) { alert('Sign in to change the cover photo.'); return; }
     if(!currentGroupKey || !currentGroupFrames.length) return;
     const f = currentGroupFrames[lightboxIndex];
     await setCover(currentGroupKey, f.id);
@@ -2746,7 +2880,7 @@
   const statsBody = document.getElementById('statsBody');
 
   document.getElementById('statsBtn').addEventListener('click', async () => {
-    if(!session) return;
+    if(!isOwner) return;
     statsModal.classList.add('open');
     statsBody.textContent = 'Loading…';
 
@@ -2818,7 +2952,7 @@
   const importFile = document.getElementById('importFile');
   importBtn.addEventListener('click', () => importFile.click());
   importFile.addEventListener('change', async () => {
-    if(!session){ alert('Sign in to import frames.'); importFile.value=''; return; }
+    if(!isOwner){ alert('Sign in to import frames.'); importFile.value=''; return; }
     const file = importFile.files[0];
     importFile.value = '';
     if(!file) return;
