@@ -435,7 +435,6 @@
   }
   .tag-chip.director{ color:var(--teal); border-color:rgba(92,124,127,0.5); }
   .tag-chip.genre{ color:var(--amber); border-color:rgba(227,169,76,0.4); }
-  .lightbox-meta .tags{ justify-content:center; margin-bottom:10px; }
 
   .empty{
     text-align:center;
@@ -564,7 +563,6 @@
     margin-top:18px;
     max-width:640px;
   }
-  .lightbox-meta .title{ font-size:20px; margin:0 0 6px; }
   .lightbox-meta .note{ color:var(--text-dim); font-size:14px; }
   .lb-controls{
     position:absolute;
@@ -929,8 +927,6 @@
         <div class="lb-palette" id="lbPalette"></div>
       </div>
       <div class="lightbox-meta">
-        <div class="title" id="lbTitle"></div>
-        <div class="tags mono" id="lbTags"></div>
         <div class="note" id="lbNote"></div>
       </div>
     </div>
@@ -2160,8 +2156,6 @@
   // ---------- lightbox (single-frame zoom, opened from within a movie view) ----------
   const lightbox = document.getElementById('lightbox');
   const lbImg = document.getElementById('lbImg');
-  const lbTitle = document.getElementById('lbTitle');
-  const lbTags = document.getElementById('lbTags');
   const lbNote = document.getElementById('lbNote');
   const lbPalette = document.getElementById('lbPalette');
   const lbCounter = document.getElementById('lbCounter');
@@ -2209,13 +2203,8 @@
     const f = currentGroupFrames[lightboxIndex];
     lbImg.src = frameImgSrc(f);
     lbImg.alt = f.movieTitle;
-    lbTitle.textContent = f.movieTitle;
-    const chips = [
-      f.director ? `<span class="tag-chip director">${escapeHtml(f.director)}</span>` : '',
-      ...(f.genre || []).map(g => `<span class="tag-chip genre">${escapeHtml(g)}</span>`)
-    ].join('');
-    lbTags.innerHTML = chips;
     lbNote.textContent = f.note || '';
+    lbNote.closest('.lightbox-meta').style.display = f.note ? 'block' : 'none';
     lbCounter.textContent = `${lightboxIndex + 1} / ${currentGroupFrames.length}`;
     const isCover = covers[currentGroupKey] ? covers[currentGroupKey] === f.id : lightboxIndex === 0;
     lbSetCover.classList.toggle('active', isCover);
