@@ -6,6 +6,7 @@
 <title>GATE — a running log of frames</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <style>
   :root{
     --bg:#0e0f10;
@@ -99,9 +100,14 @@
   .mode-badge.local{ color:var(--teal); }
   .mode-badge.warn{ color:var(--red); }
 
-  .owner-toggle{
-    display:inline-block;
-    margin-top:10px;
+  .auth-box{
+    margin-top:12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+  }
+  .auth-link{
     background:transparent;
     border:none;
     color:var(--text-dim);
@@ -110,10 +116,29 @@
     opacity:0.7;
     padding:2px 6px;
   }
-  .owner-toggle:hover{ opacity:1; color:var(--amber); }
-  .owner-toggle.unlocked{ color:var(--amber); opacity:0.9; }
+  .auth-link:hover{ opacity:1; color:var(--amber); }
+  .sign-in-form{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+  }
+  .sign-in-form input{
+    background:#0f1011;
+    border:1px solid var(--border-strong);
+    color:var(--text);
+    padding:7px 10px;
+    border-radius:6px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+  }
+  .sign-in-form input:focus{ border-color:var(--amber); }
+  .sign-in-form .btn{ padding:7px 12px; font-size:12px; }
+  .auth-msg{ font-size:11.5px; color:var(--text-dim); min-height:14px; }
+  .auth-msg.error{ color:var(--red); }
 
-  /* Editing controls are hidden by default; JS reveals them once the owner unlocks the site */
+  /* Editing controls are hidden until you're signed in as the owner */
   #toggleAdd, #importBtn, .remove-btn, .mv-thumb-remove, #mvRemoveMovie, #lbSetCover, #lbRemoveStill{
     display:none;
   }
@@ -652,7 +677,18 @@
     <p class="tagline">A running log of frames worth freezing — pulled from movies, kept in one place.</p>
     <span class="count-badge mono" id="countBadge">0 FRAMES LOGGED</span>
     <div class="mode-badge mono" id="modeBadge"></div>
-    <button type="button" class="owner-toggle mono" id="ownerToggle" style="display:none;">&#128274; Owner access</button>
+
+    <div class="auth-box mono" id="authBox">
+      <button type="button" class="auth-link" id="signInToggle">Sign in</button>
+      <button type="button" class="auth-link" id="signOutBtn" style="display:none;">Sign out</button>
+      <form id="signInForm" class="sign-in-form" style="display:none;">
+        <input type="email" id="signInEmail" placeholder="Email" autocomplete="username" required>
+        <input type="password" id="signInPassword" placeholder="Password" autocomplete="current-password" required>
+        <button type="submit" class="btn primary">Sign in</button>
+        <button type="button" class="btn" id="signInCancel">Cancel</button>
+      </form>
+      <div class="auth-msg mono" id="authMsg"></div>
+    </div>
   </header>
 
   <div class="add-wrap">
@@ -805,69 +841,18 @@
     showFatal('Unhandled error: ' + reason);
   });
 
-  const STORAGE_KEY = 'gate:frames';
+  const SUPABASE_URL = 'https://aygykkkqepqaqebprcuj.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5Z3lra2txZXBxYXFlYnByY3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcyNjcwNjcsImV4cCI6MjEwMjg0MzA2N30.mKTH7khP01utMTPjxAHGmohydhTryANxP2r3mipep0I';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
   let frames = [];
   let lightboxIndex = -1;
-  let storageMode = 'memory'; // 'claude' | 'local' | 'memory'
-  const imageCache = {}; // id -> data URL, for uploaded (not linked) images
   let currentFilters = { genre: 'all', director: 'all' };
   let currentSearch = '';
   let currentSort = 'newest';
   let activeSrcTab = 'url'; // 'url' | 'upload'
-
-  // Adapter: use Claude's shared window.storage when available (true shared
-  // public gallery). Otherwise fall back to the browser's localStorage, so
-  // a self-hosted copy of this file still works, per browser, out of the box.
-  const Store = {
-    async get(key){
-      if(window.storage){
-        try{
-          const result = await window.storage.get(key, true);
-          storageMode = 'claude';
-          return result ? result.value : null;
-        } catch(err){
-          storageMode = 'claude';
-          return null;
-        }
-      }
-      try{
-        storageMode = 'local';
-        return window.localStorage.getItem(key);
-      } catch(err){
-        storageMode = 'memory';
-        return null;
-      }
-    },
-    async set(key, value){
-      if(window.storage){
-        try{
-          await window.storage.set(key, value, true);
-          storageMode = 'claude';
-          return true;
-        } catch(err){
-          storageMode = 'claude';
-          console.error('Store.set failed for', key, err);
-          return false;
-        }
-      }
-      try{
-        window.localStorage.setItem(key, value);
-        storageMode = 'local';
-        return true;
-      } catch(err){
-        storageMode = 'memory';
-        console.error('Store.set (localStorage) failed for', key, err);
-        return false;
-      }
-    },
-    async delete(key){
-      if(window.storage){
-        try{ await window.storage.delete(key, true); } catch(err){ /* ignore */ }
-        return;
-      }
-      try{ window.localStorage.removeItem(key); } catch(err){ /* ignore */ }
-    }
-  };
+  let session = null;
+  let isOwner = false;
 
   function buildSprockets(el){
     let html = '';
@@ -906,7 +891,7 @@
   const clearFiltersBtn = document.getElementById('clearFilters');
 
   function frameImgSrc(f){
-    return f.imageType === 'upload' ? (imageCache[f.id] || '') : (f.imageUrl || '');
+    return f.imageUrl || '';
   }
 
   function movieKey(title){
@@ -1089,195 +1074,131 @@
     render();
   });
 
-  const COVERS_KEY = 'gate:covers';
+  // ---------- auth (Supabase email/password — sign-up is disabled in the project,
+  // so any signed-in session belongs to the owner) ----------
+  const authMsg = document.getElementById('authMsg');
+  const modeBadge = document.getElementById('modeBadge');
+  const signInToggle = document.getElementById('signInToggle');
+  const signOutBtn = document.getElementById('signOutBtn');
+  const signInForm = document.getElementById('signInForm');
+  const signInCancel = document.getElementById('signInCancel');
+
+  function updateAuthUI(){
+    document.body.classList.toggle('is-owner', isOwner);
+    signInToggle.style.display = isOwner ? 'none' : 'inline-block';
+    signOutBtn.style.display = isOwner ? 'inline-block' : 'none';
+    modeBadge.textContent = isOwner
+      ? 'Signed in — you can log and remove frames.'
+      : 'Public view — sign in to log or remove frames.';
+    modeBadge.className = 'mode-badge mono' + (isOwner ? ' local' : '');
+  }
+
+  signInToggle.addEventListener('click', () => {
+    signInForm.style.display = signInForm.style.display === 'flex' ? 'none' : 'flex';
+    authMsg.textContent = '';
+    if(signInForm.style.display === 'flex') document.getElementById('signInEmail').focus();
+  });
+  signInCancel.addEventListener('click', () => {
+    signInForm.style.display = 'none';
+    authMsg.textContent = '';
+  });
+  signInForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('signInEmail').value.trim();
+    const password = document.getElementById('signInPassword').value;
+    authMsg.classList.remove('error');
+    authMsg.textContent = 'Signing in…';
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+    if(error){
+      authMsg.classList.add('error');
+      authMsg.textContent = error.message;
+      return;
+    }
+    signInForm.reset();
+    signInForm.style.display = 'none';
+    authMsg.textContent = '';
+  });
+  signOutBtn.addEventListener('click', async () => {
+    await sb.auth.signOut();
+  });
+
+  sb.auth.onAuthStateChange((_event, newSession) => {
+    session = newSession;
+    isOwner = !!session;
+    updateAuthUI();
+    render();
+  });
+
   let covers = {}; // movieKey -> chosen cover frame id
 
+  function rowToFrame(row){
+    return {
+      id: row.id,
+      movieTitle: row.movie_title,
+      year: row.year || '',
+      director: row.director || '',
+      genre: row.genre || [],
+      actors: row.actors || [],
+      note: row.note || '',
+      addedAt: new Date(row.added_at).getTime(),
+      imageType: row.image_type,
+      imageUrl: row.image_url,
+      imagePath: row.image_path || null
+    };
+  }
+
   async function loadCovers(){
-    try{
-      const value = await Store.get(COVERS_KEY);
-      covers = value ? JSON.parse(value) : {};
-    } catch(err){
-      covers = {};
-    }
+    const { data, error } = await sb.from('covers').select('movie_key, frame_id');
+    covers = {};
+    if(!error){ (data || []).forEach(r => { covers[r.movie_key] = r.frame_id; }); }
   }
 
-  async function saveCovers(){
-    try{
-      await Store.set(COVERS_KEY, JSON.stringify(covers));
-    } catch(err){
-      console.error('Could not save covers', err);
-    }
+  async function setCover(key, frameId){
+    covers[key] = frameId;
+    if(!session) return;
+    await sb.from('covers').upsert({ movie_key: key, frame_id: frameId, owner_id: session.user.id });
   }
 
-  // ---------- owner access (client-side passcode gate) ----------
-  // This is a deterrent for casual visitors, not real security: anyone who opens
-  // dev tools can bypass it. There's no server here to check a password against.
-  const ADMIN_KEY = 'gate:admin-hash';
-  const LOCAL_UNLOCK_KEY = 'gate:owner-unlocked-hash';
-  let adminHash = null;
-  let isOwner = false;
-
-  async function sha256Hex(str){
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  async function clearCover(key){
+    delete covers[key];
+    await sb.from('covers').delete().eq('movie_key', key);
   }
-
-  async function loadAdminHash(){
-    try{
-      adminHash = await Store.get(ADMIN_KEY);
-    } catch(err){
-      adminHash = null;
-    }
-  }
-
-  function checkLocalUnlock(){
-    if(!adminHash) return false;
-    try{
-      return window.localStorage.getItem(LOCAL_UNLOCK_KEY) === adminHash;
-    } catch(err){
-      return false;
-    }
-  }
-
-  function hasAdminUrlHint(){
-    try{
-      const params = new URLSearchParams(window.location.search);
-      return params.has('owner') || params.has('admin');
-    } catch(err){
-      return false;
-    }
-  }
-
-  function updateOwnerUI(){
-    const btn = document.getElementById('ownerToggle');
-    btn.textContent = isOwner ? '\u{1F513} Owner mode \u2014 tap to lock' : '\u{1F512} Owner access';
-    btn.classList.toggle('unlocked', isOwner);
-    btn.style.display = (isOwner || hasAdminUrlHint()) ? 'inline-block' : 'none';
-    document.body.classList.toggle('is-owner', isOwner);
-  }
-
-  function setOwnerState(state){
-    isOwner = state;
-    updateOwnerUI();
-    render();
-  }
-
-  async function handleOwnerToggleClick(){
-    if(isOwner){
-      if(!confirm('Lock owner access on this device?')) return;
-      try{ window.localStorage.removeItem(LOCAL_UNLOCK_KEY); } catch(err){}
-      setOwnerState(false);
-      return;
-    }
-
-    if(!adminHash){
-      const pass = prompt('No owner passcode is set yet for this site.\n\nCreate one now — anyone who knows it will be able to add or remove frames. Set this up before sharing your link with anyone:');
-      if(!pass) return;
-      const confirmPass = prompt('Confirm the passcode:');
-      if(pass !== confirmPass){ alert('Passcodes did not match — nothing was set.'); return; }
-      const hash = await sha256Hex(pass);
-      adminHash = hash;
-      await Store.set(ADMIN_KEY, hash);
-      try{ window.localStorage.setItem(LOCAL_UNLOCK_KEY, hash); } catch(err){}
-      setOwnerState(true);
-      alert('Owner passcode set for this site.');
-      return;
-    }
-
-    const pass = prompt('Enter the owner passcode:');
-    if(pass == null) return;
-    const hash = await sha256Hex(pass);
-    if(hash === adminHash){
-      try{ window.localStorage.setItem(LOCAL_UNLOCK_KEY, hash); } catch(err){}
-      setOwnerState(true);
-    } else {
-      alert('Incorrect passcode.');
-    }
-  }
-
-  document.getElementById('ownerToggle').addEventListener('click', handleOwnerToggleClick);
 
   async function loadFrames(){
-    try{
-      const value = await Store.get(STORAGE_KEY);
-      frames = value ? JSON.parse(value) : [];
-    } catch(err){
-      frames = [];
-    }
+    const { data, error } = await sb.from('frames').select('*').order('added_at', { ascending: true });
+    frames = error ? [] : (data || []).map(rowToFrame);
+    if(error) showFatal('Could not load frames: ' + error.message);
 
     await loadCovers();
-    await loadAdminHash();
-    isOwner = checkLocalUnlock();
-    updateOwnerUI();
-
-    // Resolve any uploaded (non-linked) images into the in-memory cache
-    const uploadFrames = frames.filter(f => f.imageType === 'upload' && !imageCache[f.id]);
-    await Promise.all(uploadFrames.map(async f => {
-      try{
-        const data = await Store.get('gate:img:' + f.id);
-        if(data) imageCache[f.id] = data;
-      } catch(err){ /* leave missing, card will show "unavailable" */ }
-    }));
-
     render();
-    updateModeBadge();
   }
 
-  async function saveFrames(){
-    let ok = false;
-    try{
-      ok = await Store.set(STORAGE_KEY, JSON.stringify(frames));
-    } catch(err){
-      console.error('Could not save frames', err);
-    }
-    updateModeBadge();
-    return ok;
-  }
-
-  function updateModeBadge(){
-    const el = document.getElementById('modeBadge');
-    if(!el) return;
-    if(storageMode === 'claude'){
-      el.textContent = 'Shared public gallery — visible to anyone with this link.';
-      el.className = 'mode-badge mono';
-    } else if(storageMode === 'local'){
-      el.textContent = 'Saved to this browser only — not shared with other visitors yet.';
-      el.className = 'mode-badge mono local';
-    } else {
-      el.textContent = 'Not saving — frames will disappear on refresh (private/incognito mode?).';
-      el.className = 'mode-badge mono warn';
-    }
-  }
-
-  // Removes a frame's data without confirming or re-rendering — a building block
+  // Removes a frame's row (and its stored image, if any) — a building block
   // used by both single-still removal and whole-movie removal.
   async function deleteFrameCore(id){
     const target = frames.find(f => f.id === id);
     if(!target) return;
     frames = frames.filter(f => f.id !== id);
-    if(target.imageType === 'upload'){
-      delete imageCache[id];
-      await Store.delete('gate:img:' + id);
+    await sb.from('frames').delete().eq('id', id);
+    if(target.imageType === 'upload' && target.imagePath){
+      await sb.storage.from('frame-images').remove([target.imagePath]);
     }
   }
 
   async function removeMovie(key, title, count){
-    if(!isOwner){ alert('Owner access required to remove frames.'); return; }
+    if(!session){ alert('Sign in to remove frames.'); return; }
     if(!confirm(`Remove all ${count} frame${count===1?'':'s'} from "${title}"?`)) return;
     const ids = frames.filter(f => movieKey(f.movieTitle) === key).map(f => f.id);
     for(const id of ids){ await deleteFrameCore(id); }
-    delete covers[key];
+    await clearCover(key);
     render();
-    await saveFrames();
-    await saveCovers();
   }
 
   async function removeStill(id){
-    if(!isOwner){ alert('Owner access required to remove frames.'); return; }
+    if(!session){ alert('Sign in to remove frames.'); return; }
     if(!confirm('Remove this still from the collection?')) return;
     await deleteFrameCore(id);
     render();
-    await saveFrames();
 
     const groups = getMovieGroups();
     const g = groups.find(x => x.key === currentGroupKey);
@@ -1330,7 +1251,7 @@
 
   const MAX_DIMENSION = 1600;
   const JPEG_QUALITY = 0.85;
-  const MAX_STORED_BYTES = 4.5 * 1024 * 1024; // stay safely under the 5MB per-key limit
+  const MAX_STORED_BYTES = 8 * 1024 * 1024; // keep uploads reasonably small
 
   function readFileAsDataUrl(file){
     return new Promise((resolve, reject) => {
@@ -1376,7 +1297,8 @@
     ctx.drawImage(img, 0, 0, width, height);
 
     const dataUrl = canvas.toDataURL('image/jpeg', JPEG_QUALITY);
-    return { dataUrl, width, height, sizeBytes: estimateBytes(dataUrl) };
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', JPEG_QUALITY));
+    return { dataUrl, blob, width, height, sizeBytes: blob ? blob.size : estimateBytes(dataUrl) };
   }
 
   // pendingUploads: array of { tempId, name, status: 'processing'|'ready'|'error', dataUrl, sizeBytes, errorMsg }
@@ -1431,6 +1353,7 @@
         } else {
           entry.status = 'ready';
           entry.dataUrl = result.dataUrl;
+          entry.blob = result.blob;
           entry.sizeBytes = result.sizeBytes;
         }
         renderUploadGrid();
@@ -1457,8 +1380,8 @@
 
   addForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if(!isOwner){
-      formMsg.textContent = 'Owner access required to add frames.';
+    if(!session){
+      formMsg.textContent = 'Sign in first to log frames.';
       formMsg.classList.add('error');
       return;
     }
@@ -1523,7 +1446,7 @@
     setProgress(0, totalToLog, activeSrcTab === 'upload' ? 'Saving images…' : 'Logging links…');
 
     try{
-      const newEntries = [];
+      const rowsToInsert = [];
       let failedCount = 0;
 
       if(activeSrcTab === 'upload'){
@@ -1535,48 +1458,48 @@
         async function worker(){
           while(cursor < ready.length){
             const u = ready[cursor++];
-            const id = makeId();
-            const ok = await Store.set('gate:img:' + id, u.dataUrl);
-            if(ok){
-              imageCache[id] = u.dataUrl;
-              newEntries.push({
-                id, movieTitle, year, director, genre, actors, note,
-                addedAt: Date.now(),
-                imageType: 'upload'
+            const path = `${session.user.id}/${makeId()}.jpg`;
+            const { error: uploadError } = await sb.storage.from('frame-images')
+              .upload(path, u.blob, { contentType: 'image/jpeg' });
+            if(!uploadError){
+              const { data: pub } = sb.storage.from('frame-images').getPublicUrl(path);
+              rowsToInsert.push({
+                owner_id: session.user.id, movie_title: movieTitle, year, director, genre, actors, note,
+                image_type: 'upload', image_url: pub.publicUrl, image_path: path
               });
             } else {
               failedCount++;
             }
             doneCount++;
-            setProgress(doneCount, ready.length, 'Saving images…');
+            setProgress(doneCount, ready.length, 'Uploading images…');
           }
         }
         await Promise.all(Array.from({length: Math.min(CONCURRENCY, ready.length)}, worker));
       } else {
         urlLines.forEach((imageUrl, i) => {
-          newEntries.push({
-            id: makeId(), movieTitle, year, director, genre, actors, note,
-            addedAt: Date.now(),
-            imageType: 'url',
-            imageUrl
+          rowsToInsert.push({
+            owner_id: session.user.id, movie_title: movieTitle, year, director, genre, actors, note,
+            image_type: 'url', image_url: imageUrl, image_path: null
           });
           setProgress(i + 1, urlLines.length, 'Logging links…');
         });
       }
 
       setProgress(totalToLog, totalToLog, 'Saving collection…');
+      let newEntries = [];
+      if(rowsToInsert.length){
+        const { data, error } = await sb.from('frames').insert(rowsToInsert).select();
+        if(error) throw error;
+        newEntries = (data || []).map(rowToFrame);
+      }
       frames.push(...newEntries);
       render();
-      const savedOk = await saveFrames();
 
       progressWrap.classList.remove('show');
 
-      if(!savedOk){
+      if(failedCount > 0){
         formMsg.classList.add('error');
-        formMsg.textContent = `${newEntries.length} frame${newEntries.length===1?'':'s'} added, but the collection couldn't be saved — they may vanish on refresh. Try again in a moment.`;
-      } else if(failedCount > 0){
-        formMsg.classList.add('error');
-        formMsg.textContent = `${newEntries.length} frame${newEntries.length===1?'':'s'} logged, but ${failedCount} couldn't be saved — try adding ${failedCount===1?'it':'those'} again.`;
+        formMsg.textContent = `${newEntries.length} frame${newEntries.length===1?'':'s'} logged, but ${failedCount} couldn't be uploaded — try adding ${failedCount===1?'it':'those'} again.`;
       } else {
         formMsg.classList.remove('error');
         formMsg.textContent = `${newEntries.length} frame${newEntries.length === 1 ? '' : 's'} logged.`;
@@ -1825,11 +1748,10 @@
   }
 
   async function removeStillFromMovieView(id){
-    if(!isOwner){ alert('Owner access required to remove frames.'); return; }
+    if(!session){ alert('Sign in to remove frames.'); return; }
     if(!confirm('Remove this still from the collection?')) return;
     await deleteFrameCore(id);
     render();
-    await saveFrames();
 
     const groups = getMovieGroups();
     const g = groups.find(x => x.key === currentMovieViewKey);
@@ -1932,11 +1854,10 @@
     showLightbox();
   });
   lbSetCover.addEventListener('click', async () => {
-    if(!isOwner){ alert('Owner access required to change the cover photo.'); return; }
+    if(!session) { alert('Sign in to change the cover photo.'); return; }
     if(!currentGroupKey || !currentGroupFrames.length) return;
     const f = currentGroupFrames[lightboxIndex];
-    covers[currentGroupKey] = f.id;
-    await saveCovers();
+    await setCover(currentGroupKey, f.id);
     render();
     showLightbox();
     if(currentMovieViewKey === currentGroupKey){
@@ -1982,19 +1903,15 @@
       alert('Nothing to export yet — log a few frames first.');
       return;
     }
-    // Bundle upload images inline so the export file is fully self-contained.
-    const framesOut = frames.map(f => {
-      const copy = { ...f };
-      if(f.imageType === 'upload'){
-        copy.imageData = imageCache[f.id] || null;
-      }
-      return copy;
-    });
     const payload = {
       exportedFrom: 'GATE',
       exportedAt: new Date().toISOString(),
       covers,
-      frames: framesOut
+      frames: frames.map(f => ({
+        movieTitle: f.movieTitle, year: f.year, director: f.director,
+        genre: f.genre, actors: f.actors, note: f.note, addedAt: f.addedAt,
+        imageType: f.imageType, imageUrl: f.imageUrl
+      }))
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -2011,7 +1928,7 @@
   const importFile = document.getElementById('importFile');
   importBtn.addEventListener('click', () => importFile.click());
   importFile.addEventListener('change', async () => {
-    if(!isOwner){ alert('Owner access required to import frames.'); importFile.value=''; return; }
+    if(!session){ alert('Sign in to import frames.'); importFile.value=''; return; }
     const file = importFile.files[0];
     importFile.value = '';
     if(!file) return;
@@ -2030,43 +1947,42 @@
     }
     if(!confirm(`Import ${payload.frames.length} frame${payload.frames.length===1?'':'s'} into this collection? They'll be added alongside what's already here.`)) return;
 
-    let imported = 0, skipped = 0;
+    // Imported "upload" frames point at their original image_url (already-hosted
+    // storage files) — imagePath is left null so removing them later only deletes
+    // the row, not a storage object we don't actually own a fresh copy of.
+    const rows = [];
+    let skipped = 0;
     for(const raw of payload.frames){
-      const newId = makeId();
-      const entry = {
-        id: newId,
-        movieTitle: raw.movieTitle || 'Untitled',
+      const imageUrl = raw.imageUrl || '';
+      if(!imageUrl){ skipped++; continue; }
+      rows.push({
+        owner_id: session.user.id,
+        movie_title: raw.movieTitle || 'Untitled',
         year: raw.year || '',
         director: raw.director || '',
         genre: Array.isArray(raw.genre) ? raw.genre : [],
         actors: Array.isArray(raw.actors) ? raw.actors : [],
         note: raw.note || '',
-        addedAt: raw.addedAt || Date.now(),
-        imageType: raw.imageType === 'upload' ? 'upload' : 'url'
-      };
-      if(entry.imageType === 'upload'){
-        if(!raw.imageData){ skipped++; continue; }
-        const ok = await Store.set('gate:img:' + newId, raw.imageData);
-        if(!ok){ skipped++; continue; }
-        imageCache[newId] = raw.imageData;
-      } else {
-        entry.imageUrl = raw.imageUrl || '';
-        if(!entry.imageUrl){ skipped++; continue; }
-      }
-      frames.push(entry);
-      imported++;
+        added_at: raw.addedAt ? new Date(raw.addedAt).toISOString() : new Date().toISOString(),
+        image_type: raw.imageType === 'upload' ? 'upload' : 'url',
+        image_url: imageUrl,
+        image_path: null
+      });
     }
 
-    if(payload.covers && typeof payload.covers === 'object'){
-      // Cover ids from the import refer to old ids we just replaced, so we
-      // can't map them directly — leave existing covers as they are.
+    let imported = 0;
+    if(rows.length){
+      const { data, error } = await sb.from('frames').insert(rows).select();
+      if(error){ alert('Import failed: ' + error.message); return; }
+      frames.push(...(data || []).map(rowToFrame));
+      imported = data ? data.length : 0;
     }
 
     render();
-    await saveFrames();
-    alert(`Imported ${imported} frame${imported===1?'':'s'}${skipped ? `, skipped ${skipped} that were missing image data` : ''}.`);
+    alert(`Imported ${imported} frame${imported===1?'':'s'}${skipped ? `, skipped ${skipped} with no image` : ''}.`);
   });
 
+  updateAuthUI();
   loadFrames();
 </script>
 </body>
