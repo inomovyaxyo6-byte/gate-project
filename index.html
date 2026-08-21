@@ -78,6 +78,7 @@
     margin:14px auto 0;
     line-height:1.5;
   }
+
   .count-badge{
     display:inline-block;
     margin-top:22px;
@@ -88,7 +89,6 @@
     padding:5px 12px;
     border-radius:100px;
   }
-
   .mode-badge{
     display:block;
     margin-top:12px;
@@ -425,6 +425,10 @@
   @media (max-width:720px){ .grid{ columns:2 160px; } }
   @media (max-width:460px){ .grid{ columns:1; } }
 
+  @keyframes cardIn{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
   .card{
     break-inside:avoid;
     margin-bottom:18px;
@@ -435,6 +439,7 @@
     position:relative;
     cursor:pointer;
     transition:border-color .18s, transform .18s;
+    animation:cardIn .5s ease both;
   }
   .card:hover{ border-color:var(--border-strong); transform:translateY(-2px); }
   .frame-no{
@@ -675,7 +680,7 @@
   <header>
     <h1 class="brand display">GATE<span class="dot">.</span></h1>
     <p class="tagline">A running log of frames worth freezing — pulled from movies, kept in one place.</p>
-    <span class="count-badge mono" id="countBadge">0 FRAMES LOGGED</span>
+    <span class="count-badge mono" id="countBadge" style="display:none;"></span>
     <div class="mode-badge mono" id="modeBadge"></div>
 
     <div class="auth-box mono" id="authBox">
@@ -1011,9 +1016,10 @@
     noMatch.style.display = 'none';
     grid.style.display = 'block';
 
-    filteredGroups.forEach((g) => {
+    filteredGroups.forEach((g, i) => {
       const card = document.createElement('div');
       card.className = 'card';
+      card.style.animationDelay = `${Math.min(i, 16) * 35}ms`;
       card.tabIndex = 0;
       card.setAttribute('role','button');
       card.setAttribute('aria-label', `Open ${g.title}, ${g.framesList.length} frames`);
@@ -1087,9 +1093,8 @@
     document.body.classList.toggle('is-owner', isOwner);
     signInToggle.style.display = isOwner ? 'none' : 'inline-block';
     signOutBtn.style.display = isOwner ? 'inline-block' : 'none';
-    modeBadge.textContent = isOwner
-      ? 'Signed in — you can log and remove frames.'
-      : 'Public view — sign in to log or remove frames.';
+    countBadge.style.display = isOwner ? 'inline-block' : 'none';
+    modeBadge.textContent = isOwner ? 'Signed in — you can log and remove frames.' : '';
     modeBadge.className = 'mode-badge mono' + (isOwner ? ' local' : '');
   }
 
