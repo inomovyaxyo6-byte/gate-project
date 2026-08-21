@@ -283,6 +283,20 @@
     color:var(--text-dim);
     margin-bottom:7px;
   }
+  .field-with-action{ display:flex; gap:8px; }
+  .field-with-action input{ flex:1; }
+  .tmdb-btn{
+    flex:none;
+    background:transparent;
+    border:1px solid rgba(92,124,127,0.5);
+    color:var(--teal);
+    padding:0 14px;
+    border-radius:7px;
+    font-size:11px;
+    letter-spacing:0.06em;
+  }
+  .tmdb-btn:hover{ background:rgba(92,124,127,0.15); }
+  .tmdb-btn:disabled{ opacity:0.5; }
   .field input, .field textarea{
     width:100%;
     background:#0f1011;
@@ -766,14 +780,17 @@
       <div class="form-row">
         <div class="field" style="flex:1">
           <label for="movieTitle">Movie</label>
-          <input type="text" id="movieTitle" placeholder="In the Mood for Love (2000)" required>
+          <div class="field-with-action">
+            <input type="text" id="movieTitle" placeholder="In the Mood for Love (2000)" required>
+            <button type="button" class="tmdb-btn mono" id="tmdbLookup" title="Fill in year, director, genre and cast from TMDB">TMDB</button>
+          </div>
         </div>
         <div class="field" style="flex:0 0 110px">
           <label for="year">Year</label>
           <input type="text" id="year" placeholder="2000" inputmode="numeric" maxlength="4">
         </div>
       </div>
-      <p class="batch-hint">Same movie, director, genre and note are applied to every frame in this batch.</p>
+      <p class="batch-hint" id="tmdbMsg">Same movie, director, genre and note are applied to every frame in this batch.</p>
       <div class="form-row">
         <div class="field" style="flex:1">
           <label for="director">Director</label>
@@ -866,7 +883,10 @@
       <div class="form-row">
         <div class="field" style="flex:1">
           <label for="mvEditTitle">Movie</label>
-          <input type="text" id="mvEditTitle" required>
+          <div class="field-with-action">
+            <input type="text" id="mvEditTitle" required>
+            <button type="button" class="tmdb-btn mono" id="mvTmdbLookup" title="Fill in year, director, genre and cast from TMDB">TMDB</button>
+          </div>
         </div>
         <div class="field" style="flex:0 0 110px">
           <label for="mvEditYear">Year</label>
@@ -936,6 +956,8 @@
   const SUPABASE_URL = 'https://aygykkkqepqaqebprcuj.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5Z3lra2txZXBxYXFlYnByY3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcyNjcwNjcsImV4cCI6MjEwMjg0MzA2N30.mKTH7khP01utMTPjxAHGmohydhTryANxP2r3mipep0I';
   const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const TMDB_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MmI3YTA3MjRhNWNkNWVlOGNiMWRmZjhjZWFhMWU3MiIsIm5iZiI6MTc4NzMwMDg1Ny40OTIsInN1YiI6IjZhODgwYmY5NmMyOWRiMWQ2Zjg4M2UwMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dARDOHna4s_R9_E3z7qVyAvzcTTXwX70MqN0-pm5pJg';
 
   let frames = [];
   let lightboxIndex = -1;
@@ -1326,6 +1348,52 @@
   const cancelAdd = document.getElementById('cancelAdd');
   const formMsg = document.getElementById('formMsg');
 
+  // Looks a title up on TMDB and fills in year/director/genre/cast for it.
+  // Shared by the "log frames" form and the movie-info edit form.
+  async function tmdbAutofill({ titleEl, yearEl, directorEl, genreEl, actorsEl, msgEl, buttonEl }){
+    const query = titleEl.value.trim();
+    if(!query) return;
+    const defaultMsg = msgEl.dataset.defaultText !== undefined ? msgEl.dataset.defaultText : msgEl.textContent;
+    msgEl.dataset.defaultText = defaultMsg;
+    buttonEl.disabled = true;
+    msgEl.classList.remove('error');
+    msgEl.textContent = `Looking up "${query}" on TMDB…`;
+
+    try{
+      const headers = { Authorization: `Bearer ${TMDB_TOKEN}`, accept: 'application/json' };
+      const searchRes = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}`, { headers });
+      if(!searchRes.ok) throw new Error(`TMDB search failed (${searchRes.status})`);
+      const searchData = await searchRes.json();
+      const top = (searchData.results || [])[0];
+      if(!top){
+        msgEl.textContent = `No TMDB match for "${query}".`;
+        msgEl.classList.add('error');
+        return;
+      }
+
+      const detailsRes = await fetch(`https://api.themoviedb.org/3/movie/${top.id}?append_to_response=credits`, { headers });
+      if(!detailsRes.ok) throw new Error(`TMDB details failed (${detailsRes.status})`);
+      const details = await detailsRes.json();
+
+      titleEl.value = details.title || top.title || query;
+      if(details.release_date) yearEl.value = details.release_date.slice(0, 4);
+      const director = ((details.credits && details.credits.crew) || []).find(c => c.job === 'Director');
+      if(director) directorEl.value = director.name;
+      const genreNames = (details.genres || []).map(g => g.name);
+      if(genreNames.length) genreEl.value = genreNames.join(', ');
+      const topCast = ((details.credits && details.credits.cast) || []).slice(0, 4).map(c => c.name);
+      if(topCast.length) actorsEl.value = topCast.join(', ');
+
+      msgEl.textContent = `Filled in from TMDB: "${titleEl.value}"${details.release_date ? ' (' + details.release_date.slice(0,4) + ')' : ''}.`;
+      msgEl.classList.remove('error');
+    } catch(err){
+      msgEl.textContent = 'TMDB lookup failed: ' + (err && err.message ? err.message : 'network error');
+      msgEl.classList.add('error');
+    } finally {
+      buttonEl.disabled = false;
+    }
+  }
+
   toggleAdd.addEventListener('click', () => {
     const isOpen = addForm.classList.toggle('open');
     toggleAdd.setAttribute('aria-expanded', String(isOpen));
@@ -1336,6 +1404,18 @@
     addForm.classList.remove('open');
     toggleAdd.style.display = 'flex';
     resetAddForm();
+  });
+
+  document.getElementById('tmdbLookup').addEventListener('click', () => {
+    tmdbAutofill({
+      titleEl: document.getElementById('movieTitle'),
+      yearEl: document.getElementById('year'),
+      directorEl: document.getElementById('director'),
+      genreEl: document.getElementById('genre'),
+      actorsEl: document.getElementById('actors'),
+      msgEl: document.getElementById('tmdbMsg'),
+      buttonEl: document.getElementById('tmdbLookup')
+    });
   });
 
   // ---------- image source tabs ----------
@@ -1499,6 +1579,9 @@
     renderUploadGrid();
     setSrcTab('url');
     document.getElementById('progressWrap').classList.remove('show');
+    const tmdbMsg = document.getElementById('tmdbMsg');
+    if(tmdbMsg.dataset.defaultText !== undefined) tmdbMsg.textContent = tmdbMsg.dataset.defaultText;
+    tmdbMsg.classList.remove('error');
     if(!keepMessage){
       formMsg.textContent = '';
       formMsg.classList.remove('error');
@@ -2011,6 +2094,18 @@
     mvEditForm.style.display = mvEditForm.style.display === 'block' ? 'none' : 'block';
   });
   mvEditCancel.addEventListener('click', () => { mvEditForm.style.display = 'none'; });
+
+  document.getElementById('mvTmdbLookup').addEventListener('click', () => {
+    tmdbAutofill({
+      titleEl: document.getElementById('mvEditTitle'),
+      yearEl: document.getElementById('mvEditYear'),
+      directorEl: document.getElementById('mvEditDirector'),
+      genreEl: document.getElementById('mvEditGenre'),
+      actorsEl: document.getElementById('mvEditActors'),
+      msgEl: mvEditMsg,
+      buttonEl: document.getElementById('mvTmdbLookup')
+    });
+  });
 
   mvEditForm.addEventListener('submit', async (e) => {
     e.preventDefault();
