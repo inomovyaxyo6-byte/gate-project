@@ -738,6 +738,40 @@
     z-index:2;
   }
   .mv-bulk-bar.show{ display:flex; }
+
+  .mv-music-bar{
+    align-items:center;
+    gap:12px;
+    padding:12px 28px;
+    color:var(--text-dim);
+    font-size:12.5px;
+    position:relative;
+    z-index:2;
+  }
+  .mv-music-play{
+    flex:none;
+    width:32px; height:32px;
+    border-radius:50%;
+    border:1px solid var(--border-strong);
+    background:rgba(255,255,255,0.06);
+    color:var(--text);
+    font-size:12px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .mv-music-play:hover{ background:rgba(255,255,255,0.12); }
+  .mv-music-play.playing{ color:var(--amber); border-color:rgba(227,169,76,0.5); }
+  .mv-music-title{ flex:1; }
+  form.mv-music-form{
+    display:none;
+    position:relative;
+    z-index:2;
+    background:var(--bg-raised);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:20px 24px;
+    margin:0 28px 20px;
+  }
+  form.mv-music-form.open{ display:block; }
   .mv-bulk-bar .btn{ padding:7px 14px; font-size:12px; }
   .mv-cover-badge{
     position:absolute; top:8px; left:8px;
@@ -916,6 +950,7 @@
       </div>
       <div class="mv-controls">
         <button class="lb-btn" id="mvCopyLink" aria-label="Copy link to this movie" title="Copy link to this movie">&#128279;</button>
+        <button class="lb-btn" id="mvMusicToggle" aria-label="Soundtrack" title="Soundtrack">&#127925;</button>
         <button class="lb-btn" id="mvAddFrames" aria-label="Add more frames" title="Add more frames">&#43;</button>
         <button class="lb-btn" id="mvEditInfo" aria-label="Edit movie info" title="Edit movie info">&#9998;</button>
         <button class="lb-btn" id="mvSelectToggle" aria-label="Select multiple stills" title="Select multiple stills">&#9745;</button>
@@ -928,6 +963,36 @@
       <button type="button" class="btn" id="mvBulkCancel">Cancel</button>
       <button type="button" class="btn danger" id="mvBulkDelete">Delete selected</button>
     </div>
+    <div class="mv-music-bar mono" id="mvMusicBar" style="display:none;">
+      <button type="button" class="mv-music-play" id="mvMusicPlay" aria-label="Play">&#9654;</button>
+      <span class="mv-music-title" id="mvMusicTitle">No soundtrack yet.</span>
+      <button type="button" class="btn" id="mvMusicEdit" style="display:none;">Set track</button>
+      <button type="button" class="btn danger" id="mvMusicRemove" style="display:none;">Remove</button>
+    </div>
+    <form class="mv-music-form" id="mvMusicForm" style="display:none;">
+      <div class="src-tabs" role="tablist">
+        <button type="button" class="src-tab active" id="musicTabUrl" data-src="url">Paste link</button>
+        <button type="button" class="src-tab" id="musicTabUpload" data-src="upload">Upload file</button>
+      </div>
+      <div class="field" id="musicPaneUrl">
+        <label for="musicUrl">Audio URL</label>
+        <input type="text" id="musicUrl" placeholder="https://.../theme.mp3">
+      </div>
+      <div class="field" id="musicPaneUpload" style="display:none;">
+        <label for="musicFile">Audio file</label>
+        <input type="file" id="musicFile" accept="audio/*">
+      </div>
+      <div class="field">
+        <label for="musicTitleInput">Track title (optional)</label>
+        <input type="text" id="musicTitleInput" placeholder="Main Theme">
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn" id="musicFormCancel">Cancel</button>
+        <button type="submit" class="btn primary">Save</button>
+      </div>
+      <div class="form-msg" id="musicFormMsg"></div>
+    </form>
+    <audio id="mvAudio" preload="none"></audio>
     <form class="mv-edit-form" id="mvEditForm" style="display:none;">
       <div class="form-row">
         <div class="field" style="flex:1">
@@ -1291,6 +1356,7 @@
   });
 
   let covers = {}; // movieKey -> chosen cover frame id
+  let soundtracks = {}; // movieKey -> { trackUrl, trackPath, title }
 
   function rowToFrame(row){
     return {
@@ -1314,6 +1380,36 @@
     if(!error){ (data || []).forEach(r => { covers[r.movie_key] = r.frame_id; }); }
   }
 
+  async function loadSoundtracks(){
+    const { data, error } = await sb.from('soundtracks').select('movie_key, track_url, track_path, title');
+    soundtracks = {};
+    if(!error){
+      (data || []).forEach(r => {
+        soundtracks[r.movie_key] = { trackUrl: r.track_url, trackPath: r.track_path, title: r.title };
+      });
+    }
+  }
+
+  async function saveSoundtrack(key, { trackUrl, trackPath, title }){
+    const old = soundtracks[key];
+    if(old && old.trackPath && old.trackPath !== trackPath){
+      await sb.storage.from('soundtracks').remove([old.trackPath]);
+    }
+    soundtracks[key] = { trackUrl, trackPath: trackPath || null, title: title || '' };
+    await sb.from('soundtracks').upsert({
+      movie_key: key, owner_id: session.user.id,
+      track_url: trackUrl, track_path: trackPath || null, title: title || null
+    });
+  }
+
+  async function removeSoundtrack(key){
+    const old = soundtracks[key];
+    if(!old) return;
+    delete soundtracks[key];
+    await sb.from('soundtracks').delete().eq('movie_key', key);
+    if(old.trackPath) await sb.storage.from('soundtracks').remove([old.trackPath]);
+  }
+
   async function setCover(key, frameId){
     covers[key] = frameId;
     if(!session) return;
@@ -1331,6 +1427,7 @@
     if(error) showFatal('Could not load frames: ' + error.message);
 
     await loadCovers();
+    await loadSoundtracks();
     render();
     openFromUrl();
   }
@@ -1367,6 +1464,7 @@
     const ids = frames.filter(f => movieKey(f.movieTitle) === key).map(f => f.id);
     for(const id of ids){ await deleteFrameCore(id); }
     await clearCover(key);
+    await removeSoundtrack(key);
     render();
   }
 
@@ -1799,6 +1897,16 @@
   const mvBulkCount = document.getElementById('mvBulkCount');
   const mvBulkCancel = document.getElementById('mvBulkCancel');
   const mvBulkDelete = document.getElementById('mvBulkDelete');
+  const mvMusicToggle = document.getElementById('mvMusicToggle');
+  const mvMusicBar = document.getElementById('mvMusicBar');
+  const mvMusicPlay = document.getElementById('mvMusicPlay');
+  const mvMusicTitle = document.getElementById('mvMusicTitle');
+  const mvMusicEdit = document.getElementById('mvMusicEdit');
+  const mvMusicRemove = document.getElementById('mvMusicRemove');
+  const mvMusicForm = document.getElementById('mvMusicForm');
+  const musicFormMsg = document.getElementById('musicFormMsg');
+  const mvAudio = document.getElementById('mvAudio');
+  let musicSrcTab = 'url';
 
   let currentMovieViewKey = null;
   let selectMode = false;
@@ -2111,6 +2219,10 @@
     if(!g) return;
     currentMovieViewKey = groupKey;
     mvEditForm.style.display = 'none';
+    mvMusicForm.classList.remove('open');
+    mvMusicBar.style.display = 'none';
+    mvAudio.pause();
+    mvAudio.removeAttribute('src');
     selectMode = false;
     selectedIds = new Set();
     mvBulkBar.classList.remove('show');
@@ -2137,6 +2249,8 @@
     mvTags.innerHTML = chips;
     mvActors.textContent = g.actors.length ? `Starring ${g.actors.join(', ')}` : '';
     mvActors.style.display = g.actors.length ? 'block' : 'none';
+
+    renderMusicBar(g);
 
     mvGrid.innerHTML = '';
     g.framesList.forEach(f => {
@@ -2314,6 +2428,11 @@
         covers[newKey] = covers[g.key];
         delete covers[g.key];
       }
+      await sb.from('soundtracks').update({ movie_key: newKey }).eq('movie_key', g.key);
+      if(soundtracks[g.key] !== undefined){
+        soundtracks[newKey] = soundtracks[g.key];
+        delete soundtracks[g.key];
+      }
     }
 
     const idSet = new Set(ids);
@@ -2329,6 +2448,131 @@
     render();
     const updatedG = getMovieGroups().find(x => x.key === newKey);
     if(updatedG) renderMovieView(updatedG);
+  });
+
+  // ---------- soundtrack (one main track per movie) ----------
+  function renderMusicBar(g){
+    const track = soundtracks[g.key];
+    mvAudio.pause();
+    mvAudio.removeAttribute('src');
+    mvMusicPlay.classList.remove('playing');
+    mvMusicPlay.innerHTML = '&#9654;';
+
+    if(track){
+      mvMusicTitle.textContent = track.title || 'Now playing';
+      mvMusicPlay.style.display = 'flex';
+    } else {
+      mvMusicTitle.textContent = session ? 'No soundtrack yet.' : 'No soundtrack.';
+      mvMusicPlay.style.display = 'none';
+    }
+    mvMusicEdit.style.display = session ? 'inline-block' : 'none';
+    mvMusicEdit.textContent = track ? 'Change' : 'Set track';
+    mvMusicRemove.style.display = (session && track) ? 'inline-block' : 'none';
+  }
+
+  mvMusicToggle.addEventListener('click', () => {
+    mvMusicBar.style.display = mvMusicBar.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  mvMusicPlay.addEventListener('click', () => {
+    const track = soundtracks[currentMovieViewKey];
+    if(!track) return;
+    if(!mvAudio.src){ mvAudio.src = track.trackUrl; }
+    if(mvAudio.paused){
+      mvAudio.play();
+      mvMusicPlay.classList.add('playing');
+      mvMusicPlay.innerHTML = '&#10074;&#10074;';
+    } else {
+      mvAudio.pause();
+      mvMusicPlay.classList.remove('playing');
+      mvMusicPlay.innerHTML = '&#9654;';
+    }
+  });
+  mvAudio.addEventListener('ended', () => {
+    mvMusicPlay.classList.remove('playing');
+    mvMusicPlay.innerHTML = '&#9654;';
+  });
+
+  function setMusicSrcTab(tab){
+    musicSrcTab = tab;
+    document.getElementById('musicTabUrl').classList.toggle('active', tab === 'url');
+    document.getElementById('musicTabUpload').classList.toggle('active', tab === 'upload');
+    document.getElementById('musicPaneUrl').style.display = tab === 'url' ? 'block' : 'none';
+    document.getElementById('musicPaneUpload').style.display = tab === 'upload' ? 'block' : 'none';
+  }
+  document.getElementById('musicTabUrl').addEventListener('click', () => setMusicSrcTab('url'));
+  document.getElementById('musicTabUpload').addEventListener('click', () => setMusicSrcTab('upload'));
+
+  mvMusicEdit.addEventListener('click', () => {
+    if(!session) return;
+    const track = soundtracks[currentMovieViewKey];
+    document.getElementById('musicUrl').value = (track && track.trackUrl) || '';
+    document.getElementById('musicTitleInput').value = (track && track.title) || '';
+    document.getElementById('musicFile').value = '';
+    musicFormMsg.textContent = '';
+    musicFormMsg.classList.remove('error');
+    setMusicSrcTab('url');
+    mvMusicForm.classList.add('open');
+  });
+  document.getElementById('musicFormCancel').addEventListener('click', () => {
+    mvMusicForm.classList.remove('open');
+  });
+
+  mvMusicRemove.addEventListener('click', async () => {
+    if(!session || !currentMovieViewKey) return;
+    if(!confirm('Remove this soundtrack?')) return;
+    await removeSoundtrack(currentMovieViewKey);
+    const g = getMovieGroups().find(x => x.key === currentMovieViewKey);
+    if(g) renderMusicBar(g);
+  });
+
+  const MAX_AUDIO_BYTES = 20 * 1024 * 1024;
+
+  mvMusicForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if(!session || !currentMovieViewKey) return;
+    const key = currentMovieViewKey;
+    const titleInput = document.getElementById('musicTitleInput').value.trim();
+    musicFormMsg.classList.remove('error');
+    musicFormMsg.textContent = 'Saving…';
+
+    try{
+      if(musicSrcTab === 'upload'){
+        const file = document.getElementById('musicFile').files[0];
+        if(!file){
+          musicFormMsg.textContent = 'Choose an audio file first.';
+          musicFormMsg.classList.add('error');
+          return;
+        }
+        if(file.size > MAX_AUDIO_BYTES){
+          musicFormMsg.textContent = 'That file is too large (max 20MB) — try a link instead.';
+          musicFormMsg.classList.add('error');
+          return;
+        }
+        const ext = (file.name.split('.').pop() || 'mp3').toLowerCase();
+        const path = `${session.user.id}/${key}-${makeId()}.${ext}`;
+        const { error: uploadError } = await sb.storage.from('soundtracks')
+          .upload(path, file, { contentType: file.type || 'audio/mpeg' });
+        if(uploadError) throw uploadError;
+        const { data: pub } = sb.storage.from('soundtracks').getPublicUrl(path);
+        await saveSoundtrack(key, { trackUrl: pub.publicUrl, trackPath: path, title: titleInput });
+      } else {
+        const url = document.getElementById('musicUrl').value.trim();
+        if(!url){
+          musicFormMsg.textContent = 'Paste an audio URL, or switch to Upload file.';
+          musicFormMsg.classList.add('error');
+          return;
+        }
+        await saveSoundtrack(key, { trackUrl: url, trackPath: null, title: titleInput });
+      }
+
+      mvMusicForm.classList.remove('open');
+      const g = getMovieGroups().find(x => x.key === key);
+      if(g) renderMusicBar(g);
+    } catch(err){
+      musicFormMsg.textContent = 'Could not save: ' + (err && err.message ? err.message : 'unknown error');
+      musicFormMsg.classList.add('error');
+    }
   });
 
   // ---------- lightbox (single-frame zoom, opened from within a movie view) ----------
@@ -2568,7 +2812,13 @@
     window.scrollTo(0, scrollY);
   }
   new MutationObserver(() => {
-    if(movieView.classList.contains('open')) lockBodyScroll(); else unlockBodyScroll();
+    if(movieView.classList.contains('open')){
+      lockBodyScroll();
+    } else {
+      unlockBodyScroll();
+      mvAudio.pause();
+      mvAudio.removeAttribute('src');
+    }
   }).observe(movieView, { attributes: true, attributeFilter: ['class'] });
 
   mvCopyLink.addEventListener('click', async () => {
