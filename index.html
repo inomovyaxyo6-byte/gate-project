@@ -2886,11 +2886,12 @@
 
     try{
       const since = (days) => new Date(Date.now() - days * 86400000).toISOString();
-      const [totalRes, weekRes, monthRes, topRes] = await Promise.all([
+      const [totalRes, weekRes, monthRes, topRes, userCountRes] = await Promise.all([
         sb.from('page_views').select('*', { count: 'exact', head: true }),
         sb.from('page_views').select('*', { count: 'exact', head: true }).gte('viewed_at', since(7)),
         sb.from('page_views').select('*', { count: 'exact', head: true }).gte('viewed_at', since(30)),
-        sb.from('page_views').select('movie_key').not('movie_key', 'is', null)
+        sb.from('page_views').select('movie_key').not('movie_key', 'is', null),
+        sb.rpc('get_user_count')
       ]);
 
       const counts = {};
@@ -2900,7 +2901,8 @@
       const rows = [
         `<div class="stats-row"><span>All-time views</span><span class="num">${totalRes.count ?? 0}</span></div>`,
         `<div class="stats-row"><span>Last 7 days</span><span class="num">${weekRes.count ?? 0}</span></div>`,
-        `<div class="stats-row"><span>Last 30 days</span><span class="num">${monthRes.count ?? 0}</span></div>`
+        `<div class="stats-row"><span>Last 30 days</span><span class="num">${monthRes.count ?? 0}</span></div>`,
+        `<div class="stats-row"><span>Signed-up users</span><span class="num">${userCountRes.data ?? '—'}</span></div>`
       ];
 
       if(top.length){
