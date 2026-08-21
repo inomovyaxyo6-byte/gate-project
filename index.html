@@ -139,13 +139,15 @@
   .auth-msg.error{ color:var(--red); }
 
   /* Editing controls are hidden until you're signed in as the owner */
-  #toggleAdd, #importBtn, .remove-btn, .mv-thumb-remove, #mvRemoveMovie, #lbSetCover, #lbRemoveStill{
+  #toggleAdd, #importBtn, .remove-btn, .mv-thumb-remove, #mvAddFrames, #mvEditInfo, #mvRemoveMovie, #lbSetCover, #lbRemoveStill{
     display:none;
   }
   body.is-owner #toggleAdd{ display:flex; }
   body.is-owner #importBtn{ display:inline-flex; }
   body.is-owner .remove-btn{ display:flex; }
   body.is-owner .mv-thumb-remove{ display:flex; }
+  body.is-owner #mvAddFrames{ display:flex; }
+  body.is-owner #mvEditInfo{ display:flex; }
   body.is-owner #mvRemoveMovie{ display:flex; }
   body.is-owner #lbSetCover{ display:flex; }
   body.is-owner #lbRemoveStill{ display:flex; }
@@ -613,6 +615,15 @@
   .mv-header .tags{ margin:0; }
   .mv-actors{ font-size:11px; color:var(--text-dim); margin-top:8px; }
   .mv-controls{ display:flex; gap:10px; flex:none; }
+  form.mv-edit-form{
+    position:relative;
+    z-index:2;
+    background:var(--bg-raised);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:20px 24px;
+    margin:0 28px 24px;
+  }
   .mv-grid{
     position:relative;
     z-index:1;
@@ -802,10 +813,43 @@
         <div class="mv-actors mono" id="mvActors" style="display:none;"></div>
       </div>
       <div class="mv-controls">
+        <button class="lb-btn" id="mvAddFrames" aria-label="Add more frames" title="Add more frames">&#43;</button>
+        <button class="lb-btn" id="mvEditInfo" aria-label="Edit movie info" title="Edit movie info">&#9998;</button>
         <button class="lb-btn" id="mvRemoveMovie" aria-label="Remove this movie" title="Remove this movie">&#128465;</button>
         <button class="lb-btn" id="mvClose" aria-label="Close">&times;</button>
       </div>
     </div>
+    <form class="mv-edit-form" id="mvEditForm" style="display:none;">
+      <div class="form-row">
+        <div class="field" style="flex:1">
+          <label for="mvEditTitle">Movie</label>
+          <input type="text" id="mvEditTitle" required>
+        </div>
+        <div class="field" style="flex:0 0 110px">
+          <label for="mvEditYear">Year</label>
+          <input type="text" id="mvEditYear" inputmode="numeric" maxlength="4">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field" style="flex:1">
+          <label for="mvEditDirector">Director</label>
+          <input type="text" id="mvEditDirector">
+        </div>
+        <div class="field" style="flex:1">
+          <label for="mvEditGenre">Genre</label>
+          <input type="text" id="mvEditGenre">
+        </div>
+      </div>
+      <div class="field">
+        <label for="mvEditActors">Actors</label>
+        <input type="text" id="mvEditActors">
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn" id="mvEditCancel">Cancel</button>
+        <button type="submit" class="btn primary">Save</button>
+      </div>
+      <div class="form-msg" id="mvEditMsg"></div>
+    </form>
     <div class="mv-grid" id="mvGrid"></div>
   </div>
 
@@ -1516,7 +1560,7 @@
         toggleAdd.style.display = 'flex';
         formMsg.textContent = '';
         formMsg.classList.remove('error');
-      }, failedCount > 0 || !savedOk ? 3500 : 900);
+      }, failedCount > 0 ? 3500 : 900);
     } catch(err){
       progressWrap.classList.remove('show');
       formMsg.classList.add('error');
@@ -1536,6 +1580,11 @@
   const mvGrid = document.getElementById('mvGrid');
   const mvClose = document.getElementById('mvClose');
   const mvRemoveMovie = document.getElementById('mvRemoveMovie');
+  const mvAddFrames = document.getElementById('mvAddFrames');
+  const mvEditInfo = document.getElementById('mvEditInfo');
+  const mvEditForm = document.getElementById('mvEditForm');
+  const mvEditCancel = document.getElementById('mvEditCancel');
+  const mvEditMsg = document.getElementById('mvEditMsg');
 
   let currentMovieViewKey = null;
   const moodCache = {}; // movieKey -> {r,g,b} | null, so revisits don't re-sample
@@ -1706,6 +1755,7 @@
     const g = groups.find(x => x.key === groupKey);
     if(!g) return;
     currentMovieViewKey = groupKey;
+    mvEditForm.style.display = 'none';
     renderMovieView(g);
     movieView.classList.add('open');
 
@@ -1775,6 +1825,92 @@
     if(!g) return;
     await removeMovie(g.key, g.title, g.framesList.length);
     movieView.classList.remove('open');
+  });
+
+  mvAddFrames.addEventListener('click', () => {
+    if(!session){ alert('Sign in to add frames.'); return; }
+    const groups = getMovieGroups();
+    const g = groups.find(x => x.key === currentMovieViewKey);
+    if(!g) return;
+    movieView.classList.remove('open');
+    document.getElementById('movieTitle').value = g.title;
+    document.getElementById('year').value = g.year || '';
+    document.getElementById('director').value = g.director || '';
+    document.getElementById('genre').value = g.genres.join(', ');
+    document.getElementById('actors').value = g.actors.join(', ');
+    addForm.classList.add('open');
+    toggleAdd.style.display = 'none';
+    toggleAdd.setAttribute('aria-expanded', 'true');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('imageUrl').focus();
+  });
+
+  mvEditInfo.addEventListener('click', () => {
+    if(!session){ alert('Sign in to edit.'); return; }
+    const groups = getMovieGroups();
+    const g = groups.find(x => x.key === currentMovieViewKey);
+    if(!g) return;
+    document.getElementById('mvEditTitle').value = g.title;
+    document.getElementById('mvEditYear').value = g.year || '';
+    document.getElementById('mvEditDirector').value = g.director || '';
+    document.getElementById('mvEditGenre').value = g.genres.join(', ');
+    document.getElementById('mvEditActors').value = g.actors.join(', ');
+    mvEditMsg.textContent = '';
+    mvEditMsg.classList.remove('error');
+    mvEditForm.style.display = mvEditForm.style.display === 'block' ? 'none' : 'block';
+  });
+  mvEditCancel.addEventListener('click', () => { mvEditForm.style.display = 'none'; });
+
+  mvEditForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if(!session) return;
+    const g = getMovieGroups().find(x => x.key === currentMovieViewKey);
+    if(!g) return;
+
+    const newTitle = document.getElementById('mvEditTitle').value.trim();
+    const newYear = document.getElementById('mvEditYear').value.trim().replace(/[^0-9]/g, '').slice(0, 4);
+    const newDirector = document.getElementById('mvEditDirector').value.trim();
+    const newGenre = document.getElementById('mvEditGenre').value.split(',').map(s => s.trim()).filter(Boolean);
+    const newActors = document.getElementById('mvEditActors').value.split(',').map(s => s.trim()).filter(Boolean);
+
+    if(!newTitle){
+      mvEditMsg.textContent = 'A movie title is needed.';
+      mvEditMsg.classList.add('error');
+      return;
+    }
+
+    const ids = g.framesList.map(f => f.id);
+    const { error } = await sb.from('frames')
+      .update({ movie_title: newTitle, year: newYear, director: newDirector, genre: newGenre, actors: newActors })
+      .in('id', ids);
+    if(error){
+      mvEditMsg.textContent = 'Could not save: ' + error.message;
+      mvEditMsg.classList.add('error');
+      return;
+    }
+
+    const newKey = movieKey(newTitle);
+    if(newKey !== g.key){
+      await sb.from('covers').update({ movie_key: newKey }).eq('movie_key', g.key);
+      if(covers[g.key] !== undefined){
+        covers[newKey] = covers[g.key];
+        delete covers[g.key];
+      }
+    }
+
+    const idSet = new Set(ids);
+    frames.forEach(f => {
+      if(idSet.has(f.id)){
+        f.movieTitle = newTitle; f.year = newYear; f.director = newDirector;
+        f.genre = newGenre; f.actors = newActors;
+      }
+    });
+    currentMovieViewKey = newKey;
+
+    mvEditForm.style.display = 'none';
+    render();
+    const updatedG = getMovieGroups().find(x => x.key === newKey);
+    if(updatedG) renderMovieView(updatedG);
   });
 
   // ---------- lightbox (single-frame zoom, opened from within a movie view) ----------
