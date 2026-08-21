@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GATE — a running log of frames</title>
+<meta name="description" content="A running log of frames worth freezing — pulled from movies, kept in one place.">
+<meta name="theme-color" content="#0e0f10">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GATE">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
@@ -139,7 +147,7 @@
   .auth-msg.error{ color:var(--red); }
 
   /* Editing controls are hidden until you're signed in as the owner */
-  #toggleAdd, #importBtn, .remove-btn, .mv-thumb-remove, #mvAddFrames, #mvEditInfo, #mvRemoveMovie, #lbSetCover, #lbRemoveStill{
+  #toggleAdd, #importBtn, .remove-btn, .mv-thumb-remove, #mvAddFrames, #mvEditInfo, #mvSelectToggle, #mvRemoveMovie, #lbSetCover, #lbRemoveStill{
     display:none;
   }
   body.is-owner #toggleAdd{ display:flex; }
@@ -148,6 +156,7 @@
   body.is-owner .mv-thumb-remove{ display:flex; }
   body.is-owner #mvAddFrames{ display:flex; }
   body.is-owner #mvEditInfo{ display:flex; }
+  body.is-owner #mvSelectToggle{ display:flex; }
   body.is-owner #mvRemoveMovie{ display:flex; }
   body.is-owner #lbSetCover{ display:flex; }
   body.is-owner #lbRemoveStill{ display:flex; }
@@ -302,6 +311,8 @@
     color:#1a1300;
     font-weight:600;
   }
+  .btn.danger{ color:var(--red); border-color:rgba(178,58,47,0.5); }
+  .btn.danger:hover{ background:var(--red); color:#fff; }
   .btn.primary:hover{ background:#eab863; }
   .btn:hover{ color:var(--text); }
   .fatal-banner{
@@ -647,6 +658,31 @@
   .mv-thumb:hover{ border-color:var(--border-strong); transform:translateY(-2px); }
   .mv-thumb img{ width:100%; display:block; background:#0a0a0b; }
   .mv-thumb.is-cover{ border-color:rgba(227,169,76,0.55); }
+  .mv-thumb.selected{ border-color:var(--amber); box-shadow:0 0 0 2px rgba(227,169,76,0.35) inset; }
+  .mv-thumb-check{
+    position:absolute; top:8px; right:8px;
+    width:22px; height:22px;
+    border-radius:5px;
+    border:1.5px solid rgba(236,231,220,0.55);
+    background:rgba(10,10,11,0.55);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--amber);
+    font-size:13px;
+    z-index:2;
+  }
+  .mv-thumb.selected .mv-thumb-check{ background:var(--amber); border-color:var(--amber); color:#1a1300; }
+  .mv-bulk-bar{
+    display:none;
+    align-items:center;
+    gap:12px;
+    padding:12px 28px;
+    color:var(--text-dim);
+    font-size:12.5px;
+    position:relative;
+    z-index:2;
+  }
+  .mv-bulk-bar.show{ display:flex; }
+  .mv-bulk-bar .btn{ padding:7px 14px; font-size:12px; }
   .mv-cover-badge{
     position:absolute; top:8px; left:8px;
     color:var(--amber);
@@ -813,11 +849,18 @@
         <div class="mv-actors mono" id="mvActors" style="display:none;"></div>
       </div>
       <div class="mv-controls">
+        <button class="lb-btn" id="mvCopyLink" aria-label="Copy link to this movie" title="Copy link to this movie">&#128279;</button>
         <button class="lb-btn" id="mvAddFrames" aria-label="Add more frames" title="Add more frames">&#43;</button>
         <button class="lb-btn" id="mvEditInfo" aria-label="Edit movie info" title="Edit movie info">&#9998;</button>
+        <button class="lb-btn" id="mvSelectToggle" aria-label="Select multiple stills" title="Select multiple stills">&#9745;</button>
         <button class="lb-btn" id="mvRemoveMovie" aria-label="Remove this movie" title="Remove this movie">&#128465;</button>
         <button class="lb-btn" id="mvClose" aria-label="Close">&times;</button>
       </div>
+    </div>
+    <div class="mv-bulk-bar mono" id="mvBulkBar" style="display:none;">
+      <span id="mvBulkCount">0 selected</span>
+      <button type="button" class="btn" id="mvBulkCancel">Cancel</button>
+      <button type="button" class="btn danger" id="mvBulkDelete">Delete selected</button>
     </div>
     <form class="mv-edit-form" id="mvEditForm" style="display:none;">
       <div class="form-row">
@@ -1220,6 +1263,21 @@
 
     await loadCovers();
     render();
+    openFromUrl();
+  }
+
+  // Restores a shared ?movie=...&frame=... link on first load.
+  function openFromUrl(){
+    const params = new URLSearchParams(location.search);
+    const movieParam = params.get('movie');
+    if(!movieParam) return;
+    const g = getMovieGroups().find(x => x.key === movieParam);
+    if(!g) return;
+    openMovieView(g.key);
+    const frameParam = params.get('frame');
+    if(frameParam && g.framesList.some(f => f.id === frameParam)){
+      openLightbox(g.key, frameParam);
+    }
   }
 
   // Removes a frame's row (and its stored image, if any) — a building block
@@ -1384,35 +1442,55 @@
     });
   }
 
+  function queueUploadFile(file){
+    const tempId = makeId();
+    pendingUploads.push({ tempId, name: file.name, status: 'processing', dataUrl: null, sizeBytes: 0 });
+    renderUploadGrid();
+
+    compressImageFile(file).then(result => {
+      const entry = pendingUploads.find(u => u.tempId === tempId);
+      if(!entry) return;
+      if(result.sizeBytes > MAX_STORED_BYTES){
+        entry.status = 'error';
+        entry.errorMsg = 'Too large';
+      } else {
+        entry.status = 'ready';
+        entry.dataUrl = result.dataUrl;
+        entry.blob = result.blob;
+        entry.sizeBytes = result.sizeBytes;
+      }
+      renderUploadGrid();
+    }).catch(err => {
+      const entry = pendingUploads.find(u => u.tempId === tempId);
+      if(entry){ entry.status = 'error'; entry.errorMsg = 'Unreadable'; }
+      renderUploadGrid();
+      console.error(err);
+    });
+  }
+
   imageFileInput.addEventListener('change', () => {
     const files = Array.from(imageFileInput.files || []);
     imageFileInput.value = ''; // allow re-selecting the same file(s) later, and lets us keep accumulating
+    files.forEach(queueUploadFile);
+  });
 
-    files.forEach(file => {
-      const tempId = makeId();
-      pendingUploads.push({ tempId, name: file.name, status: 'processing', dataUrl: null, sizeBytes: 0 });
-      renderUploadGrid();
+  // Lets you screenshot a frame and just Ctrl+V it in, instead of saving to
+  // disk and picking the file — matches how people actually grab movie stills.
+  document.addEventListener('paste', (e) => {
+    if(!session) return;
+    const items = Array.from(e.clipboardData ? e.clipboardData.items : []);
+    const imageFiles = items.filter(it => it.kind === 'file' && it.type.startsWith('image/')).map(it => it.getAsFile());
+    if(!imageFiles.length) return;
+    e.preventDefault();
 
-      compressImageFile(file).then(result => {
-        const entry = pendingUploads.find(u => u.tempId === tempId);
-        if(!entry) return;
-        if(result.sizeBytes > MAX_STORED_BYTES){
-          entry.status = 'error';
-          entry.errorMsg = 'Too large';
-        } else {
-          entry.status = 'ready';
-          entry.dataUrl = result.dataUrl;
-          entry.blob = result.blob;
-          entry.sizeBytes = result.sizeBytes;
-        }
-        renderUploadGrid();
-      }).catch(err => {
-        const entry = pendingUploads.find(u => u.tempId === tempId);
-        if(entry){ entry.status = 'error'; entry.errorMsg = 'Unreadable'; }
-        renderUploadGrid();
-        console.error(err);
-      });
-    });
+    if(!addForm.classList.contains('open')){
+      addForm.classList.add('open');
+      toggleAdd.style.display = 'none';
+      toggleAdd.setAttribute('aria-expanded', 'true');
+    }
+    setSrcTab('upload');
+    imageFiles.forEach(queueUploadFile);
+    document.getElementById('movieTitle').focus();
   });
 
   function resetAddForm(keepMessage){
@@ -1585,8 +1663,16 @@
   const mvEditForm = document.getElementById('mvEditForm');
   const mvEditCancel = document.getElementById('mvEditCancel');
   const mvEditMsg = document.getElementById('mvEditMsg');
+  const mvCopyLink = document.getElementById('mvCopyLink');
+  const mvSelectToggle = document.getElementById('mvSelectToggle');
+  const mvBulkBar = document.getElementById('mvBulkBar');
+  const mvBulkCount = document.getElementById('mvBulkCount');
+  const mvBulkCancel = document.getElementById('mvBulkCancel');
+  const mvBulkDelete = document.getElementById('mvBulkDelete');
 
   let currentMovieViewKey = null;
+  let selectMode = false;
+  let selectedIds = new Set();
   const moodCache = {}; // movieKey -> {r,g,b} | null, so revisits don't re-sample
 
   function loadImageEl(src){
@@ -1750,14 +1836,32 @@
     requestAnimationFrame(() => mvTint.classList.add('show'));
   }
 
+  // Keeps the address bar in sync with what's open, so the URL can be copied
+  // and shared, and so reloading/opening it again lands back in the same place.
+  function updateUrlForState(){
+    const params = new URLSearchParams();
+    if(movieView.classList.contains('open') && currentMovieViewKey){
+      params.set('movie', currentMovieViewKey);
+      if(lightbox.classList.contains('open') && currentGroupKey === currentMovieViewKey && currentGroupFrames[lightboxIndex]){
+        params.set('frame', currentGroupFrames[lightboxIndex].id);
+      }
+    }
+    const qs = params.toString();
+    history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+  }
+
   function openMovieView(groupKey){
     const groups = getMovieGroups();
     const g = groups.find(x => x.key === groupKey);
     if(!g) return;
     currentMovieViewKey = groupKey;
     mvEditForm.style.display = 'none';
+    selectMode = false;
+    selectedIds = new Set();
+    mvBulkBar.classList.remove('show');
     renderMovieView(g);
     movieView.classList.add('open');
+    updateUrlForState();
 
     if(g.key in moodCache){
       applyMoodTint(moodCache[g.key]);
@@ -1782,24 +1886,39 @@
     mvGrid.innerHTML = '';
     g.framesList.forEach(f => {
       const isCover = g.cover.id === f.id;
+      const isSelected = selectedIds.has(f.id);
       const thumb = document.createElement('div');
-      thumb.className = 'mv-thumb' + (isCover ? ' is-cover' : '');
+      thumb.className = 'mv-thumb' + (isCover ? ' is-cover' : '') + (selectMode && isSelected ? ' selected' : '');
       thumb.innerHTML = `
         ${isCover ? '<span class="mv-cover-badge">&#9733;</span>' : ''}
-        <button class="mv-thumb-remove" aria-label="Remove this still">&times;</button>
+        ${selectMode ? `<div class="mv-thumb-check">${isSelected ? '&#10003;' : ''}</div>` : '<button class="mv-thumb-remove" aria-label="Remove this still">&times;</button>'}
         <img src="${escapeHtml(frameImgSrc(f))}" alt="${escapeHtml(g.title)}" loading="lazy"
              onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<div class=&quot;broken&quot;>Frame unavailable</div>');">
       `;
       thumb.addEventListener('click', (e) => {
         if(e.target.closest('.mv-thumb-remove')) return;
+        if(selectMode){
+          if(selectedIds.has(f.id)) selectedIds.delete(f.id); else selectedIds.add(f.id);
+          updateBulkBar();
+          renderMovieView(g);
+          return;
+        }
         openLightbox(g.key, f.id);
       });
-      thumb.querySelector('.mv-thumb-remove').addEventListener('click', async (e) => {
-        e.stopPropagation();
-        await removeStillFromMovieView(f.id);
-      });
+      const removeBtn = thumb.querySelector('.mv-thumb-remove');
+      if(removeBtn){
+        removeBtn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          await removeStillFromMovieView(f.id);
+        });
+      }
       mvGrid.appendChild(thumb);
     });
+  }
+
+  function updateBulkBar(){
+    mvBulkCount.textContent = `${selectedIds.size} selected`;
+    mvBulkDelete.disabled = selectedIds.size === 0;
   }
 
   async function removeStillFromMovieView(id){
@@ -1825,6 +1944,38 @@
     if(!g) return;
     await removeMovie(g.key, g.title, g.framesList.length);
     movieView.classList.remove('open');
+  });
+
+  mvSelectToggle.addEventListener('click', () => {
+    if(!session) return;
+    const groups = getMovieGroups();
+    const g = groups.find(x => x.key === currentMovieViewKey);
+    if(!g) return;
+    selectMode = !selectMode;
+    selectedIds = new Set();
+    mvBulkBar.classList.toggle('show', selectMode);
+    updateBulkBar();
+    renderMovieView(g);
+  });
+  mvBulkCancel.addEventListener('click', () => {
+    selectMode = false;
+    selectedIds = new Set();
+    mvBulkBar.classList.remove('show');
+    const g = getMovieGroups().find(x => x.key === currentMovieViewKey);
+    if(g) renderMovieView(g);
+  });
+  mvBulkDelete.addEventListener('click', async () => {
+    if(!session || selectedIds.size === 0) return;
+    const count = selectedIds.size;
+    if(!confirm(`Remove ${count} selected still${count===1?'':'s'}?`)) return;
+    for(const id of selectedIds){ await deleteFrameCore(id); }
+    selectMode = false;
+    selectedIds = new Set();
+    mvBulkBar.classList.remove('show');
+    render();
+    const g = getMovieGroups().find(x => x.key === currentMovieViewKey);
+    if(!g){ movieView.classList.remove('open'); return; }
+    renderMovieView(g);
   });
 
   mvAddFrames.addEventListener('click', () => {
@@ -1978,6 +2129,7 @@
     lbSetCover.title = isCover ? 'This is the cover photo' : 'Set as cover photo';
     lightbox.classList.add('open');
     fillLightboxPalette(f);
+    updateUrlForState();
   }
 
   document.getElementById('lbClose').addEventListener('click', () => {
@@ -2121,6 +2273,24 @@
 
     render();
     alert(`Imported ${imported} frame${imported===1?'':'s'}${skipped ? `, skipped ${skipped} with no image` : ''}.`);
+  });
+
+  // Any open/close of the movie view or lightbox (Escape, outside click, nav
+  // buttons, etc.) should keep the address bar in sync, wherever it happened from.
+  new MutationObserver(updateUrlForState).observe(movieView, { attributes: true, attributeFilter: ['class'] });
+  new MutationObserver(updateUrlForState).observe(lightbox, { attributes: true, attributeFilter: ['class'] });
+
+  mvCopyLink.addEventListener('click', async () => {
+    if(!currentMovieViewKey) return;
+    const url = `${location.origin}${location.pathname}?movie=${encodeURIComponent(currentMovieViewKey)}`;
+    try{
+      await navigator.clipboard.writeText(url);
+      const original = mvCopyLink.innerHTML;
+      mvCopyLink.innerHTML = '&#10003;';
+      setTimeout(() => { mvCopyLink.innerHTML = original; }, 1200);
+    } catch(err){
+      prompt('Copy this link:', url);
+    }
   });
 
   updateAuthUI();

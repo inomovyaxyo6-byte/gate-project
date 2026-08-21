@@ -1,0 +1,14 @@
+{
+  "name": "GATE — a running log of frames",
+  "short_name": "GATE",
+  "description": "A running log of frames worth freezing — pulled from movies, kept in one place.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0e0f10",
+  "theme_color": "#0e0f10",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
