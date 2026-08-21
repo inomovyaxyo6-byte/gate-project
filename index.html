@@ -2361,6 +2361,37 @@
   new MutationObserver(updateUrlForState).observe(movieView, { attributes: true, attributeFilter: ['class'] });
   new MutationObserver(updateUrlForState).observe(lightbox, { attributes: true, attributeFilter: ['class'] });
 
+  // iOS Safari mispositions position:fixed overlays after the background page
+  // has been scrolled (the address bar collapses/expands and the fixed layer
+  // ends up offset from the real top of the screen, leaving the page behind
+  // visible through a gap). Locking the body in place while the movie view is
+  // open removes that mismatch entirely.
+  function lockBodyScroll(){
+    if(document.body.dataset.scrollLocked === '1') return;
+    const scrollY = window.scrollY;
+    document.body.dataset.scrollY = String(scrollY);
+    document.body.dataset.scrollLocked = '1';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  }
+  function unlockBodyScroll(){
+    if(document.body.dataset.scrollLocked !== '1') return;
+    const scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    delete document.body.dataset.scrollLocked;
+    window.scrollTo(0, scrollY);
+  }
+  new MutationObserver(() => {
+    if(movieView.classList.contains('open')) lockBodyScroll(); else unlockBodyScroll();
+  }).observe(movieView, { attributes: true, attributeFilter: ['class'] });
+
   mvCopyLink.addEventListener('click', async () => {
     if(!currentMovieViewKey) return;
     const url = `${location.origin}${location.pathname}?movie=${encodeURIComponent(currentMovieViewKey)}`;
