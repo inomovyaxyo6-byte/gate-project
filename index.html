@@ -685,6 +685,19 @@
     overflow-y:auto;
   }
   .movie-view.open{ display:block; }
+  .mv-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background-size:cover;
+    background-position:center;
+    filter:blur(60px) brightness(0.5) saturate(1.15);
+    transform:scale(1.15);
+    opacity:0;
+    transition:opacity 1.3s ease;
+    pointer-events:none;
+  }
+  .mv-backdrop.show{ opacity:1; }
   .mv-tint{
     position:fixed;
     inset:0;
@@ -970,6 +983,7 @@
   <footer>GATE &mdash; a shared, public log. Anything logged here is visible to everyone with the link.</footer>
 
   <div class="movie-view" id="movieView">
+    <div class="mv-backdrop" id="mvBackdrop"></div>
     <div class="mv-tint" id="mvTint"></div>
     <div class="mv-header">
       <div>
@@ -1987,6 +2001,7 @@
   // ---------- movie view (grid of one movie's stills) ----------
   const movieView = document.getElementById('movieView');
   const mvTint = document.getElementById('mvTint');
+  const mvBackdrop = document.getElementById('mvBackdrop');
   const mvTitle = document.getElementById('mvTitle');
   const mvTags = document.getElementById('mvTags');
   const mvActors = document.getElementById('mvActors');
@@ -2384,6 +2399,18 @@
     renderMovieView(g);
     movieView.classList.add('open');
     updateUrlForState();
+
+    mvBackdrop.classList.remove('show');
+    const coverSrc = frameImgSrc(g.cover);
+    if(coverSrc){
+      const bgImg = new Image();
+      bgImg.onload = () => {
+        if(currentMovieViewKey !== groupKey) return;
+        mvBackdrop.style.backgroundImage = `url("${coverSrc}")`;
+        mvBackdrop.classList.add('show');
+      };
+      bgImg.src = coverSrc;
+    }
 
     if(g.key in moodCache){
       applyMoodTint(moodCache[g.key]);
