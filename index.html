@@ -2847,8 +2847,21 @@
     }
   });
 
+  // Best-effort visit logging — failures here should never affect the app.
+  async function logPageView(){
+    try{
+      const params = new URLSearchParams(location.search);
+      await sb.from('page_views').insert({
+        path: location.pathname,
+        movie_key: params.get('movie') || null,
+        referrer: document.referrer || null
+      });
+    } catch(err){ /* ignore */ }
+  }
+
   updateAuthUI();
   loadFrames();
+  logPageView();
 </script>
 </body>
 </html>
