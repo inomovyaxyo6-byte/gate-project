@@ -1,28 +1,32 @@
 # GATE
 
-GATE is a single-file, self-contained web app for logging movie frames (screenshots/stills) into a searchable, filterable gallery — "a running log of frames worth freezing."
+GATE is a personal running log of movie frames (screenshots/stills) — a searchable, filterable gallery organized by movie, in the spirit of FilmGrab or Shot Cafe.
 
-Everything lives in [gate_3.html](gate_3.html): markup, styles, and logic in one file, with no build step and no server required. Just open it in a browser.
+Live site: https://inomovyaxyo6-byte.github.io/gate-project/
+
+Everything lives in a single file, [index.html](index.html) — markup, styles, and logic together, no build step. Data lives in Supabase (Postgres + Storage), so the collection is shared across every device and browser instead of being tied to one machine.
 
 ## Features
 
-- **Log frames** by pasting image URLs or uploading files from your device (uploads are auto-resized and compressed before saving).
-- **Group by movie** — frames are organized into per-movie collections with director, year, genre, and actor metadata.
-- **Search, sort, and filter** the gallery by title, director, genre, or notes.
-- **Lightbox and movie view** for browsing a movie's frames, including a generated color palette per image.
+- **Log frames** by pasting image URLs, uploading files, or pasting a screenshot straight from the clipboard (Ctrl/Cmd+V). Uploads are auto-resized and compressed before being stored.
+- **TMDB autofill** — look a title up on themoviedb.org to fill in year, director, genre, and top cast automatically.
+- **Group by movie**, with a chosen cover photo per movie and an ambient color-graded "mood tint" sampled from that movie's own stills.
+- **Edit movie info** after the fact (title/year/director/genre/actors), and add more frames to an existing movie without retyping its details.
+- **Browse by color** — every frame's dominant color grading is sampled and bucketed into hues, so you can browse frames by mood/color across every movie at once, not just by title.
+- **Search, sort, and filter** by title, director, genre, or notes; jump to a random frame.
+- **Deep links** — opening a movie or a specific still updates the URL (`?movie=...&frame=...`), so a link can be copied (via the 🔗 button) and shared straight to that spot.
+- **Multi-select delete** for clearing out several stills at once, alongside single-still removal.
 - **Export / import** the whole collection as JSON.
-- **Owner mode** — a client-side passcode gate (hashed with SHA-256) that must be unlocked before frames can be added or removed. This is a casual deterrent, not real security: there's no server to check the password against, so anyone with dev tools can bypass it.
+- **Installable (PWA)** — add it to a phone's home screen and it opens like a standalone app, with its own icon.
+
+## Access
+
+Anyone with the link can browse the gallery. Adding, editing, or removing frames requires signing in with the owner's Supabase account (email/password). Public sign-up is disabled on the Supabase project, so only that one pre-created account can ever unlock editing.
 
 ## Storage
 
-GATE adapts to whatever storage is available:
-
-1. **`window.storage`** (Claude's shared storage), if present — makes the gallery a shared, public collection visible to anyone with the link.
-2. **`localStorage`**, as a fallback — keeps the collection private to that browser.
-3. **In-memory only**, if neither is available (e.g. private/incognito mode) — frames are lost on refresh.
-
-The active mode is shown in the badge under the page header.
+Frame and cover metadata live in Supabase Postgres tables; uploaded images live in Supabase Storage. Both are protected by Row Level Security: anyone can read, but only the signed-in owner can write.
 
 ## Usage
 
-Open [gate_3.html](gate_3.html) directly in a browser — no installation or dependencies needed.
+Visit the live site above, or open [index.html](index.html) directly in a browser — it talks to the same Supabase project either way.
