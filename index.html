@@ -2474,14 +2474,18 @@
     mvMusicBar.style.display = mvMusicBar.style.display === 'flex' ? 'none' : 'flex';
   });
 
-  mvMusicPlay.addEventListener('click', () => {
+  mvMusicPlay.addEventListener('click', async () => {
     const track = soundtracks[currentMovieViewKey];
     if(!track) return;
     if(!mvAudio.src){ mvAudio.src = track.trackUrl; }
     if(mvAudio.paused){
-      mvAudio.play();
-      mvMusicPlay.classList.add('playing');
-      mvMusicPlay.innerHTML = '&#10074;&#10074;';
+      try{
+        await mvAudio.play();
+        mvMusicPlay.classList.add('playing');
+        mvMusicPlay.innerHTML = '&#10074;&#10074;';
+      } catch(err){
+        mvMusicTitle.textContent = "Can't play this track — try re-uploading or a different link.";
+      }
     } else {
       mvAudio.pause();
       mvMusicPlay.classList.remove('playing');
@@ -2550,9 +2554,18 @@
           return;
         }
         const ext = (file.name.split('.').pop() || 'mp3').toLowerCase();
+        // Browsers are picky about audio Content-Type — e.g. "audio/x-m4a" (what
+        // some OSes report for .m4a) fails canPlayType checks in Chrome, so map
+        // known extensions to the MIME type <audio> reliably recognizes.
+        const AUDIO_MIME_BY_EXT = {
+          mp3: 'audio/mpeg', m4a: 'audio/mp4', aac: 'audio/aac',
+          wav: 'audio/wav', ogg: 'audio/ogg', oga: 'audio/ogg',
+          flac: 'audio/flac', webm: 'audio/webm'
+        };
+        const contentType = AUDIO_MIME_BY_EXT[ext] || file.type || 'audio/mpeg';
         const path = `${session.user.id}/${key}-${makeId()}.${ext}`;
         const { error: uploadError } = await sb.storage.from('soundtracks')
-          .upload(path, file, { contentType: file.type || 'audio/mpeg' });
+          .upload(path, file, { contentType });
         if(uploadError) throw uploadError;
         const { data: pub } = sb.storage.from('soundtracks').getPublicUrl(path);
         await saveSoundtrack(key, { trackUrl: pub.publicUrl, trackPath: path, title: titleInput });
