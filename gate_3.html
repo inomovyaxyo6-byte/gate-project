@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GATE — a running log of frames</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0f10;
+    --bg-raised:#17181a;
+    --bg-card:#1c1d1f;
+    --text:#ece7dc;
+    --text-dim:#9b9690;
+    --amber:#e3a94c;
+    --teal:#5c7c7f;
+    --red:#b23a2f;
+    --border:rgba(236,231,220,0.10);
+    --border-strong:rgba(236,231,220,0.22);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Source Serif 4', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'JetBrains Mono', monospace;}
+  .display{font-family:'Bebas Neue', sans-serif; letter-spacing:0.04em;}
+
+  a{color:inherit;}
+  button{font-family:inherit; cursor:pointer;}
+  :focus-visible{outline:2px solid var(--amber); outline-offset:2px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- sprocket strip ---------- */
+  .sprockets{
+    height:18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:0 20px;
+    background:#0a0a0b;
+    overflow:hidden;
+  }
+  .sprockets span{
+    width:9px;height:9px;border-radius:2px;
+    background:var(--bg);
+    flex:none;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    padding:56px 24px 40px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+    background:
+      radial-gradient(ellipse at top, rgba(227,169,76,0.08), transparent 60%);
+  }
+  .brand{
+    font-size:clamp(56px,10vw,104px);
+    line-height:0.9;
+    color:var(--text);
+    margin:0;
+  }
+  .brand .dot{color:var(--amber);}
+  .tagline{
+    color:var(--text-dim);
+    font-size:15px;
+    max-width:420px;
+    margin:14px auto 0;
+    line-height:1.5;
+  }
+  .count-badge{
+    display:inline-block;
+    margin-top:22px;
+    font-size:12px;
+    letter-spacing:0.12em;
+    color:var(--amber);
+    border:1px solid rgba(227,169,76,0.35);
+    padding:5px 12px;
+    border-radius:100px;
+  }
+
+  .mode-badge{
+    display:block;
+    margin-top:12px;
+    font-size:10.5px;
+    letter-spacing:0.04em;
+    color:var(--text-dim);
+    opacity:0.85;
+  }
+  .mode-badge.local{ color:var(--teal); }
+  .mode-badge.warn{ color:var(--red); }
+
+  .owner-toggle{
+    display:inline-block;
+    margin-top:10px;
+    background:transparent;
+    border:none;
+    color:var(--text-dim);
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    opacity:0.7;
+    padding:2px 6px;
+  }
+  .owner-toggle:hover{ opacity:1; color:var(--amber); }
+  .owner-toggle.unlocked{ color:var(--amber); opacity:0.9; }
+
+  /* Editing controls are hidden by default; JS reveals them once the owner unlocks the site */
+  #toggleAdd, #importBtn, .remove-btn, .mv-thumb-remove, #mvRemoveMovie, #lbSetCover, #lbRemoveStill{
+    display:none;
+  }
+  body.is-owner #toggleAdd{ display:flex; }
+  body.is-owner #importBtn{ display:inline-flex; }
+  body.is-owner .remove-btn{ display:flex; }
+  body.is-owner .mv-thumb-remove{ display:flex; }
+  body.is-owner #mvRemoveMovie{ display:flex; }
+  body.is-owner #lbSetCover{ display:flex; }
+  body.is-owner #lbRemoveStill{ display:flex; }
+
+  /* ---------- add bar ---------- */
+  .src-tabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:18px;
+  }
+  .src-tab{
+    flex:1;
+    background:transparent;
+    border:1px solid var(--border-strong);
+    color:var(--text-dim);
+    padding:9px 10px;
+    border-radius:7px;
+    font-size:13px;
+  }
+  .src-tab.active{
+    border-color:var(--amber);
+    color:var(--amber);
+    background:rgba(227,169,76,0.08);
+  }
+  .field textarea.url-list{
+    min-height:88px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+  }
+  .batch-hint{
+    font-size:12px;
+    color:var(--text-dim);
+    margin:-6px 0 16px;
+  }
+  .field input[type="file"]{
+    padding:9px 10px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+  }
+  .upload-preview-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(76px, 1fr));
+    gap:8px;
+    margin-top:12px;
+  }
+  .upload-thumb{
+    position:relative;
+    aspect-ratio:1;
+    border-radius:6px;
+    overflow:hidden;
+    background:#0f1011;
+    border:1px solid var(--border);
+  }
+  .upload-thumb img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .upload-thumb .thumb-status{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:9px;
+    color:var(--text-dim);
+    text-align:center;
+    padding:4px;
+    background:rgba(0,0,0,0.45);
+  }
+  .upload-thumb.error .thumb-status{ color:var(--red); background:rgba(178,58,47,0.15); }
+  .upload-thumb .thumb-remove{
+    position:absolute;
+    top:2px; right:2px;
+    width:18px; height:18px;
+    border-radius:4px;
+    border:none;
+    background:rgba(10,10,11,0.75);
+    color:var(--text);
+    font-size:12px;
+    line-height:1;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .thumb-size{
+    grid-column:1 / -1;
+    font-size:10.5px;
+    color:var(--text-dim);
+    letter-spacing:0.04em;
+  }
+  .add-wrap{
+    max-width:720px;
+    margin:-1px auto 0;
+    padding:28px 24px 0;
+  }
+  .toggle-add{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    width:100%;
+    background:transparent;
+    border:1px dashed var(--border-strong);
+    color:var(--text-dim);
+    padding:16px;
+    border-radius:10px;
+    font-size:14px;
+    letter-spacing:0.03em;
+    transition:border-color .2s, color .2s;
+  }
+  .toggle-add:hover{ color:var(--amber); border-color:rgba(227,169,76,0.4); }
+
+  form.add-form{
+    display:none;
+    background:var(--bg-raised);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:24px;
+    margin-top:12px;
+  }
+  form.add-form.open{display:block;}
+  .field{ margin-bottom:16px; }
+  .field label{
+    display:block;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    margin-bottom:7px;
+  }
+  .field input, .field textarea{
+    width:100%;
+    background:#0f1011;
+    border:1px solid var(--border-strong);
+    color:var(--text);
+    padding:11px 12px;
+    border-radius:7px;
+    font-family:'Source Serif 4', serif;
+    font-size:15px;
+  }
+  .field textarea{resize:vertical; min-height:56px;}
+  .field input:focus, .field textarea:focus{border-color:var(--amber);}
+  .form-row{ display:flex; gap:16px; }
+  .form-actions{ display:flex; justify-content:flex-end; gap:10px; margin-top:4px; }
+  .btn{
+    padding:10px 18px;
+    border-radius:7px;
+    border:1px solid var(--border-strong);
+    background:transparent;
+    color:var(--text-dim);
+    font-size:14px;
+  }
+  .btn.primary{
+    background:var(--amber);
+    border-color:var(--amber);
+    color:#1a1300;
+    font-weight:600;
+  }
+  .btn.primary:hover{ background:#eab863; }
+  .btn:hover{ color:var(--text); }
+  .fatal-banner{
+    display:none;
+    position:sticky;
+    top:0;
+    z-index:200;
+    background:#3a1512;
+    color:#ffd7d0;
+    padding:10px 16px;
+    font-size:12.5px;
+    font-family:'JetBrains Mono', monospace;
+    border-bottom:1px solid var(--red);
+  }
+  .fatal-banner.show{ display:block; }
+
+  .progress-wrap{
+    display:none;
+    margin-top:14px;
+  }
+  .progress-wrap.show{ display:block; }
+  .progress-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:var(--text-dim);
+    margin-bottom:6px;
+  }
+  .progress-track{
+    height:8px;
+    background:#0f1011;
+    border:1px solid var(--border-strong);
+    border-radius:100px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:var(--amber);
+    transition:width .2s ease;
+  }
+
+  .form-msg{ font-size:13px; margin-top:10px; color:var(--text-dim); min-height:18px; }
+  .form-msg.error{ color:var(--red); }
+
+  /* ---------- gallery ---------- */
+  main{ max-width:1400px; margin:0 auto; padding:36px 20px 80px; }
+
+  .toolbar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .toolbar #searchInput{
+    flex:1;
+    min-width:200px;
+    background:var(--bg-raised);
+    border:1px solid var(--border-strong);
+    color:var(--text);
+    padding:9px 12px;
+    border-radius:7px;
+    font-size:13px;
+  }
+  .toolbar #searchInput:focus{ border-color:var(--amber); }
+  .toolbar select{
+    background:var(--bg-raised);
+    border:1px solid var(--border-strong);
+    color:var(--text);
+    padding:8px 12px;
+    border-radius:7px;
+    font-size:12px;
+  }
+  .toolbar .btn{ padding:8px 14px; font-size:12px; }
+
+  .filter-bar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:24px;
+  }
+  .filter-bar select{
+    background:var(--bg-raised);
+    border:1px solid var(--border-strong);
+    color:var(--text);
+    padding:8px 12px;
+    border-radius:7px;
+    font-size:12px;
+  }
+  .filter-bar .btn{ padding:8px 14px; font-size:12px; }
+
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin:0 0 8px;
+  }
+  .tag-chip{
+    display:inline-block;
+    font-size:10px;
+    letter-spacing:0.04em;
+    padding:3px 8px;
+    border-radius:100px;
+    border:1px solid var(--border-strong);
+    color:var(--text-dim);
+  }
+  .tag-chip.director{ color:var(--teal); border-color:rgba(92,124,127,0.5); }
+  .tag-chip.genre{ color:var(--amber); border-color:rgba(227,169,76,0.4); }
+  .lightbox-meta .tags{ justify-content:center; margin-bottom:10px; }
+
+  .empty{
+    text-align:center;
+    padding:80px 20px;
+    color:var(--text-dim);
+  }
+  .empty .display{ font-size:32px; color:var(--text); margin-bottom:8px; }
+
+  .grid{
+    columns:4 280px;
+    column-gap:18px;
+  }
+  @media (max-width:1100px){ .grid{ columns:3 240px; } }
+  @media (max-width:720px){ .grid{ columns:2 160px; } }
+  @media (max-width:460px){ .grid{ columns:1; } }
+
+  .card{
+    break-inside:avoid;
+    margin-bottom:18px;
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+    transition:border-color .18s, transform .18s;
+  }
+  .card:hover{ border-color:var(--border-strong); transform:translateY(-2px); }
+  .frame-no{
+    position:absolute;
+    top:8px; left:8px;
+    font-size:11px;
+    padding:3px 7px;
+    background:rgba(10,10,11,0.72);
+    color:var(--amber);
+    border-radius:5px;
+    letter-spacing:0.04em;
+    z-index:2;
+  }
+  .remove-btn{
+    position:absolute;
+    top:8px; right:8px;
+    width:24px; height:24px;
+    border-radius:5px;
+    border:none;
+    background:rgba(10,10,11,0.72);
+    color:var(--text-dim);
+    font-size:14px;
+    line-height:1;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;
+    transition:opacity .15s, color .15s, background .15s;
+    z-index:2;
+  }
+  .card:hover .remove-btn{ opacity:1; }
+  .remove-btn:hover{ background:var(--red); color:#fff; }
+
+  .card img{
+    width:100%; display:block;
+    background:#0a0a0b;
+  }
+  .card .meta{ padding:12px 13px 14px; }
+  .card .title{ font-size:15.5px; line-height:1.3; margin:0 0 4px; }
+  .card .title .year, .mv-title .year{ color:var(--text-dim); font-size:0.75em; font-weight:400; }
+  .card .note{ font-size:13px; color:var(--text-dim); line-height:1.45; margin:0 0 8px; }
+  .card .logged{
+    font-size:10.5px;
+    color:var(--text-dim);
+    letter-spacing:0.06em;
+    opacity:0.75;
+  }
+  .card .broken{
+    aspect-ratio:16/10;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-dim);
+    font-size:12px;
+    background:repeating-linear-gradient(45deg, #151617, #151617 10px, #131415 10px, #131415 20px);
+  }
+
+  /* ---------- lightbox ---------- */
+  .lightbox{
+    position:fixed; inset:0;
+    background:rgba(5,5,6,0.94);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    padding:40px 20px;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox-inner{
+    max-width:920px;
+    width:100%;
+    max-height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .lb-media{
+    display:inline-block;
+    max-width:100%;
+  }
+  .lightbox img{
+    display:block;
+    max-width:100%;
+    max-height:65vh;
+    border-radius:6px 6px 0 0;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  }
+  .lb-palette{
+    display:flex;
+    width:100%;
+    height:10px;
+    border-radius:0 0 6px 6px;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  }
+  .lb-palette span{ flex:1; }
+  .lightbox-meta{
+    text-align:center;
+    margin-top:18px;
+    max-width:640px;
+  }
+  .lightbox-meta .title{ font-size:20px; margin:0 0 6px; }
+  .lightbox-meta .note{ color:var(--text-dim); font-size:14px; }
+  .lb-controls{
+    position:absolute;
+    top:24px; right:24px;
+    display:flex; gap:10px;
+    align-items:center;
+  }
+  .lb-counter{
+    font-size:12px;
+    color:var(--text-dim);
+    padding:0 6px;
+  }
+  .lb-btn.active{ color:var(--amber); border-color:rgba(227,169,76,0.5); }
+  .lb-btn{
+    background:rgba(255,255,255,0.06);
+    border:1px solid var(--border-strong);
+    color:var(--text);
+    width:38px;height:38px;
+    border-radius:8px;
+    font-size:18px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .lb-btn:hover{ background:rgba(255,255,255,0.12); }
+  .lb-nav{
+    position:absolute;
+    top:50%; transform:translateY(-50%);
+    background:rgba(255,255,255,0.06);
+    border:1px solid var(--border-strong);
+    color:var(--text);
+    width:44px;height:44px;
+    border-radius:50%;
+    font-size:20px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .lb-nav:hover{ background:rgba(255,255,255,0.14); }
+  .lb-prev{ left:24px; }
+  .lb-next{ right:24px; }
+  @media (max-width:640px){
+    .lb-nav{ width:36px;height:36px; font-size:16px; }
+    .lb-prev{ left:8px; } .lb-next{ right:8px; }
+  }
+
+  /* ---------- movie view (grid of a single movie's stills) ---------- */
+  .movie-view{
+    position:fixed; inset:0;
+    background:#050506;
+    display:none;
+    z-index:90;
+    overflow-y:auto;
+  }
+  .movie-view.open{ display:block; }
+  .mv-tint{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    opacity:0;
+    transition:opacity 1.1s ease, background 1.1s ease;
+    pointer-events:none;
+  }
+  .mv-tint.show{ opacity:1; }
+  .mv-header{
+    position:sticky;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    padding:28px 28px 18px;
+    background:linear-gradient(rgba(5,5,6,0.97), rgba(5,5,6,0.9) 80%, transparent);
+    z-index:2;
+  }
+  .mv-title{ font-size:26px; margin:0 0 8px; }
+  .mv-header .tags{ margin:0; }
+  .mv-actors{ font-size:11px; color:var(--text-dim); margin-top:8px; }
+  .mv-controls{ display:flex; gap:10px; flex:none; }
+  .mv-grid{
+    position:relative;
+    z-index:1;
+    columns:4 260px;
+    column-gap:16px;
+    padding:0 28px 40px;
+  }
+  @media (max-width:1100px){ .mv-grid{ columns:3 220px; } }
+  @media (max-width:720px){ .mv-grid{ columns:2 150px; } }
+  @media (max-width:460px){ .mv-grid{ columns:1; } }
+  .mv-thumb{
+    break-inside:avoid;
+    margin-bottom:16px;
+    position:relative;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    cursor:pointer;
+    transition:border-color .15s, transform .15s;
+  }
+  .mv-thumb:hover{ border-color:var(--border-strong); transform:translateY(-2px); }
+  .mv-thumb img{ width:100%; display:block; background:#0a0a0b; }
+  .mv-thumb.is-cover{ border-color:rgba(227,169,76,0.55); }
+  .mv-cover-badge{
+    position:absolute; top:8px; left:8px;
+    color:var(--amber);
+    font-size:13px;
+    background:rgba(10,10,11,0.72);
+    border-radius:5px;
+    padding:2px 6px;
+    z-index:2;
+  }
+  .mv-thumb-remove{
+    position:absolute; top:8px; right:8px;
+    width:24px; height:24px;
+    border-radius:5px;
+    border:none;
+    background:rgba(10,10,11,0.72);
+    color:var(--text-dim);
+    font-size:14px;
+    line-height:1;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;
+    transition:opacity .15s, color .15s, background .15s;
+    z-index:2;
+  }
+  .mv-thumb:hover .mv-thumb-remove{ opacity:1; }
+  .mv-thumb-remove:hover{ background:var(--red); color:#fff; }
+
+  footer{
+    text-align:center;
+    padding:26px 20px 34px;
+    color:var(--text-dim);
+    font-size:12px;
+    letter-spacing:0.04em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="fatal-banner mono" id="fatalBanner"></div>
+
+  <div class="sprockets" id="sprocketsTop"></div>
+
+  <header>
+    <h1 class="brand display">GATE<span class="dot">.</span></h1>
+    <p class="tagline">A running log of frames worth freezing — pulled from movies, kept in one place.</p>
+    <span class="count-badge mono" id="countBadge">0 FRAMES LOGGED</span>
+    <div class="mode-badge mono" id="modeBadge"></div>
+    <button type="button" class="owner-toggle mono" id="ownerToggle" style="display:none;">&#128274; Owner access</button>
+  </header>
+
+  <div class="add-wrap">
+    <button class="toggle-add" id="toggleAdd" aria-expanded="false">+ Log frames</button>
+    <form class="add-form" id="addForm">
+
+      <div class="src-tabs" role="tablist">
+        <button type="button" class="src-tab active" id="tabUrl" data-src="url">Paste links</button>
+        <button type="button" class="src-tab" id="tabUpload" data-src="upload">Upload from device</button>
+      </div>
+
+      <div class="field src-pane" id="paneUrl">
+        <label for="imageUrl">Image URLs — one per line</label>
+        <textarea id="imageUrl" class="url-list" placeholder="https://...&#10;https://...&#10;https://..."></textarea>
+      </div>
+
+      <div class="field src-pane" id="paneUpload" style="display:none;">
+        <label for="imageFile">Image files — pick as many as you like</label>
+        <input type="file" id="imageFile" accept="image/*" multiple>
+        <div class="upload-preview-grid" id="uploadPreviewGrid"></div>
+      </div>
+
+      <div class="form-row">
+        <div class="field" style="flex:1">
+          <label for="movieTitle">Movie</label>
+          <input type="text" id="movieTitle" placeholder="In the Mood for Love (2000)" required>
+        </div>
+        <div class="field" style="flex:0 0 110px">
+          <label for="year">Year</label>
+          <input type="text" id="year" placeholder="2000" inputmode="numeric" maxlength="4">
+        </div>
+      </div>
+      <p class="batch-hint">Same movie, director, genre and note are applied to every frame in this batch.</p>
+      <div class="form-row">
+        <div class="field" style="flex:1">
+          <label for="director">Director</label>
+          <input type="text" id="director" placeholder="Wong Kar-wai">
+        </div>
+        <div class="field" style="flex:1">
+          <label for="genre">Genre</label>
+          <input type="text" id="genre" placeholder="Drama, Romance">
+        </div>
+      </div>
+      <div class="field">
+        <label for="actors">Actors</label>
+        <input type="text" id="actors" placeholder="Tony Leung, Maggie Cheung">
+      </div>
+      <div class="field">
+        <label for="note">Note (optional)</label>
+        <textarea id="note" placeholder="Why these frames stood out"></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn" id="cancelAdd">Cancel</button>
+        <button type="submit" class="btn primary" id="submitBtn">Log frames</button>
+      </div>
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-label mono">
+          <span id="progressLabel">Logging frames…</span>
+          <span id="progressCount">0/0</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <div class="form-msg" id="formMsg"></div>
+    </form>
+  </div>
+
+  <main>
+    <div class="toolbar" id="toolbar">
+      <input type="text" id="searchInput" class="mono" placeholder="Search movies, directors, notes…">
+      <select id="sortSelect" class="mono">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="alpha">A–Z</option>
+        <option value="shots">Most shots</option>
+      </select>
+      <button type="button" class="btn" id="randomBtn" title="Jump to a random frame">&#127922; Random</button>
+      <button type="button" class="btn" id="exportBtn">Export</button>
+      <button type="button" class="btn" id="importBtn">Import</button>
+      <input type="file" id="importFile" accept="application/json" hidden>
+    </div>
+    <div class="filter-bar" id="filterBar" style="display:none;">
+      <select id="filterGenre" class="mono"><option value="all">All genres</option></select>
+      <select id="filterDirector" class="mono"><option value="all">All directors</option></select>
+      <button type="button" class="btn" id="clearFilters" style="display:none;">Clear filters</button>
+    </div>
+    <div id="emptyState" class="empty" style="display:none;">
+      <div class="display">No frames logged yet</div>
+      <div>Paste a link above to start the reel.</div>
+    </div>
+    <div id="noMatch" class="empty" style="display:none;">
+      <div class="display">No frames match</div>
+      <div>Try a different genre or director.</div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <div class="sprockets" id="sprocketsBottom"></div>
+  <footer>GATE &mdash; a shared, public log. Anything logged here is visible to everyone with the link.</footer>
+
+  <div class="movie-view" id="movieView">
+    <div class="mv-tint" id="mvTint"></div>
+    <div class="mv-header">
+      <div>
+        <h2 class="mv-title" id="mvTitle"></h2>
+        <div class="tags mono" id="mvTags"></div>
+        <div class="mv-actors mono" id="mvActors" style="display:none;"></div>
+      </div>
+      <div class="mv-controls">
+        <button class="lb-btn" id="mvRemoveMovie" aria-label="Remove this movie" title="Remove this movie">&#128465;</button>
+        <button class="lb-btn" id="mvClose" aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="mv-grid" id="mvGrid"></div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lb-controls">
+      <span class="lb-counter mono" id="lbCounter"></span>
+      <button class="lb-btn" id="lbSetCover" aria-label="Set as cover photo" title="Set as cover photo">&#9733;</button>
+      <button class="lb-btn" id="lbRemoveStill" aria-label="Remove this still" title="Remove this still">&#128465;</button>
+      <button class="lb-btn" id="lbClose" aria-label="Close">&times;</button>
+    </div>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+    <div class="lightbox-inner">
+      <div class="lb-media">
+        <img id="lbImg" src="" alt="">
+        <div class="lb-palette" id="lbPalette"></div>
+      </div>
+      <div class="lightbox-meta">
+        <div class="title" id="lbTitle"></div>
+        <div class="tags mono" id="lbTags"></div>
+        <div class="note" id="lbNote"></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // Catch anything that would otherwise fail silently and surface it visibly.
+  const fatalBanner = document.getElementById('fatalBanner');
+  function showFatal(msg){
+    fatalBanner.textContent = '⚠ ' + msg;
+    fatalBanner.classList.add('show');
+  }
+  window.addEventListener('error', (e) => {
+    showFatal('Script error: ' + (e.message || 'unknown error') + (e.filename ? ` (line ${e.lineno})` : ''));
+  });
+  window.addEventListener('unhandledrejection', (e) => {
+    const reason = e.reason && e.reason.message ? e.reason.message : String(e.reason);
+    showFatal('Unhandled error: ' + reason);
+  });
+
+  const STORAGE_KEY = 'gate:frames';
+  let frames = [];
+  let lightboxIndex = -1;
+  let storageMode = 'memory'; // 'claude' | 'local' | 'memory'
+  const imageCache = {}; // id -> data URL, for uploaded (not linked) images
+  let currentFilters = { genre: 'all', director: 'all' };
+  let currentSearch = '';
+  let currentSort = 'newest';
+  let activeSrcTab = 'url'; // 'url' | 'upload'
+
+  // Adapter: use Claude's shared window.storage when available (true shared
+  // public gallery). Otherwise fall back to the browser's localStorage, so
+  // a self-hosted copy of this file still works, per browser, out of the box.
+  const Store = {
+    async get(key){
+      if(window.storage){
+        try{
+          const result = await window.storage.get(key, true);
+          storageMode = 'claude';
+          return result ? result.value : null;
+        } catch(err){
+          storageMode = 'claude';
+          return null;
+        }
+      }
+      try{
+        storageMode = 'local';
+        return window.localStorage.getItem(key);
+      } catch(err){
+        storageMode = 'memory';
+        return null;
+      }
+    },
+    async set(key, value){
+      if(window.storage){
+        try{
+          await window.storage.set(key, value, true);
+          storageMode = 'claude';
+          return true;
+        } catch(err){
+          storageMode = 'claude';
+          console.error('Store.set failed for', key, err);
+          return false;
+        }
+      }
+      try{
+        window.localStorage.setItem(key, value);
+        storageMode = 'local';
+        return true;
+      } catch(err){
+        storageMode = 'memory';
+        console.error('Store.set (localStorage) failed for', key, err);
+        return false;
+      }
+    },
+    async delete(key){
+      if(window.storage){
+        try{ await window.storage.delete(key, true); } catch(err){ /* ignore */ }
+        return;
+      }
+      try{ window.localStorage.removeItem(key); } catch(err){ /* ignore */ }
+    }
+  };
+
+  function buildSprockets(el){
+    let html = '';
+    for(let i=0;i<80;i++) html += '<span></span>';
+    el.innerHTML = html;
+  }
+  buildSprockets(document.getElementById('sprocketsTop'));
+  buildSprockets(document.getElementById('sprocketsBottom'));
+
+  const grid = document.getElementById('grid');
+  const countBadge = document.getElementById('countBadge');
+
+  function formatLogged(ts){
+    const d = new Date(ts);
+    const mm = String(d.getMonth()+1).padStart(2,'0');
+    const dd = String(d.getDate()).padStart(2,'0');
+    const yy = String(d.getFullYear()).slice(-2);
+    return `LOGGED ${mm}.${dd}.${yy}`;
+  }
+
+  function makeId(){
+    return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+  }
+
+  function escapeHtml(str){
+    return (str || '').replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+
+  const emptyState = document.getElementById('emptyState');
+  const noMatch = document.getElementById('noMatch');
+  const filterBar = document.getElementById('filterBar');
+  const filterGenreSel = document.getElementById('filterGenre');
+  const filterDirectorSel = document.getElementById('filterDirector');
+  const clearFiltersBtn = document.getElementById('clearFilters');
+
+  function frameImgSrc(f){
+    return f.imageType === 'upload' ? (imageCache[f.id] || '') : (f.imageUrl || '');
+  }
+
+  function movieKey(title){
+    return (title || '').trim().toLowerCase() || '(untitled)';
+  }
+
+  function getMovieGroups(){
+    const map = new Map();
+    frames.forEach(f => {
+      const key = movieKey(f.movieTitle);
+      if(!map.has(key)) map.set(key, { key, title: f.movieTitle || 'Untitled', framesList: [] });
+      map.get(key).framesList.push(f);
+    });
+    const groups = [...map.values()];
+    groups.forEach(g => {
+      g.framesList.sort((a,b) => a.addedAt - b.addedAt);
+      const coverId = covers[g.key];
+      g.cover = g.framesList.find(f => f.id === coverId) || g.framesList[0];
+      g.director = g.cover.director || (g.framesList.find(f => f.director) || {}).director || '';
+      g.year = g.cover.year || (g.framesList.find(f => f.year) || {}).year || '';
+      const genreMap = new Map();
+      g.framesList.forEach(f => (f.genre || []).forEach(gg => { if(gg) genreMap.set(gg.toLowerCase(), gg); }));
+      g.genres = [...genreMap.values()];
+      const actorMap = new Map();
+      g.framesList.forEach(f => (f.actors || []).forEach(a => { if(a) actorMap.set(a.toLowerCase(), a); }));
+      g.actors = [...actorMap.values()];
+      g.earliestAt = Math.min(...g.framesList.map(f => f.addedAt));
+      g.latestAt = Math.max(...g.framesList.map(f => f.addedAt));
+    });
+    groups.sort((a,b) => b.latestAt - a.latestAt);
+    return groups;
+  }
+
+  function matchesFilterGroup(g){
+    if(currentFilters.genre !== 'all'){
+      const genresLower = g.genres.map(x => x.toLowerCase());
+      if(!genresLower.includes(currentFilters.genre)) return false;
+    }
+    if(currentFilters.director !== 'all'){
+      if((g.director || '').toLowerCase() !== currentFilters.director) return false;
+    }
+    if(currentSearch){
+      const haystack = [
+        g.title, g.director, g.year, g.genres.join(' '), g.actors.join(' '),
+        ...g.framesList.map(f => f.note || '')
+      ].join(' ').toLowerCase();
+      if(!haystack.includes(currentSearch)) return false;
+    }
+    return true;
+  }
+
+  function sortGroups(groups){
+    const list = [...groups];
+    switch(currentSort){
+      case 'oldest': list.sort((a,b) => a.earliestAt - b.earliestAt); break;
+      case 'alpha': list.sort((a,b) => a.title.localeCompare(b.title)); break;
+      case 'shots': list.sort((a,b) => b.framesList.length - a.framesList.length); break;
+      case 'newest':
+      default: list.sort((a,b) => b.latestAt - a.latestAt); break;
+    }
+    return list;
+  }
+
+  function populateFilters(){
+    const genreMap = new Map();
+    const directorMap = new Map();
+    frames.forEach(f => {
+      (f.genre || []).forEach(g => { if(g) genreMap.set(g.toLowerCase(), g); });
+      if(f.director) directorMap.set(f.director.toLowerCase(), f.director);
+    });
+
+    const hasTags = genreMap.size > 0 || directorMap.size > 0;
+    filterBar.style.display = hasTags ? 'flex' : 'none';
+    if(!hasTags) return;
+
+    const prevGenre = filterGenreSel.value;
+    const prevDirector = filterDirectorSel.value;
+
+    filterGenreSel.innerHTML = '<option value="all">All genres</option>' +
+      [...genreMap.entries()].sort((a,b)=>a[1].localeCompare(b[1]))
+        .map(([val,label]) => `<option value="${escapeHtml(val)}">${escapeHtml(label)}</option>`).join('');
+    filterDirectorSel.innerHTML = '<option value="all">All directors</option>' +
+      [...directorMap.entries()].sort((a,b)=>a[1].localeCompare(b[1]))
+        .map(([val,label]) => `<option value="${escapeHtml(val)}">${escapeHtml(label)}</option>`).join('');
+
+    filterGenreSel.value = [...genreMap.keys()].includes(prevGenre) ? prevGenre : 'all';
+    filterDirectorSel.value = [...directorMap.keys()].includes(prevDirector) ? prevDirector : 'all';
+    currentFilters.genre = filterGenreSel.value;
+    currentFilters.director = filterDirectorSel.value;
+
+    clearFiltersBtn.style.display =
+      (currentFilters.genre !== 'all' || currentFilters.director !== 'all') ? 'inline-block' : 'none';
+  }
+
+  function render(){
+    populateFilters();
+    grid.innerHTML = '';
+    const groups = getMovieGroups();
+    countBadge.textContent = `${frames.length} FRAME${frames.length===1?'':'S'} · ${groups.length} MOVIE${groups.length===1?'':'S'}`;
+
+    if(!frames.length){
+      emptyState.style.display = 'block';
+      noMatch.style.display = 'none';
+      grid.style.display = 'none';
+      return;
+    }
+
+    const filteredGroups = sortGroups(groups.filter(matchesFilterGroup));
+
+    if(!filteredGroups.length){
+      emptyState.style.display = 'none';
+      noMatch.style.display = 'block';
+      grid.style.display = 'none';
+      return;
+    }
+    emptyState.style.display = 'none';
+    noMatch.style.display = 'none';
+    grid.style.display = 'block';
+
+    filteredGroups.forEach((g) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.tabIndex = 0;
+      card.setAttribute('role','button');
+      card.setAttribute('aria-label', `Open ${g.title}, ${g.framesList.length} frames`);
+
+      const shotLabel = `${g.framesList.length} SHOT${g.framesList.length===1?'':'S'}`;
+      const tagChips = [
+        g.director ? `<span class="tag-chip director">${escapeHtml(g.director)}</span>` : '',
+        ...g.genres.map(gg => `<span class="tag-chip genre">${escapeHtml(gg)}</span>`)
+      ].join('');
+
+      card.innerHTML = `
+        <span class="frame-no mono">${shotLabel}</span>
+        <button class="remove-btn" aria-label="Remove this movie" data-key="${escapeHtml(g.key)}">&times;</button>
+        <img src="${escapeHtml(frameImgSrc(g.cover))}" alt="${escapeHtml(g.title)}" loading="lazy"
+             onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<div class=&quot;broken&quot;>Frame unavailable</div>');">
+        <div class="meta">
+          <p class="title">${escapeHtml(g.title)}${g.year ? ` <span class="year mono">(${escapeHtml(g.year)})</span>` : ''}</p>
+          ${tagChips ? `<div class="tags">${tagChips}</div>` : ''}
+          ${g.cover.note ? `<p class="note">${escapeHtml(g.cover.note)}</p>` : ''}
+          <div class="logged mono">${formatLogged(g.earliestAt)}</div>
+        </div>
+      `;
+
+      card.addEventListener('click', (e) => {
+        if(e.target.closest('.remove-btn')) return;
+        openMovieView(g.key);
+      });
+      card.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          openMovieView(g.key);
+        }
+      });
+      card.querySelector('.remove-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        removeMovie(g.key, g.title, g.framesList.length);
+      });
+
+      grid.appendChild(card);
+    });
+  }
+
+  filterGenreSel.addEventListener('change', () => { currentFilters.genre = filterGenreSel.value; render(); });
+  filterDirectorSel.addEventListener('change', () => { currentFilters.director = filterDirectorSel.value; render(); });
+  clearFiltersBtn.addEventListener('click', () => {
+    currentFilters = { genre: 'all', director: 'all' };
+    render();
+  });
+
+  const searchInput = document.getElementById('searchInput');
+  const sortSelect = document.getElementById('sortSelect');
+  searchInput.addEventListener('input', () => {
+    currentSearch = searchInput.value.trim().toLowerCase();
+    render();
+  });
+  sortSelect.addEventListener('change', () => {
+    currentSort = sortSelect.value;
+    render();
+  });
+
+  const COVERS_KEY = 'gate:covers';
+  let covers = {}; // movieKey -> chosen cover frame id
+
+  async function loadCovers(){
+    try{
+      const value = await Store.get(COVERS_KEY);
+      covers = value ? JSON.parse(value) : {};
+    } catch(err){
+      covers = {};
+    }
+  }
+
+  async function saveCovers(){
+    try{
+      await Store.set(COVERS_KEY, JSON.stringify(covers));
+    } catch(err){
+      console.error('Could not save covers', err);
+    }
+  }
+
+  // ---------- owner access (client-side passcode gate) ----------
+  // This is a deterrent for casual visitors, not real security: anyone who opens
+  // dev tools can bypass it. There's no server here to check a password against.
+  const ADMIN_KEY = 'gate:admin-hash';
+  const LOCAL_UNLOCK_KEY = 'gate:owner-unlocked-hash';
+  let adminHash = null;
+  let isOwner = false;
+
+  async function sha256Hex(str){
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function loadAdminHash(){
+    try{
+      adminHash = await Store.get(ADMIN_KEY);
+    } catch(err){
+      adminHash = null;
+    }
+  }
+
+  function checkLocalUnlock(){
+    if(!adminHash) return false;
+    try{
+      return window.localStorage.getItem(LOCAL_UNLOCK_KEY) === adminHash;
+    } catch(err){
+      return false;
+    }
+  }
+
+  function hasAdminUrlHint(){
+    try{
+      const params = new URLSearchParams(window.location.search);
+      return params.has('owner') || params.has('admin');
+    } catch(err){
+      return false;
+    }
+  }
+
+  function updateOwnerUI(){
+    const btn = document.getElementById('ownerToggle');
+    btn.textContent = isOwner ? '\u{1F513} Owner mode \u2014 tap to lock' : '\u{1F512} Owner access';
+    btn.classList.toggle('unlocked', isOwner);
+    btn.style.display = (isOwner || hasAdminUrlHint()) ? 'inline-block' : 'none';
+    document.body.classList.toggle('is-owner', isOwner);
+  }
+
+  function setOwnerState(state){
+    isOwner = state;
+    updateOwnerUI();
+    render();
+  }
+
+  async function handleOwnerToggleClick(){
+    if(isOwner){
+      if(!confirm('Lock owner access on this device?')) return;
+      try{ window.localStorage.removeItem(LOCAL_UNLOCK_KEY); } catch(err){}
+      setOwnerState(false);
+      return;
+    }
+
+    if(!adminHash){
+      const pass = prompt('No owner passcode is set yet for this site.\n\nCreate one now — anyone who knows it will be able to add or remove frames. Set this up before sharing your link with anyone:');
+      if(!pass) return;
+      const confirmPass = prompt('Confirm the passcode:');
+      if(pass !== confirmPass){ alert('Passcodes did not match — nothing was set.'); return; }
+      const hash = await sha256Hex(pass);
+      adminHash = hash;
+      await Store.set(ADMIN_KEY, hash);
+      try{ window.localStorage.setItem(LOCAL_UNLOCK_KEY, hash); } catch(err){}
+      setOwnerState(true);
+      alert('Owner passcode set for this site.');
+      return;
+    }
+
+    const pass = prompt('Enter the owner passcode:');
+    if(pass == null) return;
+    const hash = await sha256Hex(pass);
+    if(hash === adminHash){
+      try{ window.localStorage.setItem(LOCAL_UNLOCK_KEY, hash); } catch(err){}
+      setOwnerState(true);
+    } else {
+      alert('Incorrect passcode.');
+    }
+  }
+
+  document.getElementById('ownerToggle').addEventListener('click', handleOwnerToggleClick);
+
+  async function loadFrames(){
+    try{
+      const value = await Store.get(STORAGE_KEY);
+      frames = value ? JSON.parse(value) : [];
+    } catch(err){
+      frames = [];
+    }
+
+    await loadCovers();
+    await loadAdminHash();
+    isOwner = checkLocalUnlock();
+    updateOwnerUI();
+
+    // Resolve any uploaded (non-linked) images into the in-memory cache
+    const uploadFrames = frames.filter(f => f.imageType === 'upload' && !imageCache[f.id]);
+    await Promise.all(uploadFrames.map(async f => {
+      try{
+        const data = await Store.get('gate:img:' + f.id);
+        if(data) imageCache[f.id] = data;
+      } catch(err){ /* leave missing, card will show "unavailable" */ }
+    }));
+
+    render();
+    updateModeBadge();
+  }
+
+  async function saveFrames(){
+    let ok = false;
+    try{
+      ok = await Store.set(STORAGE_KEY, JSON.stringify(frames));
+    } catch(err){
+      console.error('Could not save frames', err);
+    }
+    updateModeBadge();
+    return ok;
+  }
+
+  function updateModeBadge(){
+    const el = document.getElementById('modeBadge');
+    if(!el) return;
+    if(storageMode === 'claude'){
+      el.textContent = 'Shared public gallery — visible to anyone with this link.';
+      el.className = 'mode-badge mono';
+    } else if(storageMode === 'local'){
+      el.textContent = 'Saved to this browser only — not shared with other visitors yet.';
+      el.className = 'mode-badge mono local';
+    } else {
+      el.textContent = 'Not saving — frames will disappear on refresh (private/incognito mode?).';
+      el.className = 'mode-badge mono warn';
+    }
+  }
+
+  // Removes a frame's data without confirming or re-rendering — a building block
+  // used by both single-still removal and whole-movie removal.
+  async function deleteFrameCore(id){
+    const target = frames.find(f => f.id === id);
+    if(!target) return;
+    frames = frames.filter(f => f.id !== id);
+    if(target.imageType === 'upload'){
+      delete imageCache[id];
+      await Store.delete('gate:img:' + id);
+    }
+  }
+
+  async function removeMovie(key, title, count){
+    if(!isOwner){ alert('Owner access required to remove frames.'); return; }
+    if(!confirm(`Remove all ${count} frame${count===1?'':'s'} from "${title}"?`)) return;
+    const ids = frames.filter(f => movieKey(f.movieTitle) === key).map(f => f.id);
+    for(const id of ids){ await deleteFrameCore(id); }
+    delete covers[key];
+    render();
+    await saveFrames();
+    await saveCovers();
+  }
+
+  async function removeStill(id){
+    if(!isOwner){ alert('Owner access required to remove frames.'); return; }
+    if(!confirm('Remove this still from the collection?')) return;
+    await deleteFrameCore(id);
+    render();
+    await saveFrames();
+
+    const groups = getMovieGroups();
+    const g = groups.find(x => x.key === currentGroupKey);
+    if(!g || !g.framesList.length){
+      lightbox.classList.remove('open');
+      movieView.classList.remove('open');
+      return;
+    }
+    currentGroupFrames = g.framesList;
+    if(lightboxIndex >= currentGroupFrames.length) lightboxIndex = currentGroupFrames.length - 1;
+    showLightbox();
+    if(currentMovieViewKey === g.key) renderMovieView(g);
+  }
+
+  // ---------- add form ----------
+  const toggleAdd = document.getElementById('toggleAdd');
+  const addForm = document.getElementById('addForm');
+  const cancelAdd = document.getElementById('cancelAdd');
+  const formMsg = document.getElementById('formMsg');
+
+  toggleAdd.addEventListener('click', () => {
+    const isOpen = addForm.classList.toggle('open');
+    toggleAdd.setAttribute('aria-expanded', String(isOpen));
+    toggleAdd.style.display = isOpen ? 'none' : 'flex';
+    if(isOpen) document.getElementById('imageUrl').focus();
+  });
+  cancelAdd.addEventListener('click', () => {
+    addForm.classList.remove('open');
+    toggleAdd.style.display = 'flex';
+    resetAddForm();
+  });
+
+  // ---------- image source tabs ----------
+  const tabUrl = document.getElementById('tabUrl');
+  const tabUpload = document.getElementById('tabUpload');
+  const paneUrl = document.getElementById('paneUrl');
+  const paneUpload = document.getElementById('paneUpload');
+  const imageFileInput = document.getElementById('imageFile');
+  const uploadPreviewGrid = document.getElementById('uploadPreviewGrid');
+
+  function setSrcTab(tab){
+    activeSrcTab = tab;
+    tabUrl.classList.toggle('active', tab === 'url');
+    tabUpload.classList.toggle('active', tab === 'upload');
+    paneUrl.style.display = tab === 'url' ? 'block' : 'none';
+    paneUpload.style.display = tab === 'upload' ? 'block' : 'none';
+  }
+  tabUrl.addEventListener('click', () => setSrcTab('url'));
+  tabUpload.addEventListener('click', () => setSrcTab('upload'));
+
+  const MAX_DIMENSION = 1600;
+  const JPEG_QUALITY = 0.85;
+  const MAX_STORED_BYTES = 4.5 * 1024 * 1024; // stay safely under the 5MB per-key limit
+
+  function readFileAsDataUrl(file){
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function loadImage(src){
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error('Could not read image'));
+      img.src = src;
+    });
+  }
+
+  function estimateBytes(dataUrl){
+    const commaIdx = dataUrl.indexOf(',');
+    const base64 = commaIdx >= 0 ? dataUrl.slice(commaIdx + 1) : dataUrl;
+    return Math.floor(base64.length * 0.75);
+  }
+
+  async function compressImageFile(file){
+    const rawDataUrl = await readFileAsDataUrl(file);
+    const img = await loadImage(rawDataUrl);
+
+    let { width, height } = img;
+    if(width > MAX_DIMENSION || height > MAX_DIMENSION){
+      const scale = MAX_DIMENSION / Math.max(width, height);
+      width = Math.round(width * scale);
+      height = Math.round(height * scale);
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, width, height);
+    ctx.drawImage(img, 0, 0, width, height);
+
+    const dataUrl = canvas.toDataURL('image/jpeg', JPEG_QUALITY);
+    return { dataUrl, width, height, sizeBytes: estimateBytes(dataUrl) };
+  }
+
+  // pendingUploads: array of { tempId, name, status: 'processing'|'ready'|'error', dataUrl, sizeBytes, errorMsg }
+  let pendingUploads = [];
+
+  function renderUploadGrid(){
+    uploadPreviewGrid.innerHTML = '';
+    if(!pendingUploads.length) return;
+
+    const readyCount = pendingUploads.filter(u => u.status === 'ready').length;
+    const totalBytes = pendingUploads.reduce((sum,u) => sum + (u.sizeBytes||0), 0);
+    const sizeLine = document.createElement('div');
+    sizeLine.className = 'thumb-size mono';
+    sizeLine.textContent = `${readyCount}/${pendingUploads.length} ready · ${(totalBytes/1024/1024).toFixed(2)} MB total`;
+    uploadPreviewGrid.appendChild(sizeLine);
+
+    pendingUploads.forEach(u => {
+      const thumb = document.createElement('div');
+      thumb.className = 'upload-thumb' + (u.status === 'error' ? ' error' : '');
+      let inner = '';
+      if(u.status === 'ready'){
+        inner = `<img src="${u.dataUrl}" alt="${escapeHtml(u.name)}">`;
+      } else if(u.status === 'processing'){
+        inner = `<div class="thumb-status">Processing…</div>`;
+      } else {
+        inner = `<div class="thumb-status">${escapeHtml(u.errorMsg || 'Failed')}</div>`;
+      }
+      thumb.innerHTML = inner + `<button type="button" class="thumb-remove" data-temp-id="${u.tempId}" aria-label="Remove">&times;</button>`;
+      thumb.querySelector('.thumb-remove').addEventListener('click', () => {
+        pendingUploads = pendingUploads.filter(x => x.tempId !== u.tempId);
+        renderUploadGrid();
+      });
+      uploadPreviewGrid.appendChild(thumb);
+    });
+  }
+
+  imageFileInput.addEventListener('change', () => {
+    const files = Array.from(imageFileInput.files || []);
+    imageFileInput.value = ''; // allow re-selecting the same file(s) later, and lets us keep accumulating
+
+    files.forEach(file => {
+      const tempId = makeId();
+      pendingUploads.push({ tempId, name: file.name, status: 'processing', dataUrl: null, sizeBytes: 0 });
+      renderUploadGrid();
+
+      compressImageFile(file).then(result => {
+        const entry = pendingUploads.find(u => u.tempId === tempId);
+        if(!entry) return;
+        if(result.sizeBytes > MAX_STORED_BYTES){
+          entry.status = 'error';
+          entry.errorMsg = 'Too large';
+        } else {
+          entry.status = 'ready';
+          entry.dataUrl = result.dataUrl;
+          entry.sizeBytes = result.sizeBytes;
+        }
+        renderUploadGrid();
+      }).catch(err => {
+        const entry = pendingUploads.find(u => u.tempId === tempId);
+        if(entry){ entry.status = 'error'; entry.errorMsg = 'Unreadable'; }
+        renderUploadGrid();
+        console.error(err);
+      });
+    });
+  });
+
+  function resetAddForm(keepMessage){
+    addForm.reset();
+    pendingUploads = [];
+    renderUploadGrid();
+    setSrcTab('url');
+    document.getElementById('progressWrap').classList.remove('show');
+    if(!keepMessage){
+      formMsg.textContent = '';
+      formMsg.classList.remove('error');
+    }
+  }
+
+  addForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if(!isOwner){
+      formMsg.textContent = 'Owner access required to add frames.';
+      formMsg.classList.add('error');
+      return;
+    }
+    const urlLines = document.getElementById('imageUrl').value
+      .split('\n').map(u => u.trim()).filter(Boolean);
+    const movieTitle = document.getElementById('movieTitle').value.trim();
+    const year = document.getElementById('year').value.trim().replace(/[^0-9]/g, '').slice(0, 4);
+    const director = document.getElementById('director').value.trim();
+    const genre = document.getElementById('genre').value
+      .split(',').map(g => g.trim()).filter(Boolean);
+    const actors = document.getElementById('actors').value
+      .split(',').map(a => a.trim()).filter(Boolean);
+    const note = document.getElementById('note').value.trim();
+
+    if(!movieTitle){
+      formMsg.textContent = 'A movie title is needed.';
+      formMsg.classList.add('error');
+      return;
+    }
+    if(activeSrcTab === 'url' && urlLines.length === 0){
+      formMsg.textContent = 'Paste at least one image URL, or switch to Upload from device.';
+      formMsg.classList.add('error');
+      return;
+    }
+    if(activeSrcTab === 'upload'){
+      if(pendingUploads.length === 0){
+        formMsg.textContent = 'Choose at least one image file first.';
+        formMsg.classList.add('error');
+        return;
+      }
+      if(pendingUploads.some(u => u.status === 'processing')){
+        formMsg.textContent = 'Still processing images — give it a moment and try again.';
+        formMsg.classList.add('error');
+        return;
+      }
+      if(!pendingUploads.some(u => u.status === 'ready')){
+        formMsg.textContent = 'None of these files could be used. Try different images.';
+        formMsg.classList.add('error');
+        return;
+      }
+    }
+
+    const submitBtn = document.getElementById('submitBtn');
+    const progressWrap = document.getElementById('progressWrap');
+    const progressLabel = document.getElementById('progressLabel');
+    const progressCount = document.getElementById('progressCount');
+    const progressFill = document.getElementById('progressFill');
+
+    function setProgress(done, total, label){
+      progressWrap.classList.add('show');
+      progressLabel.textContent = label || 'Logging frames…';
+      progressCount.textContent = `${done}/${total}`;
+      progressFill.style.width = total > 0 ? `${Math.round((done/total)*100)}%` : '0%';
+    }
+
+    submitBtn.disabled = true;
+    formMsg.classList.remove('error');
+    formMsg.textContent = '';
+    const totalToLog = activeSrcTab === 'upload'
+      ? pendingUploads.filter(u => u.status === 'ready').length
+      : urlLines.length;
+    setProgress(0, totalToLog, activeSrcTab === 'upload' ? 'Saving images…' : 'Logging links…');
+
+    try{
+      const newEntries = [];
+      let failedCount = 0;
+
+      if(activeSrcTab === 'upload'){
+        const ready = pendingUploads.filter(u => u.status === 'ready');
+        const CONCURRENCY = 3;
+        let doneCount = 0;
+        let cursor = 0;
+
+        async function worker(){
+          while(cursor < ready.length){
+            const u = ready[cursor++];
+            const id = makeId();
+            const ok = await Store.set('gate:img:' + id, u.dataUrl);
+            if(ok){
+              imageCache[id] = u.dataUrl;
+              newEntries.push({
+                id, movieTitle, year, director, genre, actors, note,
+                addedAt: Date.now(),
+                imageType: 'upload'
+              });
+            } else {
+              failedCount++;
+            }
+            doneCount++;
+            setProgress(doneCount, ready.length, 'Saving images…');
+          }
+        }
+        await Promise.all(Array.from({length: Math.min(CONCURRENCY, ready.length)}, worker));
+      } else {
+        urlLines.forEach((imageUrl, i) => {
+          newEntries.push({
+            id: makeId(), movieTitle, year, director, genre, actors, note,
+            addedAt: Date.now(),
+            imageType: 'url',
+            imageUrl
+          });
+          setProgress(i + 1, urlLines.length, 'Logging links…');
+        });
+      }
+
+      setProgress(totalToLog, totalToLog, 'Saving collection…');
+      frames.push(...newEntries);
+      render();
+      const savedOk = await saveFrames();
+
+      progressWrap.classList.remove('show');
+
+      if(!savedOk){
+        formMsg.classList.add('error');
+        formMsg.textContent = `${newEntries.length} frame${newEntries.length===1?'':'s'} added, but the collection couldn't be saved — they may vanish on refresh. Try again in a moment.`;
+      } else if(failedCount > 0){
+        formMsg.classList.add('error');
+        formMsg.textContent = `${newEntries.length} frame${newEntries.length===1?'':'s'} logged, but ${failedCount} couldn't be saved — try adding ${failedCount===1?'it':'those'} again.`;
+      } else {
+        formMsg.classList.remove('error');
+        formMsg.textContent = `${newEntries.length} frame${newEntries.length === 1 ? '' : 's'} logged.`;
+      }
+
+      resetAddForm(true);
+      setTimeout(() => {
+        addForm.classList.remove('open');
+        toggleAdd.style.display = 'flex';
+        formMsg.textContent = '';
+        formMsg.classList.remove('error');
+      }, failedCount > 0 || !savedOk ? 3500 : 900);
+    } catch(err){
+      progressWrap.classList.remove('show');
+      formMsg.classList.add('error');
+      formMsg.textContent = 'Something went wrong logging these frames: ' + (err && err.message ? err.message : 'unknown error');
+      console.error(err);
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  // ---------- movie view (grid of one movie's stills) ----------
+  const movieView = document.getElementById('movieView');
+  const mvTint = document.getElementById('mvTint');
+  const mvTitle = document.getElementById('mvTitle');
+  const mvTags = document.getElementById('mvTags');
+  const mvActors = document.getElementById('mvActors');
+  const mvGrid = document.getElementById('mvGrid');
+  const mvClose = document.getElementById('mvClose');
+  const mvRemoveMovie = document.getElementById('mvRemoveMovie');
+
+  let currentMovieViewKey = null;
+  const moodCache = {}; // movieKey -> {r,g,b} | null, so revisits don't re-sample
+
+  function loadImageEl(src){
+    return new Promise((resolve, reject) => {
+      if(!src){ reject(new Error('no src')); return; }
+      const img = new Image();
+      img.crossOrigin = 'anonymous'; // required to read pixels back off external hosts that allow it
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error('image load failed'));
+      img.src = src;
+    });
+  }
+
+  async function getAverageColor(src){
+    try{
+      const img = await loadImageEl(src);
+      const size = 16;
+      const canvas = document.createElement('canvas');
+      canvas.width = size; canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, size, size);
+      const data = ctx.getImageData(0, 0, size, size).data; // throws if the canvas got tainted by a no-CORS image
+      let r = 0, g = 0, b = 0, n = 0;
+      for(let i = 0; i < data.length; i += 4){
+        r += data[i]; g += data[i+1]; b += data[i+2]; n++;
+      }
+      return { r: r/n, g: g/n, b: b/n };
+    } catch(err){
+      return null; // broken image, or a host that doesn't allow cross-origin pixel reads — fall back silently
+    }
+  }
+
+  // A cheap left-to-right color palette: downscaling to a 1px-tall strip lets
+  // the browser's own image smoothing do the averaging per band for us.
+  const paletteCache = {}; // frameId -> array of {r,g,b} | null
+  async function getPaletteStrip(src, bands){
+    try{
+      const img = await loadImageEl(src);
+      const canvas = document.createElement('canvas');
+      canvas.width = bands; canvas.height = 1;
+      const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(img, 0, 0, bands, 1);
+      const data = ctx.getImageData(0, 0, bands, 1).data;
+      const colors = [];
+      for(let i = 0; i < bands; i++){
+        const o = i * 4;
+        colors.push({ r: data[o], g: data[o+1], b: data[o+2] });
+      }
+      return colors;
+    } catch(err){
+      return null;
+    }
+  }
+
+  function rgbToHsl(r,g,b){
+    r/=255; g/=255; b/=255;
+    const max=Math.max(r,g,b), min=Math.min(r,g,b);
+    let h=0, s=0; const l=(max+min)/2;
+    const d = max-min;
+    if(d !== 0){
+      s = l > 0.5 ? d/(2-max-min) : d/(max+min);
+      switch(max){
+        case r: h = (g-b)/d + (g<b?6:0); break;
+        case g: h = (b-r)/d + 2; break;
+        case b: h = (r-g)/d + 4; break;
+      }
+      h /= 6;
+    }
+    return { h, s, l };
+  }
+  function hslToRgb(h,s,l){
+    let r,g,b;
+    if(s === 0){ r=g=b=l; }
+    else {
+      const hue2rgb = (p,q,t) => {
+        if(t<0) t+=1; if(t>1) t-=1;
+        if(t<1/6) return p+(q-p)*6*t;
+        if(t<1/2) return q;
+        if(t<2/3) return p+(q-p)*(2/3-t)*6;
+        return p;
+      };
+      const q = l < 0.5 ? l*(1+s) : l+s-l*s;
+      const p = 2*l-q;
+      r = hue2rgb(p,q,h+1/3);
+      g = hue2rgb(p,q,h);
+      b = hue2rgb(p,q,h-1/3);
+    }
+    return { r: Math.round(r*255), g: Math.round(g*255), b: Math.round(b*255) };
+  }
+
+  // Boost saturation and pull toward a moody mid-range brightness so the tint
+  // reads as "color grading" rather than a flat gray average — dark, desaturated
+  // films (film noir, superhero movies) need a stronger floor or they vanish.
+  function stylizeMood(rgb){
+    const { h, s, l } = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    const boostedS = Math.max(0.45, Math.min(1, s * 2.1 + 0.15));
+    const targetL = Math.max(0.28, Math.min(0.5, l + 0.12));
+    return hslToRgb(h, boostedS, targetL);
+  }
+
+  // When we can't read pixels at all (host blocks cross-origin canvas reads)
+  // fall back to a genre-implied palette, so there's always some mood color.
+  const GENRE_MOOD_RULES = [
+    { match: /noir|crime|thriller|mystery/i, rgb: { r: 55, g: 90, b: 130 } },
+    { match: /horror/i, rgb: { r: 140, g: 25, b: 25 } },
+    { match: /romance/i, rgb: { r: 170, g: 90, b: 110 } },
+    { match: /drama/i, rgb: { r: 150, g: 100, b: 55 } },
+    { match: /sci-?fi|science fiction/i, rgb: { r: 40, g: 130, b: 160 } },
+    { match: /comedy/i, rgb: { r: 190, g: 145, b: 40 } },
+    { match: /superhero|action/i, rgb: { r: 70, g: 80, b: 120 } },
+    { match: /western/i, rgb: { r: 175, g: 120, b: 55 } },
+    { match: /fantasy/i, rgb: { r: 110, g: 70, b: 160 } },
+    { match: /war/i, rgb: { r: 110, g: 95, b: 55 } },
+    { match: /animation/i, rgb: { r: 160, g: 150, b: 60 } }
+  ];
+  function genreFallbackColor(genres){
+    for(const g of (genres || [])){
+      const rule = GENRE_MOOD_RULES.find(r => r.match.test(g));
+      if(rule) return rule.rgb;
+    }
+    return { r: 95, g: 85, b: 70 }; // warm neutral — still visibly a color, not gray
+  }
+
+  async function computeMovieMood(g){
+    if(g.key in moodCache) return moodCache[g.key];
+    const list = g.framesList;
+    const sampleCount = Math.min(5, list.length);
+    const step = Math.max(1, Math.floor(list.length / sampleCount));
+    const samples = [];
+    for(let i = 0; i < list.length && samples.length < sampleCount; i += step){
+      samples.push(list[i]);
+    }
+    const colors = (await Promise.all(samples.map(f => getAverageColor(frameImgSrc(f))))).filter(Boolean);
+
+    let styled;
+    if(!colors.length){
+      // Couldn't read any pixels (likely a cross-origin host without CORS headers) — use genre instead
+      styled = stylizeMood(genreFallbackColor(g.genres));
+    } else {
+      const avg = {
+        r: colors.reduce((s,c)=>s+c.r,0) / colors.length,
+        g: colors.reduce((s,c)=>s+c.g,0) / colors.length,
+        b: colors.reduce((s,c)=>s+c.b,0) / colors.length
+      };
+      styled = stylizeMood(avg);
+    }
+    moodCache[g.key] = styled;
+    return styled;
+  }
+
+  function applyMoodTint(rgb){
+    if(!rgb){
+      mvTint.classList.remove('show');
+      return;
+    }
+    mvTint.style.background =
+      `radial-gradient(ellipse 100% 70% at 50% -10%, rgba(${rgb.r},${rgb.g},${rgb.b},0.8), transparent 72%),` +
+      `radial-gradient(ellipse 80% 60% at 100% 100%, rgba(${rgb.r},${rgb.g},${rgb.b},0.45), transparent 68%),` +
+      `radial-gradient(ellipse 140% 100% at 50% 50%, rgba(${rgb.r},${rgb.g},${rgb.b},0.16), transparent 85%)`;
+    requestAnimationFrame(() => mvTint.classList.add('show'));
+  }
+
+  function openMovieView(groupKey){
+    const groups = getMovieGroups();
+    const g = groups.find(x => x.key === groupKey);
+    if(!g) return;
+    currentMovieViewKey = groupKey;
+    renderMovieView(g);
+    movieView.classList.add('open');
+
+    if(g.key in moodCache){
+      applyMoodTint(moodCache[g.key]);
+    } else {
+      mvTint.classList.remove('show'); // start neutral, fade the mood in once it's computed
+      computeMovieMood(g).then(rgb => {
+        if(currentMovieViewKey === groupKey) applyMoodTint(rgb);
+      });
+    }
+  }
+
+  function renderMovieView(g){
+    mvTitle.innerHTML = escapeHtml(g.title) + (g.year ? ` <span class="year mono">(${escapeHtml(g.year)})</span>` : '');
+    const chips = [
+      g.director ? `<span class="tag-chip director">${escapeHtml(g.director)}</span>` : '',
+      ...g.genres.map(gg => `<span class="tag-chip genre">${escapeHtml(gg)}</span>`)
+    ].join('');
+    mvTags.innerHTML = chips;
+    mvActors.textContent = g.actors.length ? `Starring ${g.actors.join(', ')}` : '';
+    mvActors.style.display = g.actors.length ? 'block' : 'none';
+
+    mvGrid.innerHTML = '';
+    g.framesList.forEach(f => {
+      const isCover = g.cover.id === f.id;
+      const thumb = document.createElement('div');
+      thumb.className = 'mv-thumb' + (isCover ? ' is-cover' : '');
+      thumb.innerHTML = `
+        ${isCover ? '<span class="mv-cover-badge">&#9733;</span>' : ''}
+        <button class="mv-thumb-remove" aria-label="Remove this still">&times;</button>
+        <img src="${escapeHtml(frameImgSrc(f))}" alt="${escapeHtml(g.title)}" loading="lazy"
+             onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<div class=&quot;broken&quot;>Frame unavailable</div>');">
+      `;
+      thumb.addEventListener('click', (e) => {
+        if(e.target.closest('.mv-thumb-remove')) return;
+        openLightbox(g.key, f.id);
+      });
+      thumb.querySelector('.mv-thumb-remove').addEventListener('click', async (e) => {
+        e.stopPropagation();
+        await removeStillFromMovieView(f.id);
+      });
+      mvGrid.appendChild(thumb);
+    });
+  }
+
+  async function removeStillFromMovieView(id){
+    if(!isOwner){ alert('Owner access required to remove frames.'); return; }
+    if(!confirm('Remove this still from the collection?')) return;
+    await deleteFrameCore(id);
+    render();
+    await saveFrames();
+
+    const groups = getMovieGroups();
+    const g = groups.find(x => x.key === currentMovieViewKey);
+    if(!g || !g.framesList.length){
+      movieView.classList.remove('open');
+      return;
+    }
+    renderMovieView(g);
+  }
+
+  mvClose.addEventListener('click', () => movieView.classList.remove('open'));
+  mvRemoveMovie.addEventListener('click', async () => {
+    if(!currentMovieViewKey) return;
+    const groups = getMovieGroups();
+    const g = groups.find(x => x.key === currentMovieViewKey);
+    if(!g) return;
+    await removeMovie(g.key, g.title, g.framesList.length);
+    movieView.classList.remove('open');
+  });
+
+  // ---------- lightbox (single-frame zoom, opened from within a movie view) ----------
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbTags = document.getElementById('lbTags');
+  const lbNote = document.getElementById('lbNote');
+  const lbPalette = document.getElementById('lbPalette');
+  const lbCounter = document.getElementById('lbCounter');
+  const lbSetCover = document.getElementById('lbSetCover');
+  const lbRemoveStill = document.getElementById('lbRemoveStill');
+
+  let currentGroupKey = null;
+  let currentGroupFrames = [];
+
+  function openLightbox(groupKey, frameId){
+    const groups = getMovieGroups();
+    const g = groups.find(x => x.key === groupKey);
+    if(!g) return;
+    currentGroupKey = groupKey;
+    currentGroupFrames = g.framesList;
+    lightboxIndex = currentGroupFrames.findIndex(f => f.id === frameId);
+    if(lightboxIndex < 0) lightboxIndex = 0;
+    showLightbox();
+  }
+
+  async function fillLightboxPalette(f, bands){
+    bands = bands || 10;
+    lbPalette.innerHTML = '';
+    const requestedFor = f.id;
+    let colors = paletteCache[f.id];
+    if(colors === undefined){
+      colors = await getPaletteStrip(frameImgSrc(f), bands);
+      paletteCache[f.id] = colors;
+    }
+    // Guard against the user having already flipped to another frame while we awaited
+    if(!currentGroupFrames.length || currentGroupFrames[lightboxIndex].id !== requestedFor) return;
+    if(!colors){ lbPalette.style.display = 'none'; return; }
+    lbPalette.style.display = 'flex';
+    lbPalette.innerHTML = colors.map(c => `<span style="background:rgb(${c.r},${c.g},${c.b})"></span>`).join('');
+  }
+
+  function showLightbox(){
+    if(!currentGroupFrames.length){
+      lightbox.classList.remove('open');
+      return;
+    }
+    if(lightboxIndex < 0) lightboxIndex = currentGroupFrames.length - 1;
+    if(lightboxIndex >= currentGroupFrames.length) lightboxIndex = 0;
+
+    const f = currentGroupFrames[lightboxIndex];
+    lbImg.src = frameImgSrc(f);
+    lbImg.alt = f.movieTitle;
+    lbTitle.textContent = f.movieTitle;
+    const chips = [
+      f.director ? `<span class="tag-chip director">${escapeHtml(f.director)}</span>` : '',
+      ...(f.genre || []).map(g => `<span class="tag-chip genre">${escapeHtml(g)}</span>`)
+    ].join('');
+    lbTags.innerHTML = chips;
+    lbNote.textContent = f.note || '';
+    lbCounter.textContent = `${lightboxIndex + 1} / ${currentGroupFrames.length}`;
+    const isCover = covers[currentGroupKey] ? covers[currentGroupKey] === f.id : lightboxIndex === 0;
+    lbSetCover.classList.toggle('active', isCover);
+    lbSetCover.title = isCover ? 'This is the cover photo' : 'Set as cover photo';
+    lightbox.classList.add('open');
+    fillLightboxPalette(f);
+  }
+
+  document.getElementById('lbClose').addEventListener('click', () => {
+    lightbox.classList.remove('open');
+  });
+  lightbox.addEventListener('click', (e) => {
+    if(e.target === lightbox) lightbox.classList.remove('open');
+  });
+  document.getElementById('lbPrev').addEventListener('click', () => {
+    lightboxIndex = (lightboxIndex - 1 + currentGroupFrames.length) % currentGroupFrames.length;
+    showLightbox();
+  });
+  document.getElementById('lbNext').addEventListener('click', () => {
+    lightboxIndex = (lightboxIndex + 1) % currentGroupFrames.length;
+    showLightbox();
+  });
+  lbSetCover.addEventListener('click', async () => {
+    if(!isOwner){ alert('Owner access required to change the cover photo.'); return; }
+    if(!currentGroupKey || !currentGroupFrames.length) return;
+    const f = currentGroupFrames[lightboxIndex];
+    covers[currentGroupKey] = f.id;
+    await saveCovers();
+    render();
+    showLightbox();
+    if(currentMovieViewKey === currentGroupKey){
+      const groups = getMovieGroups();
+      const g = groups.find(x => x.key === currentGroupKey);
+      if(g) renderMovieView(g);
+    }
+  });
+  lbRemoveStill.addEventListener('click', () => {
+    if(!currentGroupFrames.length) return;
+    removeStill(currentGroupFrames[lightboxIndex].id);
+  });
+  movieView.addEventListener('click', (e) => {
+    if(e.target === movieView) movieView.classList.remove('open');
+  });
+  document.addEventListener('keydown', (e) => {
+    if(lightbox.classList.contains('open')){
+      if(e.key === 'Escape') lightbox.classList.remove('open');
+      if(e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+      if(e.key === 'ArrowRight') document.getElementById('lbNext').click();
+      return;
+    }
+    if(movieView.classList.contains('open')){
+      if(e.key === 'Escape') movieView.classList.remove('open');
+    }
+  });
+
+  // ---------- random frame ----------
+  document.getElementById('randomBtn').addEventListener('click', () => {
+    if(!frames.length) return;
+    const f = frames[Math.floor(Math.random() * frames.length)];
+    const groups = getMovieGroups();
+    const g = groups.find(x => x.key === movieKey(f.movieTitle));
+    if(!g) return;
+    openMovieView(g.key);
+    openLightbox(g.key, f.id);
+  });
+
+  // ---------- export / import (JSON backup) ----------
+  document.getElementById('exportBtn').addEventListener('click', async () => {
+    if(!frames.length){
+      formMsg.textContent = '';
+      alert('Nothing to export yet — log a few frames first.');
+      return;
+    }
+    // Bundle upload images inline so the export file is fully self-contained.
+    const framesOut = frames.map(f => {
+      const copy = { ...f };
+      if(f.imageType === 'upload'){
+        copy.imageData = imageCache[f.id] || null;
+      }
+      return copy;
+    });
+    const payload = {
+      exportedFrom: 'GATE',
+      exportedAt: new Date().toISOString(),
+      covers,
+      frames: framesOut
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `gate-collection-${new Date().toISOString().slice(0,10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  });
+
+  const importBtn = document.getElementById('importBtn');
+  const importFile = document.getElementById('importFile');
+  importBtn.addEventListener('click', () => importFile.click());
+  importFile.addEventListener('change', async () => {
+    if(!isOwner){ alert('Owner access required to import frames.'); importFile.value=''; return; }
+    const file = importFile.files[0];
+    importFile.value = '';
+    if(!file) return;
+
+    let payload;
+    try{
+      const text = await file.text();
+      payload = JSON.parse(text);
+    } catch(err){
+      alert('That file could not be read as a GATE export (invalid JSON).');
+      return;
+    }
+    if(!payload || !Array.isArray(payload.frames)){
+      alert('That file does not look like a GATE export.');
+      return;
+    }
+    if(!confirm(`Import ${payload.frames.length} frame${payload.frames.length===1?'':'s'} into this collection? They'll be added alongside what's already here.`)) return;
+
+    let imported = 0, skipped = 0;
+    for(const raw of payload.frames){
+      const newId = makeId();
+      const entry = {
+        id: newId,
+        movieTitle: raw.movieTitle || 'Untitled',
+        year: raw.year || '',
+        director: raw.director || '',
+        genre: Array.isArray(raw.genre) ? raw.genre : [],
+        actors: Array.isArray(raw.actors) ? raw.actors : [],
+        note: raw.note || '',
+        addedAt: raw.addedAt || Date.now(),
+        imageType: raw.imageType === 'upload' ? 'upload' : 'url'
+      };
+      if(entry.imageType === 'upload'){
+        if(!raw.imageData){ skipped++; continue; }
+        const ok = await Store.set('gate:img:' + newId, raw.imageData);
+        if(!ok){ skipped++; continue; }
+        imageCache[newId] = raw.imageData;
+      } else {
+        entry.imageUrl = raw.imageUrl || '';
+        if(!entry.imageUrl){ skipped++; continue; }
+      }
+      frames.push(entry);
+      imported++;
+    }
+
+    if(payload.covers && typeof payload.covers === 'object'){
+      // Cover ids from the import refer to old ids we just replaced, so we
+      // can't map them directly — leave existing covers as they are.
+    }
+
+    render();
+    await saveFrames();
+    alert(`Imported ${imported} frame${imported===1?'':'s'}${skipped ? `, skipped ${skipped} that were missing image data` : ''}.`);
+  });
+
+  loadFrames();
+</script>
+</body>
+</html>
