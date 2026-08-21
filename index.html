@@ -626,20 +626,13 @@
   }
   .mv-tint.show{ opacity:1; }
   .mv-header{
-    position:sticky;
-    top:0;
+    position:static;
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
     gap:16px;
     padding:28px 28px 18px;
-    background:linear-gradient(rgba(5,5,6,0.97), rgba(5,5,6,0.9) 80%, transparent);
     z-index:2;
-  }
-  @media (max-width:640px){
-    /* On small screens the sticky header ate too much of the screen and sat
-       over the stills while scrolling — let it scroll away with the page. */
-    .mv-header{ position:static; background:none; }
   }
   .mv-title{ font-size:26px; margin:0 0 8px; }
   .mv-header .tags{ margin:0; }
