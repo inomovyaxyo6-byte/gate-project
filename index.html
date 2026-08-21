@@ -577,6 +577,31 @@
     padding:40px 20px;
   }
   .lightbox.open{ display:flex; }
+
+  .stats-modal{
+    position:fixed; inset:0;
+    background:rgba(5,5,6,0.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:150;
+    padding:20px;
+  }
+  .stats-modal.open{ display:flex; }
+  .stats-card{
+    position:relative;
+    background:var(--bg-raised);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:28px;
+    max-width:420px;
+    width:100%;
+  }
+  .stats-title{ margin:0 0 16px; font-size:20px; }
+  .stats-card #statsClose{ position:absolute; top:14px; right:14px; width:32px; height:32px; font-size:14px; }
+  .stats-row{ display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px; }
+  .stats-row .num{ color:var(--amber); }
+  .stats-section-title{ margin:18px 0 6px; color:var(--text-dim); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; }
   .lightbox-inner{
     max-width:920px;
     width:100%;
@@ -911,6 +936,7 @@
       </select>
       <button type="button" class="btn" id="randomBtn" title="Jump to a random frame">&#127922; Random</button>
       <button type="button" class="btn" id="colorModeBtn" title="Browse frames by color">&#127912; Colors</button>
+      <button type="button" class="btn" id="statsBtn" style="display:none;" title="Site visit stats">&#128202; Stats</button>
       <button type="button" class="btn" id="exportBtn">Export</button>
       <button type="button" class="btn" id="importBtn">Import</button>
       <input type="file" id="importFile" accept="application/json" hidden>
@@ -1028,6 +1054,14 @@
       <div class="form-msg" id="mvEditMsg"></div>
     </form>
     <div class="mv-grid" id="mvGrid"></div>
+  </div>
+
+  <div class="stats-modal" id="statsModal">
+    <div class="stats-card">
+      <button class="lb-btn" id="statsClose" aria-label="Close">&times;</button>
+      <h3 class="stats-title">Site stats</h3>
+      <div id="statsBody" class="mono">Loading&hellip;</div>
+    </div>
   </div>
 
   <div class="lightbox" id="lightbox">
@@ -1315,6 +1349,7 @@
     signInToggle.style.display = isOwner ? 'none' : 'inline-block';
     signOutBtn.style.display = isOwner ? 'inline-block' : 'none';
     countBadge.style.display = isOwner ? 'inline-block' : 'none';
+    document.getElementById('statsBtn').style.display = isOwner ? 'inline-block' : 'none';
     modeBadge.textContent = isOwner ? 'Signed in — you can log and remove frames.' : '';
     modeBadge.className = 'mode-badge mono' + (isOwner ? ' local' : '');
   }
@@ -2705,6 +2740,51 @@
     openMovieView(g.key);
     openLightbox(g.key, f.id);
   });
+
+  // ---------- site stats (owner only) ----------
+  const statsModal = document.getElementById('statsModal');
+  const statsBody = document.getElementById('statsBody');
+
+  document.getElementById('statsBtn').addEventListener('click', async () => {
+    if(!session) return;
+    statsModal.classList.add('open');
+    statsBody.textContent = 'Loading…';
+
+    try{
+      const since = (days) => new Date(Date.now() - days * 86400000).toISOString();
+      const [totalRes, weekRes, monthRes, topRes] = await Promise.all([
+        sb.from('page_views').select('*', { count: 'exact', head: true }),
+        sb.from('page_views').select('*', { count: 'exact', head: true }).gte('viewed_at', since(7)),
+        sb.from('page_views').select('*', { count: 'exact', head: true }).gte('viewed_at', since(30)),
+        sb.from('page_views').select('movie_key').not('movie_key', 'is', null)
+      ]);
+
+      const counts = {};
+      (topRes.data || []).forEach(r => { counts[r.movie_key] = (counts[r.movie_key] || 0) + 1; });
+      const top = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5);
+
+      const rows = [
+        `<div class="stats-row"><span>All-time views</span><span class="num">${totalRes.count ?? 0}</span></div>`,
+        `<div class="stats-row"><span>Last 7 days</span><span class="num">${weekRes.count ?? 0}</span></div>`,
+        `<div class="stats-row"><span>Last 30 days</span><span class="num">${monthRes.count ?? 0}</span></div>`
+      ];
+
+      if(top.length){
+        rows.push('<div class="stats-section-title">Most-visited movies</div>');
+        top.forEach(([key, count]) => {
+          const f = frames.find(fr => movieKey(fr.movieTitle) === key);
+          const label = f ? f.movieTitle : key;
+          rows.push(`<div class="stats-row"><span>${escapeHtml(label)}</span><span class="num">${count}</span></div>`);
+        });
+      }
+
+      statsBody.innerHTML = rows.join('');
+    } catch(err){
+      statsBody.textContent = 'Could not load stats: ' + (err && err.message ? err.message : 'unknown error');
+    }
+  });
+  document.getElementById('statsClose').addEventListener('click', () => statsModal.classList.remove('open'));
+  statsModal.addEventListener('click', (e) => { if(e.target === statsModal) statsModal.classList.remove('open'); });
 
   // ---------- export / import (JSON backup) ----------
   document.getElementById('exportBtn').addEventListener('click', async () => {
