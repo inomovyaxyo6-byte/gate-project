@@ -676,50 +676,6 @@
     .lb-prev{ left:8px; } .lb-next{ right:8px; }
   }
 
-  /* ---------- movie preview panel (inline, in the normal page flow) ---------- */
-  .movie-preview-panel{
-    display:none;
-    position:relative;
-    overflow:hidden;
-    border-radius:16px;
-    margin-bottom:28px;
-    min-height:320px;
-    background:var(--bg-card);
-    border:1px solid var(--border);
-  }
-  .movie-preview-panel.open{ display:block; }
-  .mp-art{
-    position:absolute; inset:0;
-    background-size:cover;
-    background-position:center;
-  }
-  .mp-close{
-    position:absolute;
-    top:14px; right:14px;
-    z-index:2;
-  }
-  .mp-info{
-    position:relative;
-    z-index:1;
-    min-height:320px;
-    padding:28px;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-  }
-  .mp-info .mv-title{ font-size:26px; margin:0 0 8px; }
-  .mp-info .tags{ margin:0; }
-  .mp-info .mv-actors{ font-size:11px; color:var(--text-dim); margin-top:8px; }
-  .mv-watch-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    margin-top:20px;
-    padding:12px 22px;
-    font-size:15px;
-    align-self:flex-start;
-  }
-
   /* ---------- movie view (grid of a single movie's stills) ---------- */
   .movie-view{
     position:fixed; inset:0;
@@ -1009,16 +965,6 @@
       <div class="color-swatches" id="colorSwatches"></div>
       <div class="color-status mono" id="colorStatus"></div>
       <button type="button" class="btn" id="colorModeClose">&times; Back to movies</button>
-    </div>
-    <div class="movie-preview-panel" id="moviePreviewPanel">
-      <button class="lb-btn mp-close" id="mpClose" aria-label="Close">&times;</button>
-      <div class="mp-art" id="mpArt"></div>
-      <div class="mp-info">
-        <h2 class="mv-title" id="mpTitle"></h2>
-        <div class="tags mono" id="mpTags"></div>
-        <div class="mv-actors mono" id="mpActors" style="display:none;"></div>
-        <button type="button" class="btn primary mv-watch-btn" id="mpViewFrames">&#9654; View the frames</button>
-      </div>
     </div>
     <div id="emptyState" class="empty" style="display:none;">
       <div class="display">No frames logged yet</div>
@@ -1377,12 +1323,12 @@
 
       card.addEventListener('click', (e) => {
         if(e.target.closest('.remove-btn')) return;
-        showMoviePreview(g.key);
+        openMovieView(g.key);
       });
       card.addEventListener('keydown', (e) => {
         if(e.key === 'Enter' || e.key === ' '){
           e.preventDefault();
-          showMoviePreview(g.key);
+          openMovieView(g.key);
         }
       });
       card.querySelector('.remove-btn').addEventListener('click', (e) => {
@@ -2437,58 +2383,10 @@
     history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
   }
 
-  // ---------- movie preview panel (inline card expansion, stays in the page flow) ----------
-  const moviePreviewPanel = document.getElementById('moviePreviewPanel');
-  const mpArt = document.getElementById('mpArt');
-  const mpTitle = document.getElementById('mpTitle');
-  const mpTags = document.getElementById('mpTags');
-  const mpActors = document.getElementById('mpActors');
-  const mpViewFrames = document.getElementById('mpViewFrames');
-  let previewGroupKey = null;
-
-  function showMoviePreview(groupKey){
-    const g = getMovieGroups().find(x => x.key === groupKey);
-    if(!g) return;
-    previewGroupKey = groupKey;
-
-    mpTitle.innerHTML = escapeHtml(g.title) + (g.year ? ` <span class="year mono">(${escapeHtml(g.year)})</span>` : '');
-    const chips = [
-      g.director ? `<span class="tag-chip director">${escapeHtml(g.director)}</span>` : '',
-      ...g.genres.map(gg => `<span class="tag-chip genre">${escapeHtml(gg)}</span>`)
-    ].join('');
-    mpTags.innerHTML = chips;
-    mpActors.textContent = g.actors.length ? `Starring ${g.actors.join(', ')}` : '';
-    mpActors.style.display = g.actors.length ? 'block' : 'none';
-    mpViewFrames.onclick = () => openMovieView(groupKey);
-
-    mpArt.style.backgroundImage = 'none';
-    const coverSrc = frameImgSrc(g.cover);
-    if(coverSrc){
-      const bgImg = new Image();
-      bgImg.onload = () => {
-        if(previewGroupKey !== groupKey) return;
-        mpArt.style.backgroundImage =
-          `linear-gradient(90deg, rgba(28,29,31,0.97) 0%, rgba(28,29,31,0.86) 30%, rgba(28,29,31,0.4) 62%, rgba(28,29,31,0.05) 100%), url("${coverSrc}")`;
-      };
-      bgImg.src = coverSrc;
-    }
-
-    moviePreviewPanel.classList.add('open');
-    moviePreviewPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  function closeMoviePreview(){
-    previewGroupKey = null;
-    moviePreviewPanel.classList.remove('open');
-  }
-
-  document.getElementById('mpClose').addEventListener('click', closeMoviePreview);
-
   function openMovieView(groupKey){
     const groups = getMovieGroups();
     const g = groups.find(x => x.key === groupKey);
     if(!g) return;
-    closeMoviePreview();
     currentMovieViewKey = groupKey;
     mvEditForm.style.display = 'none';
     mvMusicForm.classList.remove('open');
