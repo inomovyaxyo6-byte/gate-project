@@ -683,23 +683,28 @@
     display:none;
     z-index:90;
     overflow-y:auto;
+    overflow-x:hidden;
+    transition:top .45s cubic-bezier(0.22,0.8,0.28,1);
   }
   .movie-view.open{ display:block; }
+  .movie-view.preview{
+    top:22vh;
+    border-radius:22px 22px 0 0;
+    box-shadow:0 -30px 70px rgba(0,0,0,0.65);
+  }
   .mv-backdrop{
-    position:fixed;
+    position:absolute;
     inset:0;
     z-index:-1;
     background-size:cover;
     background-position:center;
-    filter:blur(60px) brightness(0.5) saturate(1.15);
-    transform:scale(1.15);
     opacity:0;
-    transition:opacity 1.3s ease;
+    transition:opacity 1s ease;
     pointer-events:none;
   }
   .mv-backdrop.show{ opacity:1; }
   .mv-tint{
-    position:fixed;
+    position:absolute;
     inset:0;
     z-index:0;
     opacity:0;
@@ -716,10 +721,15 @@
     padding:28px 28px 18px;
     z-index:2;
   }
+  .movie-view.preview .mv-header{
+    min-height:100%;
+    align-items:flex-end;
+    padding-bottom:36px;
+  }
   .mv-title{ font-size:26px; margin:0 0 8px; }
   .mv-header .tags{ margin:0; }
   .mv-actors{ font-size:11px; color:var(--text-dim); margin-top:8px; }
-  .mv-controls{ display:flex; gap:10px; flex:none; }
+  .mv-controls{ display:flex; gap:10px; flex:none; align-self:flex-start; }
   .mv-watch-btn{
     display:none;
     align-items:center;
@@ -727,11 +737,6 @@
     margin-top:20px;
     padding:12px 22px;
     font-size:15px;
-  }
-  .movie-view.preview .mv-header{
-    min-height:min(70vh, 640px);
-    align-items:flex-end;
-    padding-bottom:36px;
   }
   .movie-view.preview .mv-watch-btn{ display:inline-flex; }
   form.mv-edit-form{
@@ -2424,11 +2429,14 @@
 
     mvBackdrop.classList.remove('show');
     const coverSrc = frameImgSrc(g.cover);
-    if(coverSrc){
+    if(coverSrc && !skipPreview){
       const bgImg = new Image();
       bgImg.onload = () => {
         if(currentMovieViewKey !== groupKey) return;
-        mvBackdrop.style.backgroundImage = `url("${coverSrc}")`;
+        // Sharp still on the right, fading to a solid scrim on the left so the
+        // title/tags stay readable — no hard seam between text and photo.
+        mvBackdrop.style.backgroundImage =
+          `linear-gradient(90deg, rgba(5,5,6,0.97) 0%, rgba(5,5,6,0.86) 30%, rgba(5,5,6,0.4) 62%, rgba(5,5,6,0.05) 100%), url("${coverSrc}")`;
         mvBackdrop.classList.add('show');
       };
       bgImg.src = coverSrc;
@@ -2437,6 +2445,7 @@
     document.getElementById('mvViewFrames').onclick = () => {
       movieView.classList.remove('preview');
       mvGrid.style.display = 'block';
+      mvBackdrop.classList.remove('show');
     };
 
     if(g.key in moodCache){
