@@ -720,6 +720,20 @@
   .mv-header .tags{ margin:0; }
   .mv-actors{ font-size:11px; color:var(--text-dim); margin-top:8px; }
   .mv-controls{ display:flex; gap:10px; flex:none; }
+  .mv-watch-btn{
+    display:none;
+    align-items:center;
+    gap:8px;
+    margin-top:20px;
+    padding:12px 22px;
+    font-size:15px;
+  }
+  .movie-view.preview .mv-header{
+    min-height:min(70vh, 640px);
+    align-items:flex-end;
+    padding-bottom:36px;
+  }
+  .movie-view.preview .mv-watch-btn{ display:inline-flex; }
   form.mv-edit-form{
     position:relative;
     z-index:2;
@@ -990,6 +1004,7 @@
         <h2 class="mv-title" id="mvTitle"></h2>
         <div class="tags mono" id="mvTags"></div>
         <div class="mv-actors mono" id="mvActors" style="display:none;"></div>
+        <button type="button" class="btn primary mv-watch-btn" id="mvViewFrames">&#9654; View the frames</button>
       </div>
       <div class="mv-controls">
         <button class="lb-btn" id="mvCopyLink" aria-label="Copy link to this movie" title="Copy link to this movie">&#128279;</button>
@@ -1560,7 +1575,7 @@
     if(!movieParam) return;
     const g = getMovieGroups().find(x => x.key === movieParam);
     if(!g) return;
-    openMovieView(g.key);
+    openMovieView(g.key, { skipPreview: true });
     const frameParam = params.get('frame');
     if(frameParam && g.framesList.some(f => f.id === frameParam)){
       openLightbox(g.key, frameParam);
@@ -2283,7 +2298,7 @@
       `;
       thumb.addEventListener('click', () => {
         const key = movieKey(f.movieTitle);
-        openMovieView(key);
+        openMovieView(key, { skipPreview: true });
         openLightbox(key, f.id);
       });
       colorGridEl.appendChild(thumb);
@@ -2330,7 +2345,7 @@
       `;
       thumb.addEventListener('click', () => {
         const key = movieKey(f.movieTitle);
-        openMovieView(key);
+        openMovieView(key, { skipPreview: true });
         openLightbox(key, f.id);
       });
       favoritesGridEl.appendChild(thumb);
@@ -2383,7 +2398,7 @@
     history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
   }
 
-  function openMovieView(groupKey){
+  function openMovieView(groupKey, { skipPreview } = {}){
     const groups = getMovieGroups();
     const g = groups.find(x => x.key === groupKey);
     if(!g) return;
@@ -2398,6 +2413,13 @@
     mvBulkBar.classList.remove('show');
     renderMovieView(g);
     movieView.classList.add('open');
+    if(skipPreview){
+      movieView.classList.remove('preview');
+      mvGrid.style.display = 'block';
+    } else {
+      movieView.classList.add('preview');
+      mvGrid.style.display = 'none';
+    }
     updateUrlForState();
 
     mvBackdrop.classList.remove('show');
@@ -2411,6 +2433,11 @@
       };
       bgImg.src = coverSrc;
     }
+
+    document.getElementById('mvViewFrames').onclick = () => {
+      movieView.classList.remove('preview');
+      mvGrid.style.display = 'block';
+    };
 
     if(g.key in moodCache){
       applyMoodTint(moodCache[g.key]);
@@ -2898,7 +2925,7 @@
     const groups = getMovieGroups();
     const g = groups.find(x => x.key === movieKey(f.movieTitle));
     if(!g) return;
-    openMovieView(g.key);
+    openMovieView(g.key, { skipPreview: true });
     openLightbox(g.key, f.id);
   });
 
