@@ -3,9 +3,14 @@
 // Telegram is deliberately restrictive about channel analytics, so this
 // records everything a bot admin is actually allowed to see:
 //   - message_reaction        -> who reacted, with which emoji, on which post
+//   - message_reaction_count  -> per-emoji totals when reactions are anonymous
 //   - chat_member             -> who joined / left / was removed
 //   - channel_post            -> new posts, so reaction rows can be tied to them
 //   - edited_channel_post     -> keeps the stored preview in sync
+//
+// Channels deliver reactions *anonymously*, so in practice channel posts produce
+// message_reaction_count (counts only) and never message_reaction (which carries
+// a name). The named handler is kept because groups do send it.
 //
 // What Telegram never exposes to any bot (no workaround exists): the list of
 // users who *viewed* a post (only an aggregate count, and only via the app's
@@ -62,6 +67,30 @@ Deno.serve(async (req) => {
         old_emoji: reactionEmoji(r.old_reaction),
         new_emoji: reactionEmoji(r.new_reaction),
       });
+    }
+
+    if (update.message_reaction_count) {
+      const rc = update.message_reaction_count;
+      const rows = (rc.reactions ?? [])
+        .map((entry: Record<string, any>) => {
+          const t = entry.type ?? {};
+          const emoji = t.type === "emoji" ? t.emoji : t.type === "custom_emoji" ? "custom" : t.type;
+          if (!emoji) return null;
+          return {
+            chat_id: rc.chat?.id,
+            message_id: rc.message_id,
+            emoji,
+            total_count: entry.total_count ?? 0,
+            updated_at: new Date().toISOString(),
+          };
+        })
+        .filter(Boolean);
+
+      if (rows.length) {
+        await supabase
+          .from("tg_reaction_counts")
+          .upsert(rows, { onConflict: "chat_id,message_id,emoji" });
+      }
     }
 
     if (update.chat_member || update.my_chat_member) {
