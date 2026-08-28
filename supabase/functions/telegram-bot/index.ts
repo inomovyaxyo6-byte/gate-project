@@ -146,38 +146,16 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Put the ❤️ button under each new publication (not on edits).
-    if (update.channel_post) {
-      const p = update.channel_post;
-      // A 9-photo album arrives as 9 updates sharing one media_group_id, so key
-      // the claim on the group: inserting the row is the lock, and only the
-      // invocation that wins it posts a button. Albums can't carry inline
-      // keyboards themselves, which is why the button is its own message.
-      const groupKey = p.media_group_id ? `g:${p.media_group_id}` : `m:${p.message_id}`;
-      const { error: claimErr } = await supabase.from("tg_like_buttons").insert({
-        chat_id: p.chat?.id,
-        group_key: groupKey,
-        target_message_id: p.message_id,
-      });
+    // The bot used to auto-post a ❤️ button under every publication, since a
+    // button tap is the only channel event that identifies the user. It was
+    // removed: an album can't carry an inline keyboard, so the button had to be
+    // its own message under each post, and that visual noise wasn't worth the
+    // names. Channel engagement therefore stays anonymous (tg_reaction_counts).
+    //
+    // The handler below is kept so any buttons already posted still respond
+    // instead of leaving a spinner on the tapper's screen.
 
-      if (!claimErr) {
-        const sent = await tg("sendMessage", {
-          chat_id: p.chat?.id,
-          text: "Понравились кадры?",
-          reply_markup: likeKeyboard(p.message_id, 0),
-        });
-        if (sent?.ok) {
-          await supabase.from("tg_like_buttons")
-            .update({ button_message_id: sent.result.message_id })
-            .eq("chat_id", p.chat?.id)
-            .eq("group_key", groupKey);
-        } else {
-          console.error("sendMessage failed", sent);
-        }
-      }
-    }
-
-    // Someone tapped the ❤️ — this is the one channel event that identifies them.
+    // Someone tapped a ❤️ — this is the one channel event that identifies them.
     if (update.callback_query) {
       const cq = update.callback_query;
       const data: string = cq.data ?? "";

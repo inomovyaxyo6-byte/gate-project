@@ -63,8 +63,6 @@ curl "https://api.telegram.org/bot<TOKEN>/getWebhookInfo"
 
 Available:
 
-- **Likes, by name** — who tapped the bot's ❤️ button, on which post
-  (`tg_likes`). This is the workaround for the limitation below.
 - **Joins / leaves** — who subscribed or left, and when (`tg_members`)
 - **Reaction totals** — per-emoji counts on each post (`tg_reaction_counts`)
 - **Posts** — every channel post the bot sees (`tg_posts`)
@@ -72,13 +70,14 @@ Available:
 
 Not available to bots, by design, with no workaround:
 
-- **Who set a native reaction on a channel post.** Channel reactions are
-  anonymous in Telegram itself — the channel owner can't see the names in the
-  app either — so the API sends only `message_reaction_count` (totals). This is
-  exactly why the ❤️ inline button exists: button taps arrive as
-  `callback_query`, which does carry identity. In *groups* reactions are not
-  anonymous and `message_reaction` arrives with a name, which is why that
-  handler is kept.
+- **Who engaged with a channel post.** Channel reactions are anonymous in
+  Telegram itself — the channel owner can't see the names in the app either —
+  so the API sends only `message_reaction_count` (totals). The one workaround is
+  an inline button, whose taps arrive as `callback_query` *with* identity; that
+  was built and then removed, because an album can't carry an inline keyboard,
+  so the button needed its own message under every post and the clutter wasn't
+  worth it. In *groups* reactions are not anonymous and `message_reaction`
+  arrives with a name, which is why that handler is kept.
 - **Who viewed a post.** Only an aggregate view count exists, and only in
   Telegram's own channel statistics (which needs ~500+ subscribers to unlock).
 - **Who forwarded a post, and where.** Forwarding is private to the forwarder.
