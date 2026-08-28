@@ -7,10 +7,16 @@
 //   - chat_member             -> who joined / left / was removed
 //   - channel_post            -> new posts, so reaction rows can be tied to them
 //   - edited_channel_post     -> keeps the stored preview in sync
+//   - callback_query          -> who tapped the bot's own ❤️ button, BY NAME
 //
 // Channels deliver reactions *anonymously*, so in practice channel posts produce
 // message_reaction_count (counts only) and never message_reaction (which carries
 // a name). The named handler is kept because groups do send it.
+//
+// That anonymity is why the bot posts its own inline ❤️ button under each
+// publication: tapping an inline button produces a callback_query, and that one
+// *does* carry the user's identity. It's the only way to learn who engaged with
+// a channel post.
 //
 // What Telegram never exposes to any bot (no workaround exists): the list of
 // users who *viewed* a post (only an aggregate count, and only via the app's
@@ -20,11 +26,34 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN")!;
 const WEBHOOK_SECRET = Deno.env.get("TELEGRAM_WEBHOOK_SECRET") ?? "";
+const SITE_URL = "https://inomovyaxyo6-byte.github.io/gate-project/";
+const TG_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
 
 const supabase = createClient(
   Deno.env.get("SUPABASE_URL")!,
   Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
 );
+
+async function tg(method: string, payload: Record<string, unknown>) {
+  const res = await fetch(`${TG_API}/${method}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  return await res.json();
+}
+
+// The ❤️ carries callback_data so taps are attributable; the site link is a
+// plain url button (url buttons produce no callback, so they tell us nothing —
+// that's fine, it's just navigation).
+function likeKeyboard(targetMessageId: number, count: number) {
+  return {
+    inline_keyboard: [[
+      { text: count > 0 ? `❤️ ${count}` : "❤️", callback_data: `like:${targetMessageId}` },
+      { text: "🖼 Все кадры", url: SITE_URL },
+    ]],
+  };
+}
 
 function fullName(user: Record<string, unknown> | undefined): string | null {
   if (!user) return null;
@@ -115,6 +144,92 @@ Deno.serve(async (req) => {
         views: null,
         forwards: null,
       });
+    }
+
+    // Put the ❤️ button under each new publication (not on edits).
+    if (update.channel_post) {
+      const p = update.channel_post;
+      // A 9-photo album arrives as 9 updates sharing one media_group_id, so key
+      // the claim on the group: inserting the row is the lock, and only the
+      // invocation that wins it posts a button. Albums can't carry inline
+      // keyboards themselves, which is why the button is its own message.
+      const groupKey = p.media_group_id ? `g:${p.media_group_id}` : `m:${p.message_id}`;
+      const { error: claimErr } = await supabase.from("tg_like_buttons").insert({
+        chat_id: p.chat?.id,
+        group_key: groupKey,
+        target_message_id: p.message_id,
+      });
+
+      if (!claimErr) {
+        const sent = await tg("sendMessage", {
+          chat_id: p.chat?.id,
+          text: "Понравились кадры?",
+          reply_markup: likeKeyboard(p.message_id, 0),
+        });
+        if (sent?.ok) {
+          await supabase.from("tg_like_buttons")
+            .update({ button_message_id: sent.result.message_id })
+            .eq("chat_id", p.chat?.id)
+            .eq("group_key", groupKey);
+        } else {
+          console.error("sendMessage failed", sent);
+        }
+      }
+    }
+
+    // Someone tapped the ❤️ — this is the one channel event that identifies them.
+    if (update.callback_query) {
+      const cq = update.callback_query;
+      const data: string = cq.data ?? "";
+
+      if (data.startsWith("like:")) {
+        const targetId = Number(data.slice(5));
+        const chatId = cq.message?.chat?.id;
+        const userId = cq.from?.id;
+
+        const { data: existing } = await supabase.from("tg_likes")
+          .select("user_id")
+          .eq("chat_id", chatId)
+          .eq("message_id", targetId)
+          .eq("user_id", userId)
+          .maybeSingle();
+
+        let liked: boolean;
+        if (existing) {
+          await supabase.from("tg_likes").delete()
+            .eq("chat_id", chatId)
+            .eq("message_id", targetId)
+            .eq("user_id", userId);
+          liked = false;
+        } else {
+          await supabase.from("tg_likes").insert({
+            chat_id: chatId,
+            message_id: targetId,
+            user_id: userId,
+            username: cq.from?.username ?? null,
+            full_name: fullName(cq.from),
+          });
+          liked = true;
+        }
+
+        const { count } = await supabase.from("tg_likes")
+          .select("*", { count: "exact", head: true })
+          .eq("chat_id", chatId)
+          .eq("message_id", targetId);
+
+        await tg("editMessageReplyMarkup", {
+          chat_id: chatId,
+          message_id: cq.message?.message_id,
+          reply_markup: likeKeyboard(targetId, count ?? 0),
+        });
+        // Always answer, or the tapper sees a spinner until it times out.
+        await tg("answerCallbackQuery", {
+          callback_query_id: cq.id,
+          text: liked ? "❤️" : "Лайк снят",
+        });
+      } else {
+        await tg("answerCallbackQuery", { callback_query_id: cq.id });
+      }
     }
   } catch (err) {
     // Never fail the webhook — Telegram retries on non-200 and would loop.

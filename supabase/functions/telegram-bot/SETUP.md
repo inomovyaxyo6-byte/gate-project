@@ -48,7 +48,7 @@ Replace `<TOKEN>` and `<SECRET>`, then run it (or just open the URL in a
 browser — `setWebhook` is a plain GET):
 
 ```bash
-curl "https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://aygykkkqepqaqebprcuj.supabase.co/functions/v1/smooth-processor&secret_token=<SECRET>&allowed_updates=%5B%22message_reaction%22%2C%22message_reaction_count%22%2C%22chat_member%22%2C%22my_chat_member%22%2C%22channel_post%22%2C%22edited_channel_post%22%5D"
+curl "https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://aygykkkqepqaqebprcuj.supabase.co/functions/v1/smooth-processor&secret_token=<SECRET>&allowed_updates=%5B%22message_reaction%22%2C%22message_reaction_count%22%2C%22chat_member%22%2C%22my_chat_member%22%2C%22channel_post%22%2C%22edited_channel_post%22%2C%22callback_query%22%5D"
 ```
 
 Check it took effect:
@@ -63,15 +63,23 @@ curl "https://api.telegram.org/bot<TOKEN>/getWebhookInfo"
 
 Available:
 
-- **Reactions** — who reacted, which emoji, on which post (`tg_reactions`)
+- **Likes, by name** — who tapped the bot's ❤️ button, on which post
+  (`tg_likes`). This is the workaround for the limitation below.
 - **Joins / leaves** — who subscribed or left, and when (`tg_members`)
+- **Reaction totals** — per-emoji counts on each post (`tg_reaction_counts`)
 - **Posts** — every channel post the bot sees (`tg_posts`)
+- **Named reactions** — `tg_reactions`, populated only in groups (see below)
 
 Not available to bots, by design, with no workaround:
 
+- **Who set a native reaction on a channel post.** Channel reactions are
+  anonymous in Telegram itself — the channel owner can't see the names in the
+  app either — so the API sends only `message_reaction_count` (totals). This is
+  exactly why the ❤️ inline button exists: button taps arrive as
+  `callback_query`, which does carry identity. In *groups* reactions are not
+  anonymous and `message_reaction` arrives with a name, which is why that
+  handler is kept.
 - **Who viewed a post.** Only an aggregate view count exists, and only in
   Telegram's own channel statistics (which needs ~500+ subscribers to unlock).
 - **Who forwarded a post, and where.** Forwarding is private to the forwarder.
 - **Visitors who opened the channel without subscribing.**
-
-So: exact names for reactions and subscriptions, numbers only for views.
