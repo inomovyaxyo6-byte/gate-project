@@ -828,6 +828,20 @@
     margin:0 28px 20px;
   }
   form.mv-music-form.open{ display:block; }
+  /* YouTube's terms require the player stay visible, so this is a real (if
+     compact) embed rather than a hidden audio-only frame. */
+  .mv-music-embed{
+    position:relative;
+    z-index:2;
+    margin:0 28px 20px;
+    max-width:420px;
+    aspect-ratio:16/9;
+    border-radius:10px;
+    overflow:hidden;
+    display:none;
+  }
+  .mv-music-embed:not(:empty){ display:block; }
+  .mv-music-embed iframe{ width:100%; height:100%; border:0; display:block; }
   .mv-bulk-bar .btn{ padding:7px 14px; font-size:12px; }
   .mv-cover-badge{
     position:absolute; top:8px; left:8px;
@@ -1031,6 +1045,7 @@
       <button type="button" class="btn" id="mvMusicEdit" style="display:none;">Set track</button>
       <button type="button" class="btn danger" id="mvMusicRemove" style="display:none;">Remove</button>
     </div>
+    <div class="mv-music-embed" id="mvMusicEmbed"></div>
     <form class="mv-music-form" id="mvMusicForm">
       <div class="src-tabs" role="tablist">
         <button type="button" class="src-tab active" id="musicTabUrl" data-src="url">Paste link</button>
@@ -1038,8 +1053,8 @@
         <button type="button" class="src-tab" id="musicTabFind" data-src="find">Find the score</button>
       </div>
       <div class="field" id="musicPaneUrl">
-        <label for="musicUrl">Audio URL</label>
-        <input type="text" id="musicUrl" placeholder="https://.../theme.mp3">
+        <label for="musicUrl">YouTube link or audio URL</label>
+        <input type="text" id="musicUrl" placeholder="https://youtu.be/… or https://.../theme.mp3">
       </div>
       <div class="field" id="musicPaneFind" style="display:none;">
         <label for="musicFindQuery">Search the soundtrack album</label>
@@ -2059,6 +2074,17 @@
   const mvMusicForm = document.getElementById('mvMusicForm');
   const musicFormMsg = document.getElementById('musicFormMsg');
   const mvAudio = document.getElementById('mvAudio');
+  const mvMusicEmbed = document.getElementById('mvMusicEmbed');
+
+  // Accepts the usual shapes a YouTube link comes in: watch?v=, youtu.be/,
+  // /embed/, /shorts/, with or without extra query params.
+  function youtubeId(url){
+    if(!url) return null;
+    const m = String(url).match(
+      /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/
+    );
+    return m ? m[1] : null;
+  }
   let musicSrcTab = 'url';
 
   let currentMovieViewKey = null;
@@ -2424,6 +2450,7 @@
     mvMusicBar.style.display = 'none';
     mvAudio.pause();
     mvAudio.removeAttribute('src');
+    mvMusicEmbed.innerHTML = '';
     selectMode = false;
     selectedIds = new Set();
     mvBulkBar.classList.remove('show');
@@ -2727,12 +2754,25 @@
     const track = soundtracks[g.key];
     mvAudio.pause();
     mvAudio.removeAttribute('src');
+    mvMusicEmbed.innerHTML = '';
     mvMusicPlay.classList.remove('playing');
     mvMusicPlay.innerHTML = '&#9654;';
 
+    const ytId = track ? youtubeId(track.trackUrl) : null;
+
     if(track){
-      mvMusicTitle.textContent = track.title || 'Now playing';
-      mvMusicPlay.style.display = 'flex';
+      mvMusicTitle.textContent = track.title || (ytId ? 'Soundtrack' : 'Now playing');
+      // A YouTube track plays in its own embed, so the bar's ▶ would be a
+      // second, dead set of controls — hide it in that case.
+      mvMusicPlay.style.display = ytId ? 'none' : 'flex';
+      if(ytId){
+        const frame = document.createElement('iframe');
+        frame.src = `https://www.youtube-nocookie.com/embed/${ytId}`;
+        frame.title = 'Soundtrack';
+        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        frame.allowFullscreen = true;
+        mvMusicEmbed.appendChild(frame);
+      }
     } else {
       mvMusicTitle.textContent = session ? 'No soundtrack yet.' : 'No soundtrack.';
       mvMusicPlay.style.display = 'none';
@@ -3355,6 +3395,9 @@
       unlockBodyScroll();
       mvAudio.pause();
       mvAudio.removeAttribute('src');
+      // Tearing out the iframe is what actually stops a YouTube track — it
+      // keeps playing otherwise, with no visible player to pause.
+      mvMusicEmbed.innerHTML = '';
     }
   }).observe(movieView, { attributes: true, attributeFilter: ['class'] });
 
