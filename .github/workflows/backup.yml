@@ -1,0 +1,65 @@
+name: Backup collection
+
+# The archive lives in a single free-tier Supabase project with no backup of
+# its own. This snapshots the collection into the repo every week, so the
+# curation work — which frames belong to which movie, the metadata, covers and
+# soundtracks — survives losing that project, and every change stays in git
+# history rather than being overwritten.
+#
+# Side effect worth having: the weekly request also counts as activity, which
+# keeps a free Supabase project from pausing itself after a week of silence.
+#
+# No secrets needed. Reads use the same public anon key the site ships with
+# (those tables are world-readable by design), and the commit uses the token
+# GitHub Actions provides automatically.
+#
+# Note: the images themselves are not copied here — only their URLs. They stay
+# in Supabase Storage. Use the site's Export button for a full dump with the
+# image data inlined.
+
+on:
+  schedule:
+    - cron: '0 4 * * 1' # Mondays, 04:00 UTC
+  workflow_dispatch: # and on demand from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch the collection
+        env:
+          SUPABASE_URL: https://aygykkkqepqaqebprcuj.supabase.co
+          ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5Z3lra2txZXBxYXFlYnByY3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcyNjcwNjcsImV4cCI6MjEwMjg0MzA2N30.mKTH7khP01utMTPjxAHGmohydhTryANxP2r3mipep0I
+        run: |
+          set -euo pipefail
+          mkdir -p backup
+          for table in frames covers soundtracks; do
+            echo "Fetching $table…"
+            # Sorted rows and sorted keys keep the diff meaningful: without it
+            # the row order can shift between runs and every backup looks like
+            # a change. The three tables key on different columns.
+            curl -sS -f \
+              "$SUPABASE_URL/rest/v1/$table?select=*" \
+              -H "apikey: $ANON_KEY" \
+              | jq --sort-keys 'sort_by(.movie_key // .id)' > "backup/$table.json"
+            echo "  $(jq 'length' < "backup/$table.json") rows"
+          done
+
+      - name: Commit if anything changed
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add backup
+          # An unchanged collection shouldn't produce an empty weekly commit.
+          if git diff --staged --quiet; then
+            echo "No changes since the last backup."
+          else
+            git commit -m "Backup collection: $(date -u +%Y-%m-%d)"
+            git push
+          fi

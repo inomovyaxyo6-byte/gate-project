@@ -1536,7 +1536,12 @@
       addedAt: new Date(row.added_at).getTime(),
       imageType: row.image_type,
       imageUrl: row.image_url,
-      imagePath: row.image_path || null
+      imagePath: row.image_path || null,
+      // Sampled once and kept, so browsing by colour doesn't re-download the
+      // whole collection. Null on rows added before this existed.
+      color: (row.color_r === null || row.color_r === undefined)
+        ? null
+        : { r: row.color_r, g: row.color_g, b: row.color_b }
     };
   }
 
@@ -1984,9 +1989,15 @@
               .upload(path, u.blob, { contentType: 'image/jpeg' });
             if(!uploadError){
               const { data: pub } = sb.storage.from('frame-images').getPublicUrl(path);
+              // Sample the colour from the copy already in memory — free here,
+              // and it spares colour browsing from ever downloading this frame.
+              const avg = await getAverageColor(u.dataUrl);
               rowsToInsert.push({
                 owner_id: session.user.id, movie_title: movieTitle, year, director, genre, actors, note,
-                image_type: 'upload', image_url: pub.publicUrl, image_path: path
+                image_type: 'upload', image_url: pub.publicUrl, image_path: path,
+                color_r: avg ? Math.round(avg.r) : null,
+                color_g: avg ? Math.round(avg.g) : null,
+                color_b: avg ? Math.round(avg.b) : null
               });
             } else {
               failedCount++;
@@ -2223,7 +2234,7 @@
     for(let i = 0; i < list.length && samples.length < sampleCount; i += step){
       samples.push(list[i]);
     }
-    const colors = (await Promise.all(samples.map(f => getAverageColor(frameImgSrc(f))))).filter(Boolean);
+    const colors = (await Promise.all(samples.map(frameRawColor))).filter(Boolean);
 
     let styled;
     if(!colors.length){
@@ -2244,9 +2255,30 @@
   // ---------- browse by color (reuses the same per-frame color grading logic as the movie mood tint) ----------
   const frameMoodCache = {}; // frameId -> {r,g,b} styled color
 
+  // Returns the frame's raw average colour, sampling the image only if it isn't
+  // already stored. Persists what it samples (owner only) so the download
+  // happens once for the life of the frame rather than once per page load.
+  async function frameRawColor(f){
+    if(f.color) return f.color;
+
+    const raw = await getAverageColor(frameImgSrc(f));
+    if(!raw) return null;
+
+    const rounded = { r: Math.round(raw.r), g: Math.round(raw.g), b: Math.round(raw.b) };
+    f.color = rounded;
+    if(isOwner){
+      try{
+        await sb.from('frames')
+          .update({ color_r: rounded.r, color_g: rounded.g, color_b: rounded.b })
+          .eq('id', f.id);
+      } catch(err){ /* not worth interrupting browsing over */ }
+    }
+    return rounded;
+  }
+
   async function computeFrameMood(f){
     if(f.id in frameMoodCache) return frameMoodCache[f.id];
-    const raw = await getAverageColor(frameImgSrc(f));
+    const raw = await frameRawColor(f);
     const styled = raw ? stylizeMood(raw) : stylizeMood(genreFallbackColor(f.genre));
     frameMoodCache[f.id] = styled;
     return styled;
@@ -2306,21 +2338,31 @@
   async function showColorBucket(bucketKey, btnEl){
     colorSwatchesEl.querySelectorAll('.color-swatch').forEach(b => b.classList.toggle('active', b === btnEl));
 
-    const uncached = frames.filter(f => !(f.id in frameMoodCache));
-    if(uncached.length){
+    // Frames whose colour is already stored resolve without touching the
+    // network; only ones added before colours were saved need sampling, and
+    // that cost is paid once because the result is written back.
+    const unsampled = frames.filter(f => !(f.id in frameMoodCache) && !f.color);
+    const pending = frames.filter(f => !(f.id in frameMoodCache));
+
+    if(unsampled.length){
       let done = 0;
-      colorStatusEl.textContent = `Reading colors… 0/${uncached.length}`;
+      colorStatusEl.textContent = `Sampling colors… 0/${unsampled.length}`;
       const CONCURRENCY = 6;
       let cursor = 0;
       async function worker(){
-        while(cursor < uncached.length){
-          const f = uncached[cursor++];
+        while(cursor < pending.length){
+          const f = pending[cursor++];
+          const needsSampling = !f.color;
           await computeFrameMood(f);
-          done++;
-          colorStatusEl.textContent = `Reading colors… ${done}/${uncached.length}`;
+          if(needsSampling){
+            done++;
+            colorStatusEl.textContent = `Sampling colors… ${done}/${unsampled.length}`;
+          }
         }
       }
-      await Promise.all(Array.from({ length: Math.min(CONCURRENCY, uncached.length) }, worker));
+      await Promise.all(Array.from({ length: Math.min(CONCURRENCY, pending.length) }, worker));
+    } else {
+      await Promise.all(pending.map(computeFrameMood));
     }
 
     const matches = frames.filter(f => frameMoodCache[f.id] && bucketForColor(frameMoodCache[f.id]) === bucketKey);
