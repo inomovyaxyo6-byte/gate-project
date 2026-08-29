@@ -297,6 +297,24 @@
   }
   .tmdb-btn:hover{ background:rgba(92,124,127,0.15); }
   .tmdb-btn:disabled{ opacity:0.5; }
+  .music-results{ margin-top:12px; display:flex; flex-direction:column; gap:6px; }
+  .music-result{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 10px;
+    background:#0f1011;
+    border:1px solid var(--border-strong);
+    border-radius:7px;
+    color:var(--text);
+    font-size:13px;
+    text-align:left;
+    width:100%;
+  }
+  .music-result:hover{ border-color:var(--amber); }
+  .music-result .mr-name{ flex:1; }
+  .music-result .mr-len{ color:var(--text-dim); font-size:11px; }
+  .music-note{ color:var(--text-dim); font-size:11.5px; margin-top:8px; }
   .field input, .field textarea{
     width:100%;
     background:#0f1011;
@@ -1017,10 +1035,19 @@
       <div class="src-tabs" role="tablist">
         <button type="button" class="src-tab active" id="musicTabUrl" data-src="url">Paste link</button>
         <button type="button" class="src-tab" id="musicTabUpload" data-src="upload">Upload file</button>
+        <button type="button" class="src-tab" id="musicTabFind" data-src="find">Find the score</button>
       </div>
       <div class="field" id="musicPaneUrl">
         <label for="musicUrl">Audio URL</label>
         <input type="text" id="musicUrl" placeholder="https://.../theme.mp3">
+      </div>
+      <div class="field" id="musicPaneFind" style="display:none;">
+        <label for="musicFindQuery">Search the soundtrack album</label>
+        <div class="field-with-action">
+          <input type="text" id="musicFindQuery" placeholder="Kingdom of Heaven">
+          <button type="button" class="tmdb-btn mono" id="musicFindBtn">Search</button>
+        </div>
+        <div class="music-results" id="musicResults"></div>
       </div>
       <div class="field" id="musicPaneUpload" style="display:none;">
         <label for="musicFile">Audio file</label>
@@ -1036,7 +1063,9 @@
       </div>
       <div class="form-msg" id="musicFormMsg"></div>
     </form>
-    <audio id="mvAudio" preload="none"></audio>
+    <!-- loops because Apple's previews are 30s — long enough for ambience only
+         if it repeats while you browse the frames -->
+    <audio id="mvAudio" preload="none" loop></audio>
     <form class="mv-edit-form" id="mvEditForm" style="display:none;">
       <div class="form-row">
         <div class="field" style="flex:1">
@@ -2744,11 +2773,89 @@
     musicSrcTab = tab;
     document.getElementById('musicTabUrl').classList.toggle('active', tab === 'url');
     document.getElementById('musicTabUpload').classList.toggle('active', tab === 'upload');
+    document.getElementById('musicTabFind').classList.toggle('active', tab === 'find');
     document.getElementById('musicPaneUrl').style.display = tab === 'url' ? 'block' : 'none';
     document.getElementById('musicPaneUpload').style.display = tab === 'upload' ? 'block' : 'none';
+    document.getElementById('musicPaneFind').style.display = tab === 'find' ? 'block' : 'none';
   }
   document.getElementById('musicTabUrl').addEventListener('click', () => setMusicSrcTab('url'));
   document.getElementById('musicTabUpload').addEventListener('click', () => setMusicSrcTab('upload'));
+  document.getElementById('musicTabFind').addEventListener('click', () => {
+    setMusicSrcTab('find');
+    const g = getMovieGroups().find(x => x.key === currentMovieViewKey);
+    const q = document.getElementById('musicFindQuery');
+    if(g && !q.value) q.value = g.title;
+  });
+
+  // Look the score up on Apple's iTunes Search API: free, no key, and it hands
+  // back official 30-second previews hosted by Apple — so nothing is copied or
+  // re-hosted here, the player just points at Apple's own preview URL.
+  const musicResultsEl = document.getElementById('musicResults');
+  const musicFindBtn = document.getElementById('musicFindBtn');
+
+  async function findScore(){
+    const title = document.getElementById('musicFindQuery').value.trim();
+    if(!title) return;
+    musicFindBtn.disabled = true;
+    musicResultsEl.innerHTML = '<div class="music-note">Searching…</div>';
+
+    try{
+      // Searching songs by title alone drags in unrelated bands with matching
+      // words, so find the soundtrack *album* first, then list its tracks.
+      const albumRes = await fetch('https://itunes.apple.com/search?entity=album&limit=5&term=' +
+        encodeURIComponent(`${title} original motion picture soundtrack`));
+      const albumData = await albumRes.json();
+      const albums = (albumData.results || []);
+      const album = albums.find(a => a.primaryGenreName === 'Soundtrack') || albums[0];
+
+      if(!album){
+        musicResultsEl.innerHTML = '<div class="music-note">No soundtrack album found — try the exact film title.</div>';
+        return;
+      }
+
+      const trackRes = await fetch(`https://itunes.apple.com/lookup?id=${album.collectionId}&entity=song&limit=25`);
+      const trackData = await trackRes.json();
+      const tracks = (trackData.results || []).filter(t => t.wrapperType === 'track' && t.previewUrl);
+
+      if(!tracks.length){
+        musicResultsEl.innerHTML = '<div class="music-note">That album has no previews available.</div>';
+        return;
+      }
+
+      musicResultsEl.innerHTML =
+        `<div class="music-note">${escapeHtml(album.collectionName)} — ${escapeHtml(album.artistName)}</div>`;
+      tracks.forEach(t => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'music-result';
+        const mins = Math.floor((t.trackTimeMillis || 0) / 60000);
+        const secs = String(Math.floor(((t.trackTimeMillis || 0) % 60000) / 1000)).padStart(2, '0');
+        btn.innerHTML =
+          `<span class="mr-name">${escapeHtml(t.trackName)}</span>` +
+          `<span class="mr-len mono">${mins}:${secs}</span>`;
+        btn.addEventListener('click', () => {
+          document.getElementById('musicUrl').value = t.previewUrl;
+          document.getElementById('musicTitleInput').value = `${t.trackName} — ${t.artistName}`;
+          setMusicSrcTab('url');
+          musicFormMsg.classList.remove('error');
+          musicFormMsg.textContent = 'Picked — press Save to attach it.';
+        });
+        musicResultsEl.appendChild(btn);
+      });
+      musicResultsEl.insertAdjacentHTML('beforeend',
+        '<div class="music-note">These are Apple\'s official 30-second previews, so they loop rather than play in full.</div>');
+    } catch(err){
+      musicResultsEl.innerHTML = '<div class="music-note">Lookup failed: ' +
+        escapeHtml(err && err.message ? err.message : 'network error') + '</div>';
+    } finally {
+      musicFindBtn.disabled = false;
+    }
+  }
+
+  musicFindBtn.addEventListener('click', findScore);
+  document.getElementById('musicFindQuery').addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){ e.preventDefault(); findScore(); }
+  });
 
   mvMusicEdit.addEventListener('click', () => {
     if(!isOwner) return;
