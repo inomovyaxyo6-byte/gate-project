@@ -2793,6 +2793,125 @@
   const musicResultsEl = document.getElementById('musicResults');
   const musicFindBtn = document.getElementById('musicFindBtn');
 
+  // A soundtrack album's "artist" on iTunes is the composer, so knowing the
+  // composer is what actually pins down the right album — the film title alone
+  // matches unrelated bands. TMDB has the composer in the crew credits.
+  async function tmdbScoreFacts(title, year){
+    try{
+      const headers = { Authorization: `Bearer ${TMDB_TOKEN}`, accept: 'application/json' };
+      const q = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(title)}` +
+        (year ? `&primary_release_year=${encodeURIComponent(year)}` : '');
+      const searchData = await (await fetch(q, { headers })).json();
+      const top = (searchData.results || [])[0];
+      if(!top) return {};
+
+      const details = await (await fetch(
+        `https://api.themoviedb.org/3/movie/${top.id}?append_to_response=credits`, { headers })).json();
+      const crew = (details.credits && details.credits.crew) || [];
+      const composer = crew.find(c => c.job === 'Original Music Composer') ||
+                       crew.find(c => (c.department === 'Sound' && /composer/i.test(c.job || '')));
+      return {
+        composer: composer ? composer.name : null,
+        year: details.release_date ? details.release_date.slice(0, 4) : year
+      };
+    } catch(err){
+      return {}; // TMDB is a bonus here, not a requirement — fall back to title only
+    }
+  }
+
+  const normalize = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+
+  function scoreAlbum(album, { title, year, composer }){
+    const name = (album.collectionName || '').toLowerCase();
+    const artist = (album.artistName || '').toLowerCase();
+    const titleMatch = normalize(name).includes(normalize(title));
+    const composerMatch = !!(composer && artist.includes(composer.toLowerCase()));
+
+    // Genre alone is worthless as a signal — every film soundtrack ever made
+    // carries it, so searching "Kingdom of Heaven" surfaces High School Musical.
+    // An album has to actually be tied to this film to stay in the running.
+    if(!titleMatch && !composerMatch) return -1;
+
+    let score = 0;
+    if(album.primaryGenreName === 'Soundtrack') score += 40;
+    if(composerMatch) score += 60;
+    if(titleMatch) score += 25;
+    if(/soundtrack|motion picture|original score/i.test(album.collectionName || '')) score += 15;
+
+    if(year && album.releaseDate){
+      const diff = Math.abs(Number(String(album.releaseDate).slice(0, 4)) - Number(year));
+      if(diff === 0) score += 30;
+      else if(diff <= 1) score += 20;
+      else if(diff <= 3) score += 5;
+      else score -= 15; // a same-named album decades off is almost never the score
+    }
+    return score;
+  }
+
+  function renderTracks(album){
+    musicResultsEl.innerHTML = '<div class="music-note">Loading tracks…</div>';
+    fetch(`https://itunes.apple.com/lookup?id=${album.collectionId}&entity=song&limit=30`)
+      .then(r => r.json())
+      .then(data => {
+        const tracks = (data.results || []).filter(t => t.wrapperType === 'track' && t.previewUrl);
+        if(!tracks.length){
+          musicResultsEl.innerHTML = '<div class="music-note">That album has no previews available.</div>';
+          return;
+        }
+
+        musicResultsEl.innerHTML = '';
+        const back = document.createElement('button');
+        back.type = 'button';
+        back.className = 'music-result';
+        back.innerHTML = `<span class="mr-name">&larr; Other albums</span>`;
+        back.addEventListener('click', () => renderAlbums(lastAlbums));
+        musicResultsEl.appendChild(back);
+
+        musicResultsEl.insertAdjacentHTML('beforeend',
+          `<div class="music-note">${escapeHtml(album.collectionName)} — ${escapeHtml(album.artistName)}</div>`);
+
+        tracks.forEach(t => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'music-result';
+          const mins = Math.floor((t.trackTimeMillis || 0) / 60000);
+          const secs = String(Math.floor(((t.trackTimeMillis || 0) % 60000) / 1000)).padStart(2, '0');
+          btn.innerHTML =
+            `<span class="mr-name">${escapeHtml(t.trackName)}</span>` +
+            `<span class="mr-len mono">${mins}:${secs}</span>`;
+          btn.addEventListener('click', () => {
+            document.getElementById('musicUrl').value = t.previewUrl;
+            document.getElementById('musicTitleInput').value = `${t.trackName} — ${t.artistName}`;
+            setMusicSrcTab('url');
+            musicFormMsg.classList.remove('error');
+            musicFormMsg.textContent = 'Picked — press Save to attach it.';
+          });
+          musicResultsEl.appendChild(btn);
+        });
+
+        musicResultsEl.insertAdjacentHTML('beforeend',
+          '<div class="music-note">Apple\'s official 30-second previews — they loop rather than play in full.</div>');
+      });
+  }
+
+  let lastAlbums = [];
+
+  function renderAlbums(albums){
+    lastAlbums = albums;
+    musicResultsEl.innerHTML = '<div class="music-note">Pick the album — the best guess is first.</div>';
+    albums.forEach(a => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'music-result';
+      const yr = a.releaseDate ? String(a.releaseDate).slice(0, 4) : '';
+      btn.innerHTML =
+        `<span class="mr-name">${escapeHtml(a.collectionName)}<br><span class="mr-len">${escapeHtml(a.artistName)}</span></span>` +
+        `<span class="mr-len mono">${escapeHtml(yr)}</span>`;
+      btn.addEventListener('click', () => renderTracks(a));
+      musicResultsEl.appendChild(btn);
+    });
+  }
+
   async function findScore(){
     const title = document.getElementById('musicFindQuery').value.trim();
     if(!title) return;
@@ -2800,50 +2919,44 @@
     musicResultsEl.innerHTML = '<div class="music-note">Searching…</div>';
 
     try{
-      // Searching songs by title alone drags in unrelated bands with matching
-      // words, so find the soundtrack *album* first, then list its tracks.
-      const albumRes = await fetch('https://itunes.apple.com/search?entity=album&limit=5&term=' +
-        encodeURIComponent(`${title} original motion picture soundtrack`));
-      const albumData = await albumRes.json();
-      const albums = (albumData.results || []);
-      const album = albums.find(a => a.primaryGenreName === 'Soundtrack') || albums[0];
+      const g = getMovieGroups().find(x => x.key === currentMovieViewKey);
+      const facts = await tmdbScoreFacts(title, g && g.year);
+      const year = facts.year || (g && g.year) || '';
+      const composer = facts.composer || null;
 
-      if(!album){
-        musicResultsEl.innerHTML = '<div class="music-note">No soundtrack album found — try the exact film title.</div>';
+      // Several phrasings, because albums are named inconsistently — the
+      // composer query is usually the one that lands on the real score.
+      const queries = [
+        `${title} original motion picture soundtrack`,
+        composer ? `${title} ${composer}` : null,
+        `${title} soundtrack`
+      ].filter(Boolean);
+
+      const byId = new Map();
+      for(const q of queries){
+        const data = await (await fetch(
+          'https://itunes.apple.com/search?entity=album&limit=10&term=' + encodeURIComponent(q))).json();
+        (data.results || []).forEach(a => { if(!byId.has(a.collectionId)) byId.set(a.collectionId, a); });
+      }
+
+      const ranked = [...byId.values()]
+        .map(a => ({ album: a, score: scoreAlbum(a, { title, year, composer }) }))
+        .filter(x => x.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 6)
+        .map(x => x.album);
+
+      if(!ranked.length){
+        musicResultsEl.innerHTML =
+          '<div class="music-note">No soundtrack album found. Try the film\'s original title — Apple lists most scores under it.</div>';
         return;
       }
 
-      const trackRes = await fetch(`https://itunes.apple.com/lookup?id=${album.collectionId}&entity=song&limit=25`);
-      const trackData = await trackRes.json();
-      const tracks = (trackData.results || []).filter(t => t.wrapperType === 'track' && t.previewUrl);
-
-      if(!tracks.length){
-        musicResultsEl.innerHTML = '<div class="music-note">That album has no previews available.</div>';
-        return;
+      renderAlbums(ranked);
+      if(composer){
+        musicResultsEl.insertAdjacentHTML('afterbegin',
+          `<div class="music-note">Composer via TMDB: ${escapeHtml(composer)}${year ? ', ' + escapeHtml(year) : ''}</div>`);
       }
-
-      musicResultsEl.innerHTML =
-        `<div class="music-note">${escapeHtml(album.collectionName)} — ${escapeHtml(album.artistName)}</div>`;
-      tracks.forEach(t => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'music-result';
-        const mins = Math.floor((t.trackTimeMillis || 0) / 60000);
-        const secs = String(Math.floor(((t.trackTimeMillis || 0) % 60000) / 1000)).padStart(2, '0');
-        btn.innerHTML =
-          `<span class="mr-name">${escapeHtml(t.trackName)}</span>` +
-          `<span class="mr-len mono">${mins}:${secs}</span>`;
-        btn.addEventListener('click', () => {
-          document.getElementById('musicUrl').value = t.previewUrl;
-          document.getElementById('musicTitleInput').value = `${t.trackName} — ${t.artistName}`;
-          setMusicSrcTab('url');
-          musicFormMsg.classList.remove('error');
-          musicFormMsg.textContent = 'Picked — press Save to attach it.';
-        });
-        musicResultsEl.appendChild(btn);
-      });
-      musicResultsEl.insertAdjacentHTML('beforeend',
-        '<div class="music-note">These are Apple\'s official 30-second previews, so they loop rather than play in full.</div>');
     } catch(err){
       musicResultsEl.innerHTML = '<div class="music-note">Lookup failed: ' +
         escapeHtml(err && err.message ? err.message : 'network error') + '</div>';
