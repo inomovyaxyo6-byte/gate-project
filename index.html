@@ -2767,7 +2767,9 @@
       mvMusicPlay.style.display = ytId ? 'none' : 'flex';
       if(ytId){
         const frame = document.createElement('iframe');
-        frame.src = `https://www.youtube-nocookie.com/embed/${ytId}`;
+        // Not youtube-nocookie.com: with cookies blocked YouTube throws up its
+        // "sign in to confirm you're not a bot" wall instead of playing.
+        frame.src = `https://www.youtube.com/embed/${ytId}`;
         frame.title = 'Soundtrack';
         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
         frame.allowFullscreen = true;
