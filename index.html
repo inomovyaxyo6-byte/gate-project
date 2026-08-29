@@ -1004,6 +1004,7 @@
     <div class="mv-bulk-bar mono" id="mvBulkBar" style="display:none;">
       <span id="mvBulkCount">0 selected</span>
       <button type="button" class="btn" id="mvBulkCancel">Cancel</button>
+      <button type="button" class="btn primary" id="mvBulkSend">&#128228; Send to Telegram</button>
       <button type="button" class="btn danger" id="mvBulkDelete">Delete selected</button>
     </div>
     <div class="mv-music-bar mono" id="mvMusicBar" style="display:none;">
@@ -2019,6 +2020,7 @@
   const mvBulkCount = document.getElementById('mvBulkCount');
   const mvBulkCancel = document.getElementById('mvBulkCancel');
   const mvBulkDelete = document.getElementById('mvBulkDelete');
+  const mvBulkSend = document.getElementById('mvBulkSend');
   const mvMusicToggle = document.getElementById('mvMusicToggle');
   const mvMusicBar = document.getElementById('mvMusicBar');
   const mvMusicPlay = document.getElementById('mvMusicPlay');
@@ -2527,6 +2529,65 @@
     const g = getMovieGroups().find(x => x.key === currentMovieViewKey);
     if(!g){ movieView.classList.remove('open'); return; }
     renderMovieView(g);
+  });
+
+  // Push the selected stills to Telegram as an album, so a curated set can be
+  // forwarded on to the channel without re-downloading anything.
+  const TG_FUNCTION_URL = 'https://aygykkkqepqaqebprcuj.supabase.co/functions/v1/smooth-processor';
+
+  mvBulkSend.addEventListener('click', async () => {
+    if(!isOwner || selectedIds.size === 0) return;
+    if(selectedIds.size > 10){
+      alert('Telegram allows at most 10 photos per album — deselect a few.');
+      return;
+    }
+
+    const g = getMovieGroups().find(x => x.key === currentMovieViewKey);
+    if(!g) return;
+    // Keep the movie's own order rather than the order they were clicked in.
+    const urls = g.framesList.filter(f => selectedIds.has(f.id)).map(frameImgSrc).filter(Boolean);
+    if(!urls.length) return;
+
+    const original = mvBulkSend.textContent;
+    mvBulkSend.disabled = true;
+    mvBulkSend.textContent = 'Sending…';
+
+    try{
+      const { data: { session: current } } = await sb.auth.getSession();
+      if(!current) throw new Error('signed out');
+
+      const res = await fetch(TG_FUNCTION_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${current.access_token}`
+        },
+        body: JSON.stringify({
+          action: 'send_photos',
+          urls,
+          caption: g.title + (g.year ? ` (${g.year})` : '')
+        })
+      });
+      const result = await res.json();
+
+      if(result.ok){
+        mvBulkSend.textContent = `Sent ${result.sent}`;
+        selectMode = false;
+        selectedIds = new Set();
+        setTimeout(() => {
+          mvBulkBar.classList.remove('show');
+          renderMovieView(g);
+        }, 900);
+      } else {
+        alert('Could not send: ' + (result.error || 'unknown error'));
+        mvBulkSend.textContent = original;
+      }
+    } catch(err){
+      alert('Could not send: ' + (err && err.message ? err.message : 'network error'));
+      mvBulkSend.textContent = original;
+    } finally {
+      mvBulkSend.disabled = false;
+    }
   });
 
   mvAddFrames.addEventListener('click', () => {

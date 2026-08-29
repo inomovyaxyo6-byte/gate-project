@@ -26,13 +26,31 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN")!;
 const WEBHOOK_SECRET = Deno.env.get("TELEGRAM_WEBHOOK_SECRET") ?? "";
+const OWNER_CHAT_ID = Deno.env.get("TELEGRAM_OWNER_CHAT_ID") ?? "";
 const SITE_URL = "https://inomovyaxyo6-byte.github.io/gate-project/";
 const TG_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
+
+// The one account allowed to push frames from the site into Telegram.
+const OWNER_USER_ID = "a7c08668-b55b-4071-89b7-c732c5422829";
 
 const supabase = createClient(
   Deno.env.get("SUPABASE_URL")!,
   Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
 );
+
+// The site lives on a different origin (github.io), so browser calls need CORS.
+const CORS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+};
+
+function json(body: unknown, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { ...CORS, "Content-Type": "application/json" },
+  });
+}
 
 async function tg(method: string, payload: Record<string, unknown>) {
   const res = await fetch(`${TG_API}/${method}`, {
@@ -70,6 +88,46 @@ function reactionEmoji(list: Array<Record<string, string>> | undefined): string 
 }
 
 Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response(null, { headers: CORS });
+
+  // Two kinds of caller reach this function, told apart by how they authenticate:
+  //   - the site, with the owner's Supabase JWT  -> push selected frames to Telegram
+  //   - Telegram's webhook, with the shared secret -> record channel events
+  const authHeader = req.headers.get("authorization") ?? "";
+  if (authHeader.startsWith("Bearer ")) {
+    const token = authHeader.slice(7);
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+    if (authError || !user || user.id !== OWNER_USER_ID) {
+      return json({ ok: false, error: "not authorized" }, 403);
+    }
+
+    let body: Record<string, any>;
+    try {
+      body = await req.json();
+    } catch {
+      return json({ ok: false, error: "bad request" }, 400);
+    }
+
+    if (body.action === "send_photos") {
+      if (!OWNER_CHAT_ID) {
+        return json({ ok: false, error: "TELEGRAM_OWNER_CHAT_ID is not set — message the bot /start first" }, 400);
+      }
+      const urls: string[] = Array.isArray(body.urls) ? body.urls.filter(Boolean) : [];
+      if (!urls.length) return json({ ok: false, error: "no photos selected" }, 400);
+      // sendMediaGroup caps an album at 10; the caption rides on the first item.
+      const media = urls.slice(0, 10).map((url, i) => ({
+        type: "photo",
+        media: url,
+        ...(i === 0 && body.caption ? { caption: String(body.caption).slice(0, 1024) } : {}),
+      }));
+      const sent = await tg("sendMediaGroup", { chat_id: OWNER_CHAT_ID, media });
+      if (!sent?.ok) console.error("sendMediaGroup failed", sent);
+      return json({ ok: !!sent?.ok, sent: media.length, error: sent?.description ?? null });
+    }
+
+    return json({ ok: false, error: "unknown action" }, 400);
+  }
+
   // Telegram echoes back the secret we set when registering the webhook, so
   // random callers can't spam fake events into the tables.
   if (WEBHOOK_SECRET) {
@@ -208,6 +266,17 @@ Deno.serve(async (req) => {
       } else {
         await tg("answerCallbackQuery", { callback_query_id: cq.id });
       }
+    }
+
+    // A bot can only message someone who has written to it first, and we need
+    // that chat's id to send anything. /start reports it so it can be pasted
+    // into the TELEGRAM_OWNER_CHAT_ID secret — one-time setup.
+    if (update.message?.chat?.type === "private") {
+      const m = update.message;
+      await tg("sendMessage", {
+        chat_id: m.chat.id,
+        text: `Ваш chat id: ${m.chat.id}\n\nВставьте его в Supabase → Edge Functions → Secrets как TELEGRAM_OWNER_CHAT_ID — после этого кнопка «Отправить в Telegram» на сайте будет присылать кадры сюда.`,
+      });
     }
   } catch (err) {
     // Never fail the webhook — Telegram retries on non-200 and would loop.
