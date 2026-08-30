@@ -1,0 +1,3792 @@
+[
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "01cd0abc-417c-4690-a4fd-eb9682776a1e",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2s9t-74mzfk5g.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2s9t-74mzfk5g.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T18:19:18.461201+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "0439d305-1572-40b7-a9fb-73f6fdac0404",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39wyzy-y2kfw2m9.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39wyzy-y2kfw2m9.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "0462018d-acf3-44e6-95b7-ac4a1952ccc1",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgns1-086itsse.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgns1-086itsse.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T18:05:19.926305+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "048e0426-6f84-4ef9-8d98-c01b4ce48a52",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39f1uy-dllv2dfy.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39f1uy-dllv2dfy.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "0561c7eb-8872-4270-88f0-7beaff7171e4",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2tos-g5xh3vdr.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2tos-g5xh3vdr.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:34:47.063706+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "061d741f-6c1d-4268-a608-b6f4b306e9ae",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5wrzxp-hchk9s1c.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5wrzxp-hchk9s1c.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T18:05:19.926305+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "07aded71-c0f0-4cbc-9824-8bafc8ff64e5",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39ezlz-wt01fqqt.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39ezlz-wt01fqqt.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "09a9c9f6-fc23-4e7b-9d51-5e1d6542c39f",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gwge-ywvdxd9z.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gwge-ywvdxd9z.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T14:46:02.256006+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "0bf5eca9-6c5d-410d-8eb4-cc2be2e16d25",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x6gdb-cg25ospo.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x6gdb-cg25ospo.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:34:47.063706+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "0c862b83-f95d-41af-9d34-b6d6f8a541d8",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5wrz1h-w01sfe87.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5wrz1h-w01sfe87.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "0fc5cf2e-ae27-4be9-8955-8653a400b840",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gx9w-efsuisw4.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gx9w-efsuisw4.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "10f459d8-24c2-4ad2-a9e4-7b39ed578321",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1fb4-t15x7e1v.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1fb4-t15x7e1v.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T10:15:16.956259+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "12181047-53dd-411e-babf-98b4d2d5711d",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2smmzu-fmet8xpz.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2smmzu-fmet8xpz.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "12b18869-beca-4489-ba42-017a7b68d03d",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgl53-jbz6hs0b.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgl53-jbz6hs0b.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:34:47.063706+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "133b4179-66f5-468d-92e5-e55bcc16bdf5",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5wrxqm-jhq5xgsr.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5wrxqm-jhq5xgsr.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:34:47.063706+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "164a94b3-f509-471e-8488-000d6f132046",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5wrxql-y4t8k36r.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5wrxql-y4t8k36r.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "1730ce2f-91e1-4733-b61f-441ec7c8266c",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gx3s-863qbilx.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gx3s-863qbilx.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "1aabae7d-bb8b-4947-831e-cef56abba0e5",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2ptlgf-59icil8g.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2ptlgf-59icil8g.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "1ab86e18-d281-4fcc-acb5-f01ef3707186",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2p17-4s9jo4pp.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2p17-4s9jo4pp.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T14:46:02.256006+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "1ca8142c-1038-47a0-bee9-48b46549f78c",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x6e9a-hmxob3ny.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x6e9a-hmxob3ny.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:43:48.134182+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "1d911052-d99a-4863-97cb-229f2a39259d",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x3k7e-9pfq29cg.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x3k7e-9pfq29cg.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "1f21e23d-8f39-47e0-9d64-7647170567d6",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2quo-x7yupiwu.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2quo-x7yupiwu.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T14:46:02.256006+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "23084016-dc37-4054-a6c1-e019dbc18982",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x6e9a-st1r8nth.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x6e9a-st1r8nth.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "2472fbc8-ccb6-463e-94bb-33fee8b42bf5",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gu0z-gljyiioj.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gu0z-gljyiioj.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "26118eaf-54cf-4053-a333-b4c1786fbd43",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2qu6-kxb0lqqa.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2qu6-kxb0lqqa.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T10:15:16.956259+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "286171e2-909b-400d-9114-8d25d90a9e51",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2smmyn-f0z4nojv.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2smmyn-f0z4nojv.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "28879cf2-d2c8-44cf-97e2-be639eace67f",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2pmq-vu62bvs7.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2pmq-vu62bvs7.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "2d157871-da17-4cfe-9195-1fc524800774",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgj4z-3l1rpmsy.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgj4z-3l1rpmsy.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T10:15:16.956259+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "2ef48813-4851-424e-b2bd-b0563fcff8c2",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2sml80-lhvybe03.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2sml80-lhvybe03.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T14:46:02.256006+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "315f026a-1160-48b8-91da-724c39f1b327",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x6e9a-x53ba2u1.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x6e9a-x53ba2u1.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "32cef789-e949-49db-b265-8664e37c61dd",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2tvy-0m0plnq8.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2tvy-0m0plnq8.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "33f1345e-171f-45e8-9cb3-35aa86cf2df5",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2ptlgf-kc3dpmp3.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2ptlgf-kc3dpmp3.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "37ac842a-d410-4c5c-9f84-b99aad059a98",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2qr4-izkd71nk.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2qr4-izkd71nk.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T18:19:18.461201+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "37b6a095-b5bd-497e-af03-92925ae25589",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39wyzz-i77kfw6d.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39wyzz-i77kfw6d.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Brad Pitt",
+      "Mélanie Laurent",
+      "Christoph Waltz",
+      "Eli Roth"
+    ],
+    "added_at": "2026-08-21T12:22:49.803319+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Quentin Tarantino",
+    "genre": [
+      "Drama",
+      "Thriller",
+      "War"
+    ],
+    "id": "3b5f4b0a-4600-42ca-9949-c4fc1b06662d",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2x6kiv-vxpk8jof.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2x6kiv-vxpk8jof.jpg",
+    "movie_title": "Inglourious Basterds",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "3bed02c8-213b-45f8-a58f-ae583c0e2acc",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2puhok-vggywvbf.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2puhok-vggywvbf.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:43:48.134182+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "40e7935d-4443-4ddb-b374-4db72d12df85",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x3lmw-m08lurbl.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x3lmw-m08lurbl.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "40ea4318-9d1a-40fb-acc0-ad2b755802c5",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2sz5-hv9wkghu.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2sz5-hv9wkghu.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T10:15:16.956259+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "4325762f-932b-4265-8259-cfb2b89da631",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2smmb3-oaehnhei.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2smmb3-oaehnhei.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "458fceb9-0382-45cc-833a-05f2006b821f",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bglhp-uj9lf2t4.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bglhp-uj9lf2t4.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "4714bfd0-965f-481e-8235-7913afa2d2cc",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gu0z-4aue3fzz.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gu0z-4aue3fzz.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "479e2ac1-19b6-4146-8fa6-258553ecc5d9",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2oum-abdivgy8.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2oum-abdivgy8.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "48778783-6a9f-495e-842f-4bbf99fb01fc",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1fd8-ibcuvpv6.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1fd8-ibcuvpv6.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "491347ef-db0b-4895-81ea-47a55015ceeb",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgj50-u9g3q7cd.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgj50-u9g3q7cd.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T14:46:02.256006+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "4989c0dc-ab13-478a-abaa-019f68c2d11e",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x6fju-fqvgdzq5.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x6fju-fqvgdzq5.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T15:04:47.539953+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "4b6e88fe-39c7-4c58-a242-4eced14c5afe",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5xukev-2rl2c76j.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5xukev-2rl2c76j.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "4b7d8f90-848b-42a0-a76e-8dc85b8b432b",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2pugyl-e0z44lfy.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2pugyl-e0z44lfy.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "4e1d8305-fba5-4ec1-ba62-ca0584529f42",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2pui54-uyl69w45.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2pui54-uyl69w45.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:43:48.134182+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "52681937-6f88-4b2d-b688-57ecca5045a0",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x3k7e-bce9cda2.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x3k7e-bce9cda2.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "52cc4667-8139-4df5-81b3-de7195372cdf",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgllb-g1908bbm.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgllb-g1908bbm.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "533d4d6d-fa17-4926-82eb-ec714d5c38cd",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgn20-mwy7ng64.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgn20-mwy7ng64.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "556e7c15-2b32-4ebb-9062-11f38c25a1d7",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gvzp-3pti2h56.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gvzp-3pti2h56.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "58295182-bb82-49f4-8c5c-343a14db5b45",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2nsk-wg0s1sqa.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2nsk-wg0s1sqa.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "5bb468d3-288e-4d9e-88e9-b65f3aab4230",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2ptmtq-vxxcrv47.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2ptmtq-vxxcrv47.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "5fd6b798-1ee6-40e1-a2fa-fcf29b6abec5",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2t2i-awbsgxri.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2t2i-awbsgxri.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T18:05:19.926305+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "61e8add1-1262-4ee7-b094-92a78c8d426e",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39ezlz-emzg6frz.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39ezlz-emzg6frz.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Brad Pitt",
+      "Mélanie Laurent",
+      "Christoph Waltz",
+      "Eli Roth"
+    ],
+    "added_at": "2026-08-21T12:22:49.803319+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Quentin Tarantino",
+    "genre": [
+      "Drama",
+      "Thriller",
+      "War"
+    ],
+    "id": "6643eb9f-8a6f-492f-aacd-78273e941397",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2x6mz6-peqi2juy.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2x6mz6-peqi2juy.jpg",
+    "movie_title": "Inglourious Basterds",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:34:47.063706+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "68b351c5-fac8-42a4-a905-834eaac84490",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5wrztj-8nkxtk2s.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5wrztj-8nkxtk2s.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Brad Pitt",
+      "Mélanie Laurent",
+      "Christoph Waltz",
+      "Eli Roth"
+    ],
+    "added_at": "2026-08-21T12:22:49.803319+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Quentin Tarantino",
+    "genre": [
+      "Drama",
+      "Thriller",
+      "War"
+    ],
+    "id": "68fbb088-064f-43e7-859c-357bdd6a08fc",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2x6kiu-aszuirhx.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2x6kiu-aszuirhx.jpg",
+    "movie_title": "Inglourious Basterds",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "6c2c7f29-406e-41e6-ac5a-3b043994ee37",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1dl2-t769rgfb.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1dl2-t769rgfb.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "6cbfe769-b1e1-4f9e-bb89-0c617e3cb810",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgnsx-0y3z60h5.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgnsx-0y3z60h5.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T10:15:16.956259+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "6e6ad7fd-4438-47c4-b05a-bc114c1dc483",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2smm2o-yupc5mva.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2smm2o-yupc5mva.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "6fd81991-c864-4525-ac39-c2179fb0eeaa",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gwfx-4kv3hbdd.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gwfx-4kv3hbdd.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T18:05:19.926305+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "702499b9-eb3d-4517-96d4-75b26ed933b1",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39ezly-4kq1azuv.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39ezly-4kq1azuv.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "71aac38a-32b6-46ad-a37d-90890f5486a6",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gu0y-k1eviy96.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gu0y-k1eviy96.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T18:19:18.461201+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "72a38954-21f0-4e68-a565-1ede7174c6e8",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39x11o-a4pyj2xk.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39x11o-a4pyj2xk.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "73e6e716-2150-4080-a0b7-4f804893665a",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1gyc-2mwaqd1l.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1gyc-2mwaqd1l.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T15:04:47.539953+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "74715450-4eb3-4da5-a44f-92768b8ce616",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5xukev-8ny0doxs.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5xukev-8ny0doxs.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "74a6272a-b2b4-4323-9528-cc5937c8464a",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgl1i-of0rw01j.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgl1i-of0rw01j.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Brad Pitt",
+      "Mélanie Laurent",
+      "Christoph Waltz",
+      "Eli Roth"
+    ],
+    "added_at": "2026-08-21T12:22:49.803319+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Quentin Tarantino",
+    "genre": [
+      "Drama",
+      "Thriller",
+      "War"
+    ],
+    "id": "74df1c69-2c18-4d7f-9c01-a06008d2ce2f",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2x6m6u-axubml59.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2x6m6u-axubml59.jpg",
+    "movie_title": "Inglourious Basterds",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T10:15:16.956259+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "7885c989-df0b-47e7-b8a2-f9cc621e338a",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2smjjj-fdkqsx4m.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2smjjj-fdkqsx4m.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "7c5b153b-639b-4042-9748-73dc1196ca63",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2pugwf-01y7srs2.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2pugwf-01y7srs2.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T14:46:02.256006+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "7ceb42f0-417a-4a06-8705-37faf0ac2747",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x6fkp-zzc5ohuz.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x6fkp-zzc5ohuz.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T18:05:19.926305+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "7cff7c95-46ef-4dc1-acdd-af485d6ca8a6",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39f2t5-q0vqj226.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39f2t5-q0vqj226.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "7edaa06b-5025-422b-acb1-c9d45cce8858",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgmid-o383pdit.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgmid-o383pdit.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "7f12e2ef-0848-4d33-8eba-c7d935c77e21",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gvrg-7ypxzekb.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gvrg-7ypxzekb.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "88182354-0008-4bc3-bd73-be723869ed23",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2rw6-fsg9zwtb.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2rw6-fsg9zwtb.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "886a6972-8f29-4a75-bc76-3d25f521cbf2",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gv9i-mj8jgfy7.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gv9i-mj8jgfy7.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:34:47.063706+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "89867e35-40cc-4265-83ec-2f1f56084f10",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5wrz0b-yd949m52.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5wrz0b-yd949m52.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "8a4111e6-2bf0-4ae2-9260-c160407d905b",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2nsk-w3r21lay.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2nsk-w3r21lay.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "8a4d97fa-7133-4337-8690-50d5ee49d426",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1g68-gjd1s04q.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1g68-gjd1s04q.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T14:46:02.256006+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "8fd101b4-a3ee-4ac3-b2c2-7e39c9560ca2",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x6gc1-6qkncg30.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x6gc1-6qkncg30.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "902bc033-2aa0-4628-8d81-4ae339f98169",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1dl2-v289hgdu.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1dl2-v289hgdu.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T10:15:16.956259+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "94cc804a-df1f-4f6c-93d0-c4276edf0f54",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2smjji-z7a12baq.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2smjji-z7a12baq.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "954c6153-8884-441e-ba1d-fbc721e1919d",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gvit-ioz99hc6.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gvit-ioz99hc6.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "961c9bf4-76ff-440e-8739-9a2538f16cda",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bglx6-nv5wuf3p.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bglx6-nv5wuf3p.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Brad Pitt",
+      "Mélanie Laurent",
+      "Christoph Waltz",
+      "Eli Roth"
+    ],
+    "added_at": "2026-08-21T12:22:49.803319+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Quentin Tarantino",
+    "genre": [
+      "Drama",
+      "Thriller",
+      "War"
+    ],
+    "id": "98fe1e80-8c0e-460b-9cca-df8229cd4283",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2x6kiv-lw49snhn.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2x6kiv-lw49snhn.jpg",
+    "movie_title": "Inglourious Basterds",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "992eac43-ef7c-46fc-b073-1566e0c6537e",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1gyj-pjznjrj8.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1gyj-pjznjrj8.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "9a3611e3-0833-438b-990c-07cf9f03563c",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgj50-l5qsb57l.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgj50-l5qsb57l.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Brad Pitt",
+      "Mélanie Laurent",
+      "Christoph Waltz",
+      "Eli Roth"
+    ],
+    "added_at": "2026-08-21T12:22:49.803319+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Quentin Tarantino",
+    "genre": [
+      "Drama",
+      "Thriller",
+      "War"
+    ],
+    "id": "9a9ab999-e1b8-4dfd-988c-2b41761c6ede",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2x6lto-2dommwab.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2x6lto-2dommwab.jpg",
+    "movie_title": "Inglourious Basterds",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T10:15:16.956259+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "9d2a684c-22a7-49a8-8e0d-2350e62e1d63",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2smlel-7soob6ca.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2smlel-7soob6ca.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "9e003748-fa3e-462d-9c95-4e94216602b6",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgm8b-g75hhssb.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgm8b-g75hhssb.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "a12e4725-3367-4dd3-a3c7-7f435a241553",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1gbh-vph1102s.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1gbh-vph1102s.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Brad Pitt",
+      "Mélanie Laurent",
+      "Christoph Waltz",
+      "Eli Roth"
+    ],
+    "added_at": "2026-08-21T12:22:49.803319+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Quentin Tarantino",
+    "genre": [
+      "Drama",
+      "Thriller",
+      "War"
+    ],
+    "id": "a1c1f0e5-08f5-4479-aa92-cb3ddd0358cc",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2x6lp7-4k7ipvrt.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2x6lp7-4k7ipvrt.jpg",
+    "movie_title": "Inglourious Basterds",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "a3d3a31b-e349-4ec7-895e-cda578897da5",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2szf-6ai7ycup.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2szf-6ai7ycup.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "a54de938-ed42-403e-8407-d62ac91a3ba4",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2pyn-feuiavoy.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2pyn-feuiavoy.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "aa25dd70-9cdb-4e36-8fe5-bb72c9453b1c",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2ptlgd-wfsew8z5.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2ptlgd-wfsew8z5.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "ab3e99f6-dcd0-4470-926b-341d310edd86",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1g59-de3zh2a9.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1g59-de3zh2a9.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T18:05:19.926305+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "abb6d12f-9b55-4feb-a908-f6453f412dcd",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39f1tm-pjo3di9w.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39f1tm-pjo3di9w.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "ad12914d-d705-44d3-bd61-c868216ea6ef",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gwjt-azscff75.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gwjt-azscff75.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "adffdcb7-8357-466a-9244-f78da5cfe1c9",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gvc7-eh0ykw0e.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gvc7-eh0ykw0e.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:43:48.134182+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "af79bc2d-76a2-433b-8de2-aa11cdbc8f35",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x3lga-t45ovq23.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x3lga-t45ovq23.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "b041cc29-55a8-4272-b4c8-7f143aa2b76c",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2nsk-f9f8aad7.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2nsk-f9f8aad7.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "b0c784d2-5f61-4272-9d5c-68843533069f",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2sid-dtrtylsr.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2sid-dtrtylsr.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Brad Pitt",
+      "Mélanie Laurent",
+      "Christoph Waltz",
+      "Eli Roth"
+    ],
+    "added_at": "2026-08-21T12:22:49.803319+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Quentin Tarantino",
+    "genre": [
+      "Drama",
+      "Thriller",
+      "War"
+    ],
+    "id": "b13fd985-3494-4771-afb7-e9d24816ae46",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2x6lr1-mef876px.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2x6lr1-mef876px.jpg",
+    "movie_title": "Inglourious Basterds",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "b30fe5a4-3132-4b15-8fb0-604cbf974ed6",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgn1u-ipzs97yp.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgn1u-ipzs97yp.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "b5b569e0-8e4b-43f7-a6db-7e54ac4a72e0",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgkg2-yef6tz78.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgkg2-yef6tz78.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "b6da0caf-02f1-4886-a858-387fb264cb47",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgku2-vdjpn6ss.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgku2-vdjpn6ss.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "b82bf01f-5885-4b13-a703-2c82af643218",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2pugxj-me2wzs98.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2pugxj-me2wzs98.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "ba8c6737-5df9-4475-a3eb-b2fca09b9615",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2ptmtn-ien6jx50.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2ptmtn-ien6jx50.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "bb7e7712-b1ef-44dd-9a7b-9226c5d79f3e",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2q3a-08qblwyk.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2q3a-08qblwyk.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "be418035-dcba-4c9a-b227-7b1022b9abb5",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2tpp-6bo2a0fy.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2tpp-6bo2a0fy.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "bfa10ee9-a4b3-48ac-93e6-a784b6a3ff8d",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2roy-psffsqyv.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2roy-psffsqyv.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T18:05:19.926305+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "c21d0936-1905-41b2-be12-1807f382b494",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39f1s8-y70jxuap.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39f1s8-y70jxuap.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:43:48.134182+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "c647616c-457b-4102-b4ef-3a3826ad450d",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x3k7e-4ywnyxz8.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x3k7e-4ywnyxz8.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "c6d96dc0-9778-4dd3-97af-8f603de1cd03",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1dl2-w393ejn5.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1dl2-w393ejn5.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Brad Pitt",
+      "Mélanie Laurent",
+      "Christoph Waltz",
+      "Eli Roth"
+    ],
+    "added_at": "2026-08-21T12:22:49.803319+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Quentin Tarantino",
+    "genre": [
+      "Drama",
+      "Thriller",
+      "War"
+    ],
+    "id": "ca5cdf58-d660-477d-af41-48c7d089b5de",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2x6mfi-xljxauco.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2x6mfi-xljxauco.jpg",
+    "movie_title": "Inglourious Basterds",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "cab80f3c-5956-485f-bd98-d5d71886b1d4",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2qdq-an3yjanr.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2qdq-an3yjanr.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T18:05:19.926305+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "ccf38046-084d-4686-97d0-fa53cc4b0206",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39f2ik-2nlnd33c.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39f2ik-2nlnd33c.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "d17b710f-8bc2-490e-b16b-68ee42a49086",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2puirg-merhcevp.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2puirg-merhcevp.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "d2ec640c-8a76-437b-820a-3fac1c143dba",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2ozt-sa4ws5t6.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2ozt-sa4ws5t6.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "d34ca15d-b82c-486a-89a5-b0b0b7924b10",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2puhsi-ixkctz7u.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2puhsi-ixkctz7u.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Orlando Bloom",
+      "Eva Green",
+      "Jeremy Irons",
+      "David Thewlis"
+    ],
+    "added_at": "2026-08-29T20:57:06.424494+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Ridley Scott",
+    "genre": [
+      "Drama",
+      "Action",
+      "Adventure",
+      "History",
+      "War"
+    ],
+    "id": "d6c45160-9490-4363-aca3-65b82552e7d2",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtev2rrw-pvlf1ju3.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtev2rrw-pvlf1ju3.jpg",
+    "movie_title": "Kingdom of Heaven",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2005"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "d6f91df4-92a5-4792-8cbd-92943e71e72b",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgmp8-mvhinxu9.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgmp8-mvhinxu9.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:34:47.063706+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "da712ba3-99ec-43f1-b03c-61afcb98afef",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5wrxql-pji28g8u.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5wrxql-pji28g8u.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "dbe89e12-012e-42e5-bdce-f487b726ccf5",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1faz-a9925djd.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1faz-a9925djd.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T18:19:18.461201+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "dfbb2bbd-8d35-481d-a018-52abb660327c",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39wyzz-fb5z7wi1.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39wyzz-fb5z7wi1.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Edward Norton",
+      "Brad Pitt",
+      "Helena Bonham Carter",
+      "Meat Loaf"
+    ],
+    "added_at": "2026-08-28T00:48:39.838991+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "David Fincher",
+    "genre": [
+      "Drama",
+      "Thriller"
+    ],
+    "id": "e08f5507-73ce-4bad-a427-fd7d87c6fdc9",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtc8gvzi-yb7ce22f.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtc8gvzi-yb7ce22f.jpg",
+    "movie_title": "Fight Club",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1999"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T14:46:02.256006+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "e17fe943-64c8-47e7-89fa-7b81cccd6fed",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x6fni-p38loc4y.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x6fni-p38loc4y.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T18:19:18.461201+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "e195b9e2-cb8a-4b40-8248-19a0a4fed031",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt39x17u-9kn04sv9.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt39x17u-9kn04sv9.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:43:48.134182+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "e2b88f3b-1866-434b-8242-a5f4e0da05ea",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x3ld0-nqrbwt9f.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x3ld0-nqrbwt9f.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T14:46:02.256006+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "e2c35290-76dd-4145-a4b2-6bdf40c49300",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5x6g7t-xt6xlzas.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5x6g7t-xt6xlzas.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T10:15:16.956259+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "e53609cc-7e94-4581-9ed8-01b4d294ed11",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2smm2b-t7pkm1hc.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2smm2b-t7pkm1hc.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "e548dd04-c1ef-4112-847d-e63a17351f65",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2ptmtw-lve2pewq.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2ptmtw-lve2pewq.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T10:15:16.956259+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "e6857d58-b6ec-4508-9424-7e487fe2945e",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2smlbq-aoo07nmi.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2smlbq-aoo07nmi.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Ryan Gosling",
+      "Sandra Hüller",
+      "James Ortiz",
+      "Lionel Boyce",
+      "Ken Leung",
+      "Milana Vayntrub",
+      "Priya Kansara"
+    ],
+    "added_at": "2026-08-21T02:14:46.616595+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Phil Lord and Christopher Miller",
+    "genre": [
+      "Science fiction",
+      "drama",
+      "adventure"
+    ],
+    "id": "e761a1e9-4882-446d-b2c3-5450d03b3307",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2bgnq5-ns1kkekm.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2bgnq5-ns1kkekm.jpg",
+    "movie_title": "Project Hail Mary",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2026"
+  },
+  {
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ],
+    "added_at": "2026-08-21T10:15:16.956259+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Frank Darabont",
+    "genre": [
+      "Drama",
+      "Crime"
+    ],
+    "id": "e9f3ca00-9e1d-43d1-a1a9-864a5730a5eb",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2smjjj-jp146gzp.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2smjjj-jp146gzp.jpg",
+    "movie_title": "The Shawshank Redemption",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Leonardo DiCaprio",
+      "Tom Hardy",
+      "Domhnall Gleeson",
+      "Will Poulter"
+    ],
+    "added_at": "2026-08-21T08:57:26.021262+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Alejandro G. Iñárritu",
+    "genre": [
+      "Western",
+      "Drama",
+      "Adventure"
+    ],
+    "id": "eba9d6f3-32b4-46af-9f10-ac5eadde566a",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2pui69-8l0xc933.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2pui69-8l0xc933.jpg",
+    "movie_title": "The Revenant",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2015"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:34:47.063706+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "ec1aabea-b7ff-42a3-95d3-299d8b03dcb1",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5wrz18-en7v5sc2.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5wrz18-en7v5sc2.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "George MacKay",
+      "Dean-Charles Chapman",
+      "Mark Strong",
+      "Andrew Scott"
+    ],
+    "added_at": "2026-08-23T14:34:47.063706+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Sam Mendes",
+    "genre": [
+      "War",
+      "Drama",
+      "History"
+    ],
+    "id": "ef76985b-7d14-45d6-8599-e50a1bc4948f",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5wrzl9-wrax6wid.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5wrzl9-wrax6wid.jpg",
+    "movie_title": "1917",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2019"
+  },
+  {
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart",
+      "Michael Caine"
+    ],
+    "added_at": "2026-08-21T02:02:56.430355+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "id": "f70e9f51-3b99-4822-9731-9b19c0427027",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2b1h6e-k6bbv707.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2b1h6e-k6bbv707.jpg",
+    "movie_title": "The Dark Knight",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2008"
+  },
+  {
+    "actors": [
+      "Jean Reno",
+      "Natalie Portman",
+      "Gary Oldman",
+      "Danny Aiello"
+    ],
+    "added_at": "2026-08-23T15:02:02.672951+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Luc Besson",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Action"
+    ],
+    "id": "f8856a85-12a0-4249-844e-475941b6d158",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt5xr0th-657eqxqa.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt5xr0th-657eqxqa.jpg",
+    "movie_title": "Léon: The Professional",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "1994"
+  },
+  {
+    "actors": [
+      "Brad Pitt",
+      "Mélanie Laurent",
+      "Christoph Waltz",
+      "Eli Roth"
+    ],
+    "added_at": "2026-08-21T12:22:49.803319+00:00",
+    "color_b": null,
+    "color_g": null,
+    "color_r": null,
+    "director": "Quentin Tarantino",
+    "genre": [
+      "Drama",
+      "Thriller",
+      "War"
+    ],
+    "id": "fc86afaf-9ce4-4bcc-bc6e-b245755bde1f",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mt2x6mo8-bqb4926j.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2x6mo8-bqb4926j.jpg",
+    "movie_title": "Inglourious Basterds",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  }
+]
