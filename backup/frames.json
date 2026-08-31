@@ -7,9 +7,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 60,
+    "color_g": 60,
+    "color_r": 70,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -35,9 +35,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T18:19:18.461201+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 124,
+    "color_g": 117,
+    "color_r": 110,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -63,9 +63,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 12,
+    "color_g": 19,
+    "color_r": 32,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -89,9 +89,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T18:05:19.926305+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 42,
+    "color_g": 34,
+    "color_r": 23,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -115,9 +115,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 66,
+    "color_g": 66,
+    "color_r": 67,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -143,9 +143,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:34:47.063706+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 144,
+    "color_g": 172,
+    "color_r": 165,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -169,9 +169,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T18:05:19.926305+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 80,
+    "color_g": 80,
+    "color_r": 78,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -195,9 +195,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 36,
+    "color_g": 38,
+    "color_r": 29,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -220,9 +220,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T14:46:02.256006+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 135,
+    "color_g": 132,
+    "color_r": 126,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -246,9 +246,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:34:47.063706+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 42,
+    "color_g": 57,
+    "color_r": 64,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -272,9 +272,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 33,
+    "color_g": 30,
+    "color_r": 26,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -297,9 +297,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 96,
+    "color_g": 102,
+    "color_r": 104,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -323,9 +323,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T10:15:16.956259+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 46,
+    "color_g": 42,
+    "color_r": 49,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -351,9 +351,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 110,
+    "color_g": 123,
+    "color_r": 123,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -377,9 +377,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:34:47.063706+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 116,
+    "color_g": 132,
+    "color_r": 108,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -403,9 +403,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:34:47.063706+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 46,
+    "color_g": 98,
+    "color_r": 133,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -429,9 +429,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 22,
+    "color_g": 20,
+    "color_r": 16,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -454,9 +454,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 68,
+    "color_g": 61,
+    "color_r": 50,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -480,9 +480,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 42,
+    "color_g": 27,
+    "color_r": 8,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -508,9 +508,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T14:46:02.256006+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 106,
+    "color_g": 127,
+    "color_r": 150,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -534,9 +534,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:43:48.134182+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 93,
+    "color_g": 127,
+    "color_r": 132,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -560,9 +560,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 58,
+    "color_g": 49,
+    "color_r": 41,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -588,9 +588,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T14:46:02.256006+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 79,
+    "color_g": 103,
+    "color_r": 118,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -614,9 +614,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 45,
+    "color_g": 68,
+    "color_r": 80,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -639,9 +639,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 51,
+    "color_g": 46,
+    "color_r": 45,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -667,9 +667,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T10:15:16.956259+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 94,
+    "color_g": 87,
+    "color_r": 84,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -692,9 +692,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 59,
+    "color_g": 44,
+    "color_r": 5,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -723,9 +723,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 43,
+    "color_g": 35,
+    "color_r": 28,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -749,9 +749,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T10:15:16.956259+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 72,
+    "color_g": 77,
+    "color_r": 84,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -774,9 +774,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T14:46:02.256006+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 66,
+    "color_g": 85,
+    "color_r": 93,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -800,9 +800,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 18,
+    "color_g": 26,
+    "color_r": 37,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -828,9 +828,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 48,
+    "color_g": 49,
+    "color_r": 45,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -854,9 +854,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 98,
+    "color_g": 94,
+    "color_r": 98,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -882,9 +882,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T18:19:18.461201+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 26,
+    "color_g": 32,
+    "color_r": 41,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -907,9 +907,9 @@
       "Eli Roth"
     ],
     "added_at": "2026-08-21T12:22:49.803319+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 69,
+    "color_g": 113,
+    "color_r": 120,
     "director": "Quentin Tarantino",
     "genre": [
       "Drama",
@@ -933,9 +933,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 63,
+    "color_g": 53,
+    "color_r": 33,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -959,9 +959,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:43:48.134182+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 96,
+    "color_g": 122,
+    "color_r": 122,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -985,9 +985,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 67,
+    "color_g": 73,
+    "color_r": 79,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -1013,9 +1013,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T10:15:16.956259+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 63,
+    "color_g": 60,
+    "color_r": 50,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -1041,9 +1041,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 103,
+    "color_g": 114,
+    "color_r": 115,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -1067,9 +1067,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 26,
+    "color_g": 33,
+    "color_r": 34,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -1092,9 +1092,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 84,
+    "color_g": 93,
+    "color_r": 92,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -1120,9 +1120,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 39,
+    "color_g": 21,
+    "color_r": 18,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -1149,9 +1149,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 29,
+    "color_g": 26,
+    "color_r": 109,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -1175,9 +1175,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T14:46:02.256006+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 58,
+    "color_g": 99,
+    "color_r": 128,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -1201,9 +1201,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T15:04:47.539953+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 46,
+    "color_g": 80,
+    "color_r": 102,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -1227,9 +1227,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 42,
+    "color_g": 34,
+    "color_r": 23,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -1253,9 +1253,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 54,
+    "color_g": 60,
+    "color_r": 67,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -1279,9 +1279,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:43:48.134182+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 167,
+    "color_g": 182,
+    "color_r": 157,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -1308,9 +1308,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 117,
+    "color_g": 133,
+    "color_r": 143,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -1337,9 +1337,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 38,
+    "color_g": 47,
+    "color_r": 58,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -1363,9 +1363,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 29,
+    "color_g": 23,
+    "color_r": 11,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -1388,9 +1388,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 64,
+    "color_g": 49,
+    "color_r": 5,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -1416,9 +1416,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 80,
+    "color_g": 80,
+    "color_r": 78,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -1442,9 +1442,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 76,
+    "color_g": 75,
+    "color_r": 74,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -1470,9 +1470,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T18:05:19.926305+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 46,
+    "color_g": 52,
+    "color_r": 60,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -1496,9 +1496,9 @@
       "Eli Roth"
     ],
     "added_at": "2026-08-21T12:22:49.803319+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 71,
+    "color_g": 77,
+    "color_r": 65,
     "director": "Quentin Tarantino",
     "genre": [
       "Drama",
@@ -1522,9 +1522,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:34:47.063706+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 120,
+    "color_g": 130,
+    "color_r": 119,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -1548,9 +1548,9 @@
       "Eli Roth"
     ],
     "added_at": "2026-08-21T12:22:49.803319+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 27,
+    "color_g": 32,
+    "color_r": 35,
     "director": "Quentin Tarantino",
     "genre": [
       "Drama",
@@ -1574,9 +1574,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 25,
+    "color_g": 24,
+    "color_r": 13,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -1603,9 +1603,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 48,
+    "color_g": 49,
+    "color_r": 46,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -1629,9 +1629,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T10:15:16.956259+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 59,
+    "color_g": 62,
+    "color_r": 67,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -1654,9 +1654,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 27,
+    "color_g": 22,
+    "color_r": 8,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -1679,9 +1679,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T18:05:19.926305+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 30,
+    "color_g": 28,
+    "color_r": 27,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -1705,9 +1705,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 68,
+    "color_g": 84,
+    "color_r": 54,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -1730,9 +1730,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T18:19:18.461201+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 98,
+    "color_g": 67,
+    "color_r": 51,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -1755,9 +1755,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 96,
+    "color_g": 105,
+    "color_r": 109,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -1781,9 +1781,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T15:04:47.539953+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 61,
+    "color_g": 71,
+    "color_r": 80,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -1810,9 +1810,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 127,
+    "color_g": 116,
+    "color_r": 101,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -1836,9 +1836,9 @@
       "Eli Roth"
     ],
     "added_at": "2026-08-21T12:22:49.803319+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 37,
+    "color_g": 47,
+    "color_r": 72,
     "director": "Quentin Tarantino",
     "genre": [
       "Drama",
@@ -1862,9 +1862,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T10:15:16.956259+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 201,
+    "color_g": 151,
+    "color_r": 121,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -1887,9 +1887,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 26,
+    "color_g": 26,
+    "color_r": 15,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -1913,9 +1913,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T14:46:02.256006+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 54,
+    "color_g": 93,
+    "color_r": 115,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -1939,9 +1939,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T18:05:19.926305+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 78,
+    "color_g": 71,
+    "color_r": 64,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -1968,9 +1968,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 119,
+    "color_g": 117,
+    "color_r": 111,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -1994,9 +1994,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 19,
+    "color_g": 20,
+    "color_r": 15,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -2019,9 +2019,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 110,
+    "color_g": 106,
+    "color_r": 104,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -2047,9 +2047,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 103,
+    "color_g": 113,
+    "color_r": 114,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -2072,9 +2072,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:34:47.063706+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 83,
+    "color_g": 105,
+    "color_r": 114,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -2098,9 +2098,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 92,
+    "color_g": 80,
+    "color_r": 50,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -2126,9 +2126,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 16,
+    "color_g": 29,
+    "color_r": 40,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -2152,9 +2152,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T14:46:02.256006+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 96,
+    "color_g": 115,
+    "color_r": 135,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -2178,9 +2178,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 49,
+    "color_g": 55,
+    "color_r": 55,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -2204,9 +2204,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T10:15:16.956259+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 80,
+    "color_g": 102,
+    "color_r": 122,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -2229,9 +2229,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 13,
+    "color_g": 16,
+    "color_r": 17,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -2257,9 +2257,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 7,
+    "color_g": 20,
+    "color_r": 38,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -2283,9 +2283,9 @@
       "Eli Roth"
     ],
     "added_at": "2026-08-21T12:22:49.803319+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 77,
+    "color_g": 115,
+    "color_r": 123,
     "director": "Quentin Tarantino",
     "genre": [
       "Drama",
@@ -2309,9 +2309,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 54,
+    "color_g": 57,
+    "color_r": 56,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -2338,9 +2338,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 65,
+    "color_g": 60,
+    "color_r": 49,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -2364,9 +2364,9 @@
       "Eli Roth"
     ],
     "added_at": "2026-08-21T12:22:49.803319+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 74,
+    "color_g": 71,
+    "color_r": 64,
     "director": "Quentin Tarantino",
     "genre": [
       "Drama",
@@ -2390,9 +2390,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T10:15:16.956259+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 47,
+    "color_g": 39,
+    "color_r": 35,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -2418,9 +2418,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 5,
+    "color_g": 16,
+    "color_r": 33,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -2444,9 +2444,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 40,
+    "color_g": 19,
+    "color_r": 17,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -2470,9 +2470,9 @@
       "Eli Roth"
     ],
     "added_at": "2026-08-21T12:22:49.803319+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 26,
+    "color_g": 31,
+    "color_r": 44,
     "director": "Quentin Tarantino",
     "genre": [
       "Drama",
@@ -2496,9 +2496,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 95,
+    "color_g": 86,
+    "color_r": 67,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -2524,9 +2524,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 45,
+    "color_g": 51,
+    "color_r": 58,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -2552,9 +2552,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 55,
+    "color_g": 44,
+    "color_r": 30,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -2578,9 +2578,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 25,
+    "color_g": 23,
+    "color_r": 31,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -2604,9 +2604,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T18:05:19.926305+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 36,
+    "color_g": 35,
+    "color_r": 23,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -2630,9 +2630,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 24,
+    "color_g": 24,
+    "color_r": 23,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -2655,9 +2655,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 8,
+    "color_g": 12,
+    "color_r": 13,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -2680,9 +2680,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:43:48.134182+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 104,
+    "color_g": 119,
+    "color_r": 119,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -2706,9 +2706,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 65,
+    "color_g": 48,
+    "color_r": 3,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -2734,9 +2734,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 57,
+    "color_g": 62,
+    "color_r": 67,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -2762,9 +2762,9 @@
       "Eli Roth"
     ],
     "added_at": "2026-08-21T12:22:49.803319+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 35,
+    "color_g": 37,
+    "color_r": 38,
     "director": "Quentin Tarantino",
     "genre": [
       "Drama",
@@ -2791,9 +2791,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 2,
+    "color_g": 67,
+    "color_r": 42,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -2820,9 +2820,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 71,
+    "color_g": 71,
+    "color_r": 67,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -2849,9 +2849,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 10,
+    "color_g": 28,
+    "color_r": 51,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -2875,9 +2875,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 12,
+    "color_g": 9,
+    "color_r": 4,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -2901,9 +2901,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 40,
+    "color_g": 48,
+    "color_r": 50,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -2927,9 +2927,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 10,
+    "color_g": 20,
+    "color_r": 26,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -2955,9 +2955,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 71,
+    "color_g": 75,
+    "color_r": 82,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -2983,9 +2983,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 78,
+    "color_g": 79,
+    "color_r": 82,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -3011,9 +3011,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T18:05:19.926305+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 54,
+    "color_g": 60,
+    "color_r": 62,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -3037,9 +3037,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:43:48.134182+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 114,
+    "color_g": 131,
+    "color_r": 129,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -3063,9 +3063,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 66,
+    "color_g": 93,
+    "color_r": 124,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -3089,9 +3089,9 @@
       "Eli Roth"
     ],
     "added_at": "2026-08-21T12:22:49.803319+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 11,
+    "color_g": 11,
+    "color_r": 15,
     "director": "Quentin Tarantino",
     "genre": [
       "Drama",
@@ -3115,9 +3115,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 45,
+    "color_g": 52,
+    "color_r": 72,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -3143,9 +3143,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T18:05:19.926305+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 39,
+    "color_g": 34,
+    "color_r": 22,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -3169,9 +3169,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 66,
+    "color_g": 70,
+    "color_r": 65,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -3195,9 +3195,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 140,
+    "color_g": 130,
+    "color_r": 130,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -3223,9 +3223,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 57,
+    "color_g": 63,
+    "color_r": 69,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -3249,9 +3249,9 @@
       "David Thewlis"
     ],
     "added_at": "2026-08-29T20:57:06.424494+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 77,
+    "color_g": 75,
+    "color_r": 75,
     "director": "Ridley Scott",
     "genre": [
       "Drama",
@@ -3280,9 +3280,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 37,
+    "color_g": 33,
+    "color_r": 121,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -3306,9 +3306,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:34:47.063706+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 30,
+    "color_g": 33,
+    "color_r": 30,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -3332,9 +3332,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 13,
+    "color_g": 19,
+    "color_r": 25,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -3358,9 +3358,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T18:19:18.461201+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 62,
+    "color_g": 56,
+    "color_r": 56,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -3383,9 +3383,9 @@
       "Meat Loaf"
     ],
     "added_at": "2026-08-28T00:48:39.838991+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 25,
+    "color_g": 25,
+    "color_r": 9,
     "director": "David Fincher",
     "genre": [
       "Drama",
@@ -3408,9 +3408,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T14:46:02.256006+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 33,
+    "color_g": 42,
+    "color_r": 59,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -3434,9 +3434,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T18:19:18.461201+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 46,
+    "color_g": 40,
+    "color_r": 36,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -3459,9 +3459,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:43:48.134182+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 124,
+    "color_g": 146,
+    "color_r": 141,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -3485,9 +3485,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T14:46:02.256006+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 69,
+    "color_g": 94,
+    "color_r": 100,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -3511,9 +3511,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T10:15:16.956259+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 95,
+    "color_g": 93,
+    "color_r": 91,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -3536,9 +3536,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 19,
+    "color_g": 27,
+    "color_r": 38,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -3562,9 +3562,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T10:15:16.956259+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 34,
+    "color_g": 33,
+    "color_r": 36,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -3590,9 +3590,9 @@
       "Priya Kansara"
     ],
     "added_at": "2026-08-21T02:14:46.616595+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 13,
+    "color_g": 17,
+    "color_r": 20,
     "director": "Phil Lord and Christopher Miller",
     "genre": [
       "Science fiction",
@@ -3616,9 +3616,9 @@
       "William Sadler"
     ],
     "added_at": "2026-08-21T10:15:16.956259+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 82,
+    "color_g": 83,
+    "color_r": 86,
     "director": "Frank Darabont",
     "genre": [
       "Drama",
@@ -3641,9 +3641,9 @@
       "Will Poulter"
     ],
     "added_at": "2026-08-21T08:57:26.021262+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 55,
+    "color_g": 50,
+    "color_r": 44,
     "director": "Alejandro G. Iñárritu",
     "genre": [
       "Western",
@@ -3667,9 +3667,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:34:47.063706+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 80,
+    "color_g": 87,
+    "color_r": 79,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -3693,9 +3693,9 @@
       "Andrew Scott"
     ],
     "added_at": "2026-08-23T14:34:47.063706+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 125,
+    "color_g": 143,
+    "color_r": 130,
     "director": "Sam Mendes",
     "genre": [
       "War",
@@ -3719,9 +3719,9 @@
       "Michael Caine"
     ],
     "added_at": "2026-08-21T02:02:56.430355+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 24,
+    "color_g": 12,
+    "color_r": 9,
     "director": "Christopher Nolan",
     "genre": [
       "Action",
@@ -3745,9 +3745,9 @@
       "Danny Aiello"
     ],
     "added_at": "2026-08-23T15:02:02.672951+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 101,
+    "color_g": 114,
+    "color_r": 124,
     "director": "Luc Besson",
     "genre": [
       "Crime",
@@ -3771,9 +3771,9 @@
       "Eli Roth"
     ],
     "added_at": "2026-08-21T12:22:49.803319+00:00",
-    "color_b": null,
-    "color_g": null,
-    "color_r": null,
+    "color_b": 53,
+    "color_g": 62,
+    "color_r": 66,
     "director": "Quentin Tarantino",
     "genre": [
       "Drama",
