@@ -502,6 +502,32 @@
   },
   {
     "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 147,
+    "color_g": 176,
+    "color_r": 183,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "1bf5ed12-ced9-40aa-94df-1dd357969df2",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp4l6-rqb9akn3.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp4l6-rqb9akn3.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
       "Jean Reno",
       "Natalie Portman",
       "Gary Oldman",
@@ -661,6 +687,32 @@
   },
   {
     "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 38,
+    "color_g": 47,
+    "color_r": 50,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "271859c8-3894-49e3-9c58-c74c91c4433a",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp8ef-mp6dmcyf.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp8ef-mp6dmcyf.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
       "Tim Robbins",
       "Morgan Freeman",
       "Bob Gunton",
@@ -711,6 +763,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2005"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 150,
+    "color_g": 157,
+    "color_r": 148,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "2a1b8e7b-8a02-4597-9015-9165fa65778c",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp62i-w7lv19k9.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp62i-w7lv19k9.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
   },
   {
     "actors": [
@@ -848,6 +926,32 @@
   },
   {
     "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 66,
+    "color_g": 106,
+    "color_r": 86,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "341d5113-68bf-4260-a327-be9d8379c9b1",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp2qy-atzgtr7k.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp2qy-atzgtr7k.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
       "Orlando Bloom",
       "Eva Green",
       "Jeremy Irons",
@@ -898,6 +1002,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "1994"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 80,
+    "color_g": 88,
+    "color_r": 84,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "38aa25c2-f9ba-4ddd-aeca-86adb56f045c",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp7oe-qjubgsua.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp7oe-qjubgsua.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
   },
   {
     "actors": [
@@ -1029,6 +1159,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "1994"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 89,
+    "color_g": 103,
+    "color_r": 105,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "4427353e-46bf-4a14-a793-b4e422693b4e",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp5bq-83o58ymk.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp5bq-83o58ymk.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
   },
   {
     "actors": [
@@ -1273,6 +1429,32 @@
   },
   {
     "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 92,
+    "color_g": 92,
+    "color_r": 86,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "51bffa68-0c29-4c02-81b6-ec8bc79fe815",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp8m0-2qufweo5.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp8m0-2qufweo5.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
       "George MacKay",
       "Dean-Charles Chapman",
       "Mark Strong",
@@ -1357,6 +1539,58 @@
   },
   {
     "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 97,
+    "color_g": 112,
+    "color_r": 100,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "53814001-e4d5-4604-a019-b96d5d9790eb",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp3ti-8uh2qof8.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp3ti-8uh2qof8.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 32,
+    "color_g": 40,
+    "color_r": 37,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "544275e6-f421-42fc-a3bd-709ed7786e8e",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp7w4-p0etxpp1.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp7w4-p0etxpp1.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
       "Edward Norton",
       "Brad Pitt",
       "Helena Bonham Carter",
@@ -1433,6 +1667,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2015"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 78,
+    "color_g": 103,
+    "color_r": 91,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "5cbb90e1-8b63-4d5a-b097-d53f1f59674f",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp2qy-cpzz9hql.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp2qy-cpzz9hql.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
   },
   {
     "actors": [
@@ -1959,6 +2219,32 @@
   },
   {
     "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 101,
+    "color_g": 127,
+    "color_r": 150,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "7eccaf75-2f3c-4906-9da4-801cad66823c",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp6yh-mheq65tz.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp6yh-mheq65tz.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
       "Ryan Gosling",
       "Sandra Hüller",
       "James Ortiz",
@@ -2010,6 +2296,58 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "1999"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 65,
+    "color_g": 58,
+    "color_r": 46,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "7f512691-db28-443f-9127-89488d06a37f",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp4ox-jqvoj15k.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp4ox-jqvoj15k.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 114,
+    "color_g": 125,
+    "color_r": 136,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "80d10623-66b1-4c3c-bb03-f1eda8a2bd88",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp7su-4zev9pa5.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp7su-4zev9pa5.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
   },
   {
     "actors": [
@@ -2143,6 +2481,84 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2008"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 46,
+    "color_g": 46,
+    "color_r": 44,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "8b3535cd-08f6-451f-9a5e-69d18f0e4a0c",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp76h-h83bfk42.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp76h-h83bfk42.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 95,
+    "color_g": 130,
+    "color_r": 108,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "8b90edae-e64a-4eaa-a042-7787f3b713fd",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp3pg-hkmxcfm3.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp3pg-hkmxcfm3.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 39,
+    "color_g": 80,
+    "color_r": 82,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "8f8f2909-c4df-4e61-a59e-999676d8c731",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp8iq-tpnt3sek.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp8iq-tpnt3sek.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
   },
   {
     "actors": [
@@ -2572,6 +2988,32 @@
   },
   {
     "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 166,
+    "color_g": 172,
+    "color_r": 166,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "aa368593-fc20-44da-adcf-2293a7e12b4f",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp6y6-3ajb2u70.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp6y6-3ajb2u70.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
       "Christian Bale",
       "Heath Ledger",
       "Aaron Eckhart",
@@ -2895,6 +3337,32 @@
   },
   {
     "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 121,
+    "color_g": 139,
+    "color_r": 138,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "ba4bd8c8-3d76-4f62-bc2f-0f4a44e29c08",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp5f4-gycoupa1.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp5f4-gycoupa1.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
       "Leonardo DiCaprio",
       "Tom Hardy",
       "Domhnall Gleeson",
@@ -3163,6 +3631,32 @@
   },
   {
     "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 58,
+    "color_g": 57,
+    "color_r": 53,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "ceab85c1-aad6-4423-ab4a-58b5431d2002",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp9b4-ckk1i0um.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp9b4-ckk1i0um.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
       "Leonardo DiCaprio",
       "Tom Hardy",
       "Domhnall Gleeson",
@@ -3186,6 +3680,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2015"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 133,
+    "color_g": 133,
+    "color_r": 117,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "d2c8b3fb-60cc-44c2-bbdf-7ccfe587f64d",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp66p-lqeio806.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp66p-lqeio806.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
   },
   {
     "actors": [
@@ -3240,6 +3760,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2015"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 73,
+    "color_g": 83,
+    "color_r": 52,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "d5b34a7d-0726-4ad0-a1c6-3119fb09866d",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp5fy-s4u0l2bk.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp5fy-s4u0l2bk.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
   },
   {
     "actors": [
@@ -3349,6 +3895,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2008"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 23,
+    "color_g": 31,
+    "color_r": 33,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "de8a4a97-6224-43e9-beeb-c22e0a71473b",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp2qy-xjibifpp.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp2qy-xjibifpp.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
   },
   {
     "actors": [
@@ -3687,6 +4259,32 @@
   },
   {
     "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 107,
+    "color_g": 132,
+    "color_r": 130,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "ed53c2b2-980b-43d0-abcb-832aa887acd8",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp66z-rezjymu7.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp66z-rezjymu7.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
       "George MacKay",
       "Dean-Charles Chapman",
       "Mark Strong",
@@ -3739,6 +4337,32 @@
   },
   {
     "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 58,
+    "color_g": 70,
+    "color_r": 73,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "f7462e27-1d23-4517-b434-1a16aa7e1793",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp4ok-es6ubxsz.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp4ok-es6ubxsz.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
+  },
+  {
+    "actors": [
       "Jean Reno",
       "Natalie Portman",
       "Gary Oldman",
@@ -3788,5 +4412,31 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2009"
+  },
+  {
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Michael Caine",
+      "Jessica Chastain"
+    ],
+    "added_at": "2026-09-05T17:00:08.073361+00:00",
+    "color_b": 97,
+    "color_g": 123,
+    "color_r": 133,
+    "director": "Christopher Nolan",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "id": "fcdddc3c-1dae-4dc4-badf-dd9b3f1ed1bc",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mtomp95y-i0lygkpn.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mtomp95y-i0lygkpn.jpg",
+    "movie_title": "Interstellar",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2014"
   }
 ]
