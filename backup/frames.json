@@ -502,6 +502,32 @@
   },
   {
     "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 51,
+    "color_g": 50,
+    "color_r": 40,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "1ae2a9d5-89aa-462d-9a14-b705f2042599",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9nl6y-q0wmxzzi.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9nl6y-q0wmxzzi.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
       "Matthew McConaughey",
       "Anne Hathaway",
       "Michael Caine",
@@ -869,6 +895,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "1994"
+  },
+  {
+    "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 11,
+    "color_g": 8,
+    "color_r": 5,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "319b8353-cba1-402a-b9ce-65648ee64dfd",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9nl4d-4bl14j1o.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9nl4d-4bl14j1o.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
   },
   {
     "actors": [
@@ -1750,6 +1802,32 @@
   },
   {
     "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 77,
+    "color_g": 71,
+    "color_r": 55,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "64ed654b-bd2d-46dd-b0af-0d5c2ec23b3a",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9nk1v-q85zh18q.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9nk1v-q85zh18q.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
       "Brad Pitt",
       "Mélanie Laurent",
       "Christoph Waltz",
@@ -1770,6 +1848,32 @@
     "image_type": "upload",
     "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mt2x6mz6-peqi2juy.jpg",
     "movie_title": "Inglourious Basterds",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 27,
+    "color_g": 29,
+    "color_r": 18,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "6716b7a1-c47a-44f0-b43d-ee9eaf55c7cb",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9nkho-5co0znsp.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9nkho-5co0znsp.jpg",
+    "movie_title": "Watchmen",
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2009"
@@ -1880,6 +1984,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2026"
+  },
+  {
+    "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 36,
+    "color_g": 34,
+    "color_r": 15,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "6de71937-c35d-4066-81c6-779d1a7fb00a",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9nllw-akso6mhv.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9nllw-akso6mhv.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
   },
   {
     "actors": [
@@ -2351,6 +2481,32 @@
   },
   {
     "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 93,
+    "color_g": 86,
+    "color_r": 76,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "81cd4e47-f7cf-4e20-a413-20e9e9738daf",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9nily-ezltfmbc.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9nily-ezltfmbc.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
       "Orlando Bloom",
       "Eva Green",
       "Jeremy Irons",
@@ -2533,6 +2689,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2014"
+  },
+  {
+    "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 36,
+    "color_g": 34,
+    "color_r": 25,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "8c74465e-97fc-441b-81d6-70c79cfc38d3",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9nilx-l6cb2yk9.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9nilx-l6cb2yk9.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
   },
   {
     "actors": [
@@ -2800,6 +2982,32 @@
   },
   {
     "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 8,
+    "color_g": 7,
+    "color_r": 6,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "9cb6b196-9643-468d-b63f-a7750a00ea3b",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9njkj-28mzb0h0.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9njkj-28mzb0h0.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
       "Tim Robbins",
       "Morgan Freeman",
       "Bob Gunton",
@@ -2851,6 +3059,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2026"
+  },
+  {
+    "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 26,
+    "color_g": 25,
+    "color_r": 17,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "9feb9c71-e818-4d18-b412-0068e7258e55",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9nl8z-5i5ae9bn.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9nl8z-5i5ae9bn.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
   },
   {
     "actors": [
@@ -3525,6 +3759,32 @@
   },
   {
     "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 82,
+    "color_g": 69,
+    "color_r": 31,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "c664811a-98da-4d16-8bd7-192c27ef03e9",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9nily-8sk7aynq.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9nily-8sk7aynq.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
       "Christian Bale",
       "Heath Ledger",
       "Aaron Eckhart",
@@ -3654,6 +3914,32 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2014"
+  },
+  {
+    "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 64,
+    "color_g": 65,
+    "color_r": 56,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "cf528639-5d23-4d16-ab7b-b9438d1852a8",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9njt4-9iju7ugx.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9njt4-9iju7ugx.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
   },
   {
     "actors": [
@@ -4207,6 +4493,32 @@
   },
   {
     "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 61,
+    "color_g": 45,
+    "color_r": 19,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "eb7ec299-d838-4d09-ab7a-415ee8d01870",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9njvp-hzqnzydj.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9njvp-hzqnzydj.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
       "Leonardo DiCaprio",
       "Tom Hardy",
       "Domhnall Gleeson",
@@ -4308,6 +4620,58 @@
     "note": "",
     "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
     "year": "2019"
+  },
+  {
+    "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 168,
+    "color_g": 147,
+    "color_r": 76,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "ef97a0ff-2352-4e8d-8f78-82439cca3dd0",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9nkl2-cfxx0j3w.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9nkl2-cfxx0j3w.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
+  },
+  {
+    "actors": [
+      "Malin Akerman",
+      "Patrick Wilson",
+      "Billy Crudup",
+      "Matthew Goode"
+    ],
+    "added_at": "2026-09-20T20:26:00.665421+00:00",
+    "color_b": 8,
+    "color_g": 34,
+    "color_r": 64,
+    "director": "Zack Snyder",
+    "genre": [
+      "Mystery",
+      "Action",
+      "Science Fiction"
+    ],
+    "id": "f389d221-8b3b-4542-acd2-5068f72ff7d4",
+    "image_path": "a7c08668-b55b-4071-89b7-c732c5422829/mua9nkle-6u52ne66.jpg",
+    "image_type": "upload",
+    "image_url": "https://aygykkkqepqaqebprcuj.supabase.co/storage/v1/object/public/frame-images/a7c08668-b55b-4071-89b7-c732c5422829/mua9nkle-6u52ne66.jpg",
+    "movie_title": "Watchmen",
+    "note": "",
+    "owner_id": "a7c08668-b55b-4071-89b7-c732c5422829",
+    "year": "2009"
   },
   {
     "actors": [
